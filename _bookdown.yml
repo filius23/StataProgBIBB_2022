@@ -1,0 +1,7 @@
+book_filename: "Progammieren mit Stata BIBB"
+delete_merged_file: true
+output_dir: "docs"
+language:
+  ui:
+    chapter_name: ""
+rmd_files: ['index.Rmd','01_macros.Rmd','02_loops_fromdata.Rmd','03_reg.Rmd','04_labels_variab.Rmd','05_Daten.Rmd','05_weiteres.Rmd','06_lit.Rmd']

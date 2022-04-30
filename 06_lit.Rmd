@@ -1,0 +1,22 @@
+# Literatur & Links {#lit}
+
+```{r setuplit, echo = F, message=F, warning = F}
+if(Sys.getenv("USERNAME") == "filse" ) .libPaths("D:/R-library4")  # set library
+# stataexe <- "C:/Program Files (x86)/Stata13/StataSE-64.exe"
+stataexe <- "C:/Program Files/Stata16/StataSE-64.exe"
+knitr::opts_chunk$set(engine.path=list(stata=stataexe))
+library(Statamarkdown)
+# library(tidyverse)
+# library(ggthemes)
+```
+
+
+
+
+**[Stata Cookbook](https://sites.google.com/site/imirkina/cookbook-stata)**
+
+**[Stata Coding Guide](https://julianreif.com/guide/)**
+
+**[Ausführliche Einführung in `frames`](https://medium.com/the-stata-guide/the-stata-frames-guide-1149b50864e3)**
+
+**[Stata Cheatsheets](https://www.stata.com/bookstore/stata-cheat-sheets/)**

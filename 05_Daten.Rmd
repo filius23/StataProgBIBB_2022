@@ -1,0 +1,196 @@
+# Dateien- und DoFile-Verwaltung {#data}
+
+```{r setup5, echo = F, message=F, warning = F}
+if(Sys.getenv("USERNAME") == "filse" ) .libPaths("D:/R-library4")  # set library
+# stataexe <- "C:/Program Files (x86)/Stata13/StataSE-64.exe"
+stataexe <- "C:/Program Files/Stata16/StataSE-64.exe"
+knitr::opts_chunk$set(engine.path=list(stata=stataexe))
+library(Statamarkdown)
+library(kableExtra)
+library(magrittr)
+# library(tidyverse)
+# library(ggthemes)
+```
+
+
+## `dir` - alles einlesen
+
+```{stata, eval = F}
+glo pfad "D:\oCloud\Home-Cloud\Lehre\BIBB\StataProgBIBB\projekt"
+
+global filelist: dir . files "*.*"			//Lister aller Dateien
+mac l filelist
+
+global dtalist: dir "${pfad}" files "baua*.dta" // Liste aller .dta-Dateien
+mac l dtalist
+
+
+loc usefile `: word 1 of ${dtalist}' 				// erster Eintrag aus der Liste
+dis "${pfad}/`usefile'"
+
+use "${pfad}/`usefile'", clear 						// dta laden
+loc n_datasets : list sizeof global(dtalist)		// anzahl  dta einträge
+foreach i of numlist 2(1)`n_datasets' {
+	loc appendfile `: word `i' of ${dtalist}'		// name aus list aufrufen
+	qui append using "${pfad}/`appendfile'"			 // append
+	dis "`appendfile' appended"						      // Kontrolle
+}
+	
+```
+
+`, respectcase`: `global dtalist: dir "${pfad}" files "baua*.dta , respectcase"` würde "BAUA.dta" ignorieren.
+
+### `copy`
+
+Mit `copy` können wir Dateien kopieren.
+
+```{stata, eval = F}
+loc usefile `: word 1 of ${dtalist}' 				// erster Eintrag aus der Liste
+loc copyfile "copy_`usefile'"
+dis "`usefile'"
+dis "`copyfile'"
+
+copy ${pfad}/`usefile' ${pfad}/`copyfile' , replace
+
+// hat das geklappt?
+global dtalist2: dir "${pfad}" files "*baua*.dta" // Liste aller .dta-Dateien
+mac l dtalist
+mac l dtalist2
+```
+
+### `erase` 
+
+Mit `erase` können wir Dateien löschen.
+
+```{stata, eval = F}
+loc usefile `: word 1 of ${dtalist}' 				// erster Eintrag aus der Liste
+loc copyfile "copy_`usefile'"
+erase ${pfad}/`copyfile'
+
+// hat auch das geklappt?
+global dtalist3: dir "${pfad}" files "*baua*.dta" // Liste aller .dta-Dateien
+mac l dtalist
+mac l dtalist2
+mac l dtalist3
+```
+
+
+***
+
+**[Übung](#dir_readin)**
+
+***
+
+## Verzeichnisse & DoFiles erstellen
+
+
+Mit `mkdir` können wir Verzeichnisse erstellen:
+```{stata, eval = F}
+global pfad "D:\oCloud\Home-Cloud\Lehre\BIBB\StataProgBIBB\projekt"
+mkdir 	"${pfad}/data"
+mkdir 	"${pfad}/log"
+mkdir 	"${pfad}/graph"
+mkdir 	"${pfad}/results"
+mkdir 	"${pfad}/tables"
+```
+
+`file` können wir nutzen, um ein DoFile mit globals zu erstellen (oder natürlich auch locals oder allen anderen Informationen):
+```{stata macrodoFile, eval = F}
+*erstelle doFile fuer macros -> kurzes doFile um Pfade in Schleifen richtig zu setzen, wird dann in Schleifen immer aufgerufen
+file open macros using ${prog}\macrodofile.do, write replace
+file write macros "glo pfad 	${pfad}   "		_n
+file write macros "glo orig	  	${orig}   "		_n
+file write macros "glo data	  	${data}   "		_n
+file write macros "glo log		${log}    "		_n
+file write macros "glo res		${results}"	    _n
+file write macros "glo graph	${graph}  "		_n
+file write macros "glo prog	  	${prog}   "		_n
+file close macros 
+```
+
+
+## Master DoFile
+
+### DoFile mit Argumenten starten
+
+Ein DoFile kann auch direkt aus einem Master-DoFile gestartet werden. 
+Werte, die wir danach angeben, können im DoFile mit der Angabe der Position abgerufen werden:
+```{stata 051_Master, eval = F}
+do "${prog}/051_DoFile.do" 2
+```
+
+```{stata 051_DoFile.do, eval = F}
+use "${orig}/BIBBBAuA_2018_suf1.0.dta", clear
+dis "Auszählung für `1'"
+tab S1 if m1202 == `1'
+```
+
+
+```{stata 051_Masterb, eval = F}
+do "${prog}/051_DoFile2.do"	4 2 mobil
+```
+
+```{stata 052_DoFile.do, eval = F}
+local ausb `1'
+local gend `2'
+local var  `3'
+
+use "${orig}/BIBBBAuA_2018_suf1.0.dta", clear
+dis "Auszählung für Ausbildung = `ausb' & Geschlecht = `gend'"
+tab gkpol if m1202 == `ausb' & S1 == `gend'
+
+tab gkpol `var' if m1202 == `ausb' & S1 == `gend'
+```
+
+
+
+
+### in neuer Session starten
+
+```{stata, eval = F}
+cd ${prog}
+winexec `c(sysdir_stata)'StataSE-64.exe do "${prog}/052_DoFile1.do"	4 2 mobil
+```
+
+Startet `052_DoFile1.do` in einer neuen Session. 
+
+**Achtung**: hier sind dann auch die globals, locals usw. weg. Um die globals zu übernehmen, muss dann ein `macrodofile` eingebunden werden.
+
+### mehrere Sessions starten
+
+```{stata, eval = F}
+forvalues s = 1/2{
+	cd ${prog}
+	winexec `c(sysdir_stata)'StataSE-64.exe do "${prog}/052_DoFile1.do"	4 `s' mobil
+}
+```
+
+***
+
+**[Übung](#masterdofile)**
+
+***
+
+
+
+## Übungen
+
+### Übung {#dir_readin}
+
++ Im zip-Ordner `dir_übung.zip` finden sich auch `.csv`-Dateien. Lesen Sie diese nach der Reihe ein und speichern Sie die Daten als `.dta` - danach können alle Datensätze zusammengefügt werden.
+  + Entpacken Sie die Dateien aus dem `zip`-Ordner in passendes ein Verzeichnis (bspw., das welches Sie mit `$data` ansteuern).
+  + Verwenden Sie also die `filelist` statt der `dtalist` von oben.
+  + Lesen Sie mit `import delimited ".... baua3.csv", delimiter(";") encoding(ISO-8859-2) clear` die csv-Dateien jeweils ein und legen Sie als `dta` ab.
+  + Anschließend können Sie den `dta`-Schleife von oben verwenden, um alle Teildatensätze einzulesen. Wie viele Fälle haben Sie im Datensatz?
+
++ Kopieren Sie eine der Dateien und löschen Sie sie anschließend wieder.
+
+
+### Übung {#masterdofile}
+
++ Starten Sie getrennte Auswertungen für Männer und Frauen für das Merkmal `zpalter`, bspw. mit `summary` und stoßen Sie dieses mit `do ... ` an.
+
+## Anhang
+
+[weitere File-Loops](https://sites.google.com/site/jenniferlvwinter/stata-code)
+

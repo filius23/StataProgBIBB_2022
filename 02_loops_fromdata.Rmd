@@ -1,0 +1,717 @@
+# Schleifen aus Macros {#loopmacro}
+```{r setup2, echo = F, message=F, warning = F}
+if(Sys.getenv("USERNAME") == "filse" ) .libPaths("D:/R-library4")  # set library
+# stataexe <- "C:/Program Files (x86)/Stata13/StataSE-64.exe"
+stataexe <- "C:/Program Files/Stata16/StataSE-64.exe"
+knitr::opts_chunk$set(engine.path=list(stata=stataexe))
+library(Statamarkdown)
+library(kableExtra)
+library(magrittr)
+# library(tidyverse)
+# library(ggthemes)
+```
+
+
+## local erstellen und für Schleifen verwenden
+
+Schleifen aus globals / locals mit Hilfe von `levelsof`:
+```{stata mlo1, eval =F}
+tab m1202
+levelsof m1202
+
+levelsof m1202, loc(ausb)
+foreach lvl  of local ausb {
+	dis "m1202: " `lvl'
+}
+
+
+levelsof m1202, loc(ausb)
+glo ausb `ausb'
+mac l ausb
+
+foreach lvl  of global ausb {
+	dis "m1202: " `lvl'
+}
+
+
+foreach lvl  of global ausb {
+	dis "m1202: " `lvl'
+	tab S1 if m1202 == `lvl'
+}
+```
+
+## Schleifen über strings
+
+### Wörter indizieren
+```{stata}
+local phrase `" "2 guys" "1 girl" "1 pizza place" "'
+di "`:word 2 of `phrase' '"
+```
+
+### Wörter zählen
+```{stata}
+local sentence "here is a sentence 7"
+local len: word count `sentence'
+mac list _len
+```
+
+### Wörter in Schleife
+```{stata}
+local phrase1 "here is a sentence of 7 words"
+local len1: word count `phrase1'
+
+forvalues i = 1(1)`len1' {
+	loc word: word `i' of `phrase1'
+	dis "this is word number " `i' ": `word'"
+}
+```
+
+... dabei macht es einen Unterschied, wo die `""` stehen:
+```{stata}
+local phrase2 `" "here is" "a sentence" "of 7 words" "'
+local len2: word count `phrase2'
+
+forvalues i = 1(1)`len2' {
+	loc word: word `i' of `phrase2'
+	dis "this is word number " `i' ": `word'"
+}
+```
+
+
+
+***
+
+**[Übung](#loop)**
+
+***
+
+## Informationen aus Schleifen behalten
+
+### Gespeichterte Ergebnisse
+
+Um auf Ergebnisse zuzugreifen, können wir etwas hinter die Kulissen der Stata-Befehle sehen: 
+
+```{r tib1, echo=F}
+tibble::tribble(~"Befehl",~"zeigt alle",
+"c-class", "system parameters & settings finden wir als `c()` - siehe [``c(username)'`](#cmac)",
+"r-class", "die meisten deskriptiven Befehle speichern die Ergebnisse in in `r()`",
+"e-class", "...außer estimation commands, wie bspw. `reg` - hier wird in `e()` gespeichert (Postestimates)",
+"s-class", "parsing commands store results in `s()` used by programmers",
+"n-class", "commands that do not store in `r()`, `e()`, oder `s()`") %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = "condensed", full_width = F,font_size = 12) %>% 
+  column_spec(1,monospace = TRUE) %>% 
+  row_spec(0, color = "white")
+```
+
+Jeweils alle Werte anzeigen mit:
+
+```{r tib2, echo=F}
+tibble::tribble(~"Befehl",~"zeigt alle",
+ "return list",   "r()",
+"ereturn list",   "e()",
+"sreturn list",   "s()",
+"creturn list",   "c()") %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = "condensed", full_width = F,font_size = 12) %>% 
+  column_spec(1:2,monospace = TRUE)
+```
+
+Es gibt dabei vier Typen an Ergebnissen:
+
++ `macro`:  strings mit mehreren Wörtern (Text)
++ `matrix`: bspw. `e(b)` sind die Koeffizienten nach einem `reg`-Befehl oder `e(V)` ist die Varianz–Kovarianz Matrix der estimates (VCE)
++ `scalar`: einzelne Zahlen/Strings (1x1 Matrizen)
++ `functions`: bspw. `e(sample)` $\Rightarrow$ 1 (true) wenn die Beobachtung im vorheringen "estimation command" verwendet wurde und 0 (false) wenn nicht
+
+```{stata retlist, eval= F}
+tab S1
+return list
+```
+```{stata retlist0,echo = F}
+qui use "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+tab S1
+return list
+```
+
+```{stata retlist2, eval= F}
+su S1
+return list
+```
+```{stata retlist02,echo = F}
+qui use "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+su S1
+return list
+```
+
+```{stata retlist3, eval= F}
+reg F518_SUF zpalter 
+ereturn list
+```
+```{stata retlist03,echo = F}
+qui use "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+quietly{
+    mvdecode zpalter, mv(9999)
+    mvdecode F518_SUF, mv( 99998/ 99999)
+    mvdecode F200, mv( 97/99)
+    mvdecode m1202, mv(-1)
+}
+reg F518_SUF zpalter 
+ereturn list
+```
+
+Anstatt zu versuchen, den Überblick darüber zu behalten, was wo gespeichert wird, finden wir ganz unten in jeder Hilfedatei einen Hinweis wie
+"`summarize` stores the following in `r()`:" or "`mean` stores the following in `e()`" - entsprechend sehen wir die Ergebnisse in `return` bzw. `ereturn`.
+
+### `e()` und `r()` sind getrennte Welten
+
+Neben dem Prinzip "One Data" folgt Stata auch dem Prinzip "One _-class".
+Das bedeutet, dass wir nur den return oder ereturn für den letzten Befehl *dieser* Klasse sehen können.
+Wenn wir also `reg` ausführen und dann eine Reihe von r-Klassen-Aufrufen machen (z.B. `su`), wird uns der Aufruf von `ereturn` immer noch die Werte für `reg` anzeigen. 
+Sobald wir jedoch einen weiteren r-class-Befehl ausführen, verlieren wir den Zugriff auf die Ergebnisse des ersten Befehls. 
+```{stata erl0, eval = F}
+reg az F200
+su az
+ereturn list
+```
+
+
+```{stata erl01,echo = F}
+qui use "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+quietly{
+  mvdecode zpalter, mv(9999)
+mvdecode F518_SUF, mv( 99998/ 99999)
+mvdecode F200, mv( 97/99)
+mvdecode m1202, mv(-1)
+}
+reg az F200
+su az
+ereturn list
+```
+
+<!-- https://cscar.github.io/workshop-stata-intro/programming-advanced-features.html -->
+
+## Ergebnisse weiter verwenden
+
+Alle diese Informationen können wir mit einem Makro speichern bzw. weiter verarbeiten. 
+
+```{stata retlist4, eval= F}
+su S1
+dis "Der Mittelwert beträgt: " r(mean)
+```
+```{stata retlist04,echo = F}
+qui use "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+qui su S1
+dis "Der Mittelwert beträgt: " r(mean)
+```
+
+```{stata retlist5, eval= F}
+su S1
+dis "Der Mittelwert beträgt: " round(r(mean),.01)
+```
+
+```{stata retlist05,echo = F}
+qui use "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+qui su S1
+dis "Der Mittelwert beträgt: " round(r(mean),.01)
+```
+
+```{stata mloretn, eval = F}
+foreach lvl  of global ausb {
+	dis "m1202: " `lvl'
+	su S01 if m1202 == `lvl'
+	dis r(mean)
+}
+
+foreach lvl  of global ausb {
+	qui su S01 if m1202 == `lvl'
+	dis "Der Frauenanteil in m1202=" `lvl' " beträgt: " round(r(mean)*100,.1) "%"
+}
+
+
+foreach lvl  of global ausb {
+	qui su S01 if m1202 == `lvl'
+	glo gend`lvl': display "Der Frauenanteil in m1202=" `lvl' " beträgt: " round(r(mean)*100,.1) "%"
+}
+```
+
+### Rekursivität {#recur}
+Macros können auch "recursively" erstellt werden:
+```{stata mloretn2}
+global x ""
+forvalues i = 1/20 {
+	global x $x `i'
+}
+mac list x
+```
+
+...somit können wir einen `global` auch zusammenbauen:
+```{stata mloretn3, eval = F}
+glo gend ""
+foreach lvl  of global ausb {
+	qui su S01 if m1202 == `lvl'
+	glo gend: display "${gend}m1202=" `lvl' " " round(r(mean)*100,.1) "% "
+}
+mac l gend
+```
+
+```{stata mloretn3b, echo = F}
+quietly{
+  use "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+  drop if m1202 < 0
+  tab m1202
+  levelsof m1202
+  levelsof m1202, loc(ausb)
+  glo ausb `ausb' 
+  gen S01 = S1-1
+} 
+
+glo gend ""
+foreach lvl  of global ausb {
+	qui su S01 if m1202 == `lvl'
+	glo gend: display "${gend}m1202=" `lvl' " " round(r(mean)*100,.1) "% "
+}
+  
+mac l gend
+```
+
+***
+
+**[Übung](#retue1)**
+
+***
+
+
+## Kennzahlen in einer `matrix` ablegen {#mat1}
+
+Matrizen helfen uns, die ergebnisse in handhabarer Form zu speichern (`help matrix`).
+Um eine Tabelle zu bauen benötigen wir einige Matrix-Befehle, weiteres unter `help matrix operators` 
+
+- eine `matrix` ausgeben:
+`matrix list matname`
+
+- eine `matrix` umbenennen:
+`matrix umbenennen altername neuername`
+
+- eine `matrix` oder alle löschen:
+`matrix drop [matlist]`
+
+```{r trib3,echo=F}
+tibble::tribble(~"Operator",~"Symbol",
+                "column join"            ,",",
+                "row join"               ,"\\\\ \ ", 
+                "transpose"              ,"'",
+                "negation"               ,"\\- "
+                ) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = "condensed", full_width = F,font_size = 12) %>% 
+  column_spec(2,monospace = TRUE) 
+            
+```
+
+```{stata mat01}
+matrix Y1 = 1, 3 
+mat l Y1
+```
+
+```{stata mat02}
+matrix Y2 = 4\ 0
+mat l Y2
+```
+
+
+```{stata mat03}
+matrix Y = (2, 1.5 \ 2.5, 3)
+mat l Y
+```
+
+Transponieren:
+
+```{stata mat05}
+matrix X2 = (1, 2, 3 \ 5 , 8 , 9)
+mat l X2 
+mat X3 = X2'
+mat l X3
+```
+
+Mit `J(Zeilen,Spalten,Inhalt)` können wir eine Matrix mit gleichen Werten besetzen:
+```{stata matrix04}
+mat G0 = J(4,2,0)
+mat l G0
+```
+
+<!-- Mit `mat name[Spalte,Zeile]` können wir auf einen Teilbereich zugreifen: -->
+<!-- ```{stata matrix04c} -->
+<!-- mat G0 = J(4,2,0) -->
+<!-- mat G0[3,2] = 2 -->
+<!-- mat list G0 -->
+<!-- ``` -->
+
+### Namen für Spalten und Zeilen einer `matrix` 
+
+Aber wir können die Zeilennamen einer `matrix` verändern:
+```{stata matname2b, eval = F}
+mat colname G0 = var1 var2
+mat list G0
+```
+
+```{stata matname2c, echo = F}
+mat G0 = J(4,2,0)
+mat G0[3,2] = 2
+mat colname G0 = var1 var2
+mat list G0
+```
+
+Wenn zu wenige Namen angegeben werden, wird der letzte Wert einfach wiederholt:
+```{stata matname1b, eval = F}
+mat rowname G0 = year result
+mat list X1
+```
+
+```{stata matname1c, echo = F}
+mat G0 = J(4,2,0)
+mat G0[3,2] = 2
+mat rowname G0 = year result
+mat list G0
+```
+
+
+
+<!-- ### Zeile einfügen -->
+
+<!-- ```{stata tm08, eval = F} -->
+<!-- matrix A = J(3,4,.)  -->
+<!-- mat A1 = (1, 4, 2, 1)  -->
+<!-- ``` -->
+
+<!-- ```{stata tm10, eval = F} -->
+<!-- mat A[1,1]  =A1 // !! überschreibt die ganze 1. Zeile -->
+<!-- mat li A -->
+<!-- ``` -->
+
+<!-- ```{stata tm11, echo = F} -->
+<!-- matrix A = J(3,4,.) // A besteht nur aus . -->
+<!-- mat A1 = (1, 4, 2, 1) -->
+<!-- mat A[1,1]  =A1 // !! überschreibt die ganze 1. Zeile -->
+<!-- mat li A -->
+<!-- ``` -->
+
+### `matrix` erstellen {#mcollect}
+
+Das nutzen wir jetzt um unsere Ergebnisse zu speichern:
+```{stata matrix05, eval = F}
+levelsof m1202, loc(ausb)
+foreach lvl  of local ausb {
+	qui su S01 if m1202 == `lvl'
+	
+	// 1. Spalte level von m1202
+	//2.Spalte: Frauenanteil
+	mat G`lvl' = `lvl' ,r(mean)*100 
+}
+mat G = GX1\GX2\GX3\GX4
+mat colname G = m1202 share_w
+mat l G
+```
+
+
+Damit können wir auch zeilenweise eine `matrix` befüllen, indem wir mit `,` mehrere Werte verbinden ([row join](#mat1)):
+```{stata tm12, eval = F}
+qui levelsof m1202, loc(ausb)
+foreach lvl  of local ausb {
+	qui su zpalter if m1202 == `lvl', det
+	mat A`lvl' = `lvl', r(p25), r(mean), r(p50), r(p75)
+}
+mat A = A1\A2\A3\A4
+mat colname A = m1202 p25 mean median p75
+mat l A
+```
+
+
+```{stata tm12b, echo = F}
+qui use "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+quietly{
+  mvdecode F518_SUF, mv( 99998/ 99999)
+  mvdecode zpalter, mv(9999)
+  mvdecode F200, mv( 97/99)
+  mvdecode m1202, mv(-1)
+}
+qui levelsof m1202, loc(ausb)
+foreach lvl  of local ausb {
+	qui su zpalter if m1202 == `lvl', det
+	mat A`lvl' = `lvl', r(p25), r(mean), r(p50), r(p75)
+}
+mat A = A1\A2\A3\A4
+mat colname A = m1202 p25 mean median p75
+mat l A
+```
+
+***
+
+**[Übung](#retue2)**
+
+***
+
+## Labels behalten 
+
+### `extended macro function` für Labels {#labfun}
+
+Idealerweise würden wir aber gerne nicht nur 1-4 in `m1202` behalten, sondern die Labels (`Ohne Berufsabschluss`) usw. 
+Um Informationen zu Variablen & Labels abzurufen, lernen wir [später](#labfuns) eine ganze Reihe an extended macro functions kennen, für den Moment reicht uns `label (varname) varvalue`: 
+```{stata varlab0, eval = F}
+loc v m1202
+local vallab1 :    label (`v') 1		 	// Value label für Wert = 1
+dis "`vallab1'"     // display local "valuelab1"
+```
+
+```{stata varlab, echo = F}
+qui use  "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+quietly{
+		mvdecode m1202, mv(-1)
+}
+loc v m1202
+local vallab1 :    label (`v') 1		 	// Value label für Wert = 1
+dis "`vallab1'"     // display local "valuelab1"
+```
+
+In der Schleife können wir dann `lvl` entsprechen für `label (var) lvl` nutzen:
+```{stata lvllab, eval = F}
+loc lvl = 1
+qui su zpalter if m1202 == `lvl', det
+mat GX = `lvl', r(p25), r(mean), r(p50), r(p75) 
+local vallab1 :    label (m1202) `lvl' // label aufrufen
+```
+
+### Labels als `rowname` {#mrown}
+
+Leider können wir nicht einfach die Labels der Variable in die `matrix` schreiben.
+In einer Matrix sind nur Zahlenwerte erlaubt:
+```{stata matstr, error = T}
+mat M = c(2\"label")
+```
+
+Aber wir können das Label als rowname ablegen:
+```{stata matrname01, eval = F}
+loc lvl = 1
+qui su zpalter if m1202 == `lvl', det
+mat GX = `lvl', r(p25), r(mean), r(p50), r(p75) 
+local vallab1 :    label (m1202) `lvl' // label aufrufen
+mat rowname GX =  "`vallab1'" // in Zeilenname ablegen
+mat l GX
+```
+
+...damit erweitern wir die Schleife von oben:
+```{stata matrname03, eval=F}
+levelsof m1202, loc(ausb)
+foreach lvl  of local ausb {
+	qui su zpalter if m1202 == `lvl', det
+	mat GX`lvl' = `lvl', r(p25), r(mean), r(p50), r(p75)
+	
+	local vallab1 :    label (m1202) `lvl'
+	mat rowname GX`lvl' =  "`vallab1'"
+}
+mat G = GX1\GX2\GX3\GX4
+mat colname G = m1202 p25 mean median p75
+mat l G
+```
+
+
+```{stata matrname04, echo=F}
+set linesize 200
+qui use  "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+quietly{
+		mvdecode zpalter, mv(9999)
+		mvdecode F518_SUF, mv( 99998/ 99999)
+		mvdecode F200, mv( 97/99)
+		mvdecode m1202, mv(-1)
+		levelsof m1202, loc(ausb)
+    glo ausb `ausb'
+}
+
+levelsof m1202, loc(ausb)
+foreach lvl  of local ausb {
+	qui su zpalter if m1202 == `lvl', det
+	mat GX`lvl' = `lvl', r(p25), r(mean), r(p50), r(p75)
+	
+	local vallab1 :    label (m1202) `lvl'
+	mat rowname GX`lvl' =  "`vallab1'"
+}
+mat G = GX1\GX2\GX3\GX4
+mat colname G = m1202 p25 mean median p75
+mat l G
+```
+
+
+
+```{stata matrname07, echo = F, eval = F}
+quietly{
+    use  "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+		mvdecode zpalter, mv(9999)
+		mvdecode F518_SUF, mv( 99998/ 99999)
+		mvdecode F200, mv( 97/99)
+		mvdecode m1202, mv(-1)
+		levelsof m1202, loc(ausb)
+    glo ausb `ausb'
+}
+
+mat G2 = J(4,5,.) // leere Matrix 
+mat colname G2 = m1202 p25 mean median p75 
+
+foreach lvl  of global ausb {
+	qui su zpalter if m1202 == `lvl', det
+	mat GX`lvl' = `lvl', r(p25), r(mean), r(p50), r(p75) 
+	mat colname GX`lvl' = m1202 p25 mean median p75 
+	
+	local vallab1 :    label (m1202) `lvl'
+	mat rowname GX`lvl' =  "`vallab1'"
+}
+mat G = GX1\GX2\GX3\GX4
+xsvmat G, collabels(coef) names(col) fast rownames(lab)
+list, noobs clean
+```
+
+
+
+## Von der `matrix` zum Datensatz
+
+Mit `xsvmat` bzw. dem ado `xsvmat` können wir eine `matrix` in einen Datensatz umwandeln. 
+Mit `rownames(lab)` können wir Zeilennamen in die Variable `lab` ablegen.
+Außerdem nutzt `xsvmat` die neue [`frame`](#frame)- Funktion, um einen neuen Datensatz zu erstellen.
+
+```{stata xsvmat0, eval = F}
+ssc install  xsvmat
+```
+
+```{stata xsvmat2, eval = F}
+xsvmat G, names(col) frame(res1) rownames(lab)
+frame change res1
+list, noobs clean
+```
+
+```{stata matrname06, eval = F}
+                                                         lab   m1202   p25       mean   median   p75  
+                                        Ohne Berufsabschluss       1    29   42.62721       46    55  
+    duale o. schulische Berufsausbildung/einf.,mittl. Beamte       2    39   47.07653       49    56  
+    Aufstiegsfortbildung (Meister, Techniker, kfm. AFB u.ä.)       3    41   48.09234       50    56  
+            Fachhochschule, Universität/ geh., höhere Beamte       4    39   47.76074       49    57  
+```
+
+
+
+## `frame`: mehrere Datensätze in Stata {#frame}
+
+Die `frame`-Option basiert auf einer relativ neuen Funktion in Stata.
+Seit Version 16 bietet Stata  mit den [`frame`](https://www.stata.com/features/overview/multiple-datasets-in-memory/)-Befehlen auch die Möglichkeit, mehrere Datensätze parallel zu bearbeiten.
+
++ mit `frame create nameX` können wir einen neuen Datensatz mit dem Namen `nameX` erstellen (der bisherige wird als `default` bezeichnet)
++ mit `frame dir` bekommen wir eine Übersicht zu den verschiedenen `frame`s der aktuellen Stata-Session
++ mit `frame change` *name* können wir zwischen den verschiedenen `frame`s hin- und herspringen 
+
+```{stata, eval = F}
+frame change res1
+frame change default
+```
+
+
++ mit `frame drop` *name*  können wir einen `frame` wieder löschen:
+```{stata,eval= F}
+frame drop res1
+```
+
+
+
+
+```{stata framexsvmat0, echo = F, eval = F}
+quietly{
+    use  "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+		mvdecode zpalter, mv(9999)
+		mvdecode F518_SUF, mv( 99998/ 99999)
+		mvdecode F200, mv( 97/99)
+		mvdecode m1202, mv(-1)
+		levelsof m1202, loc(ausb)
+    glo ausb `ausb'
+}
+
+mat G2 = J(4,5,.) // leere Matrix 
+mat colname G2 = m1202 p25 mean median p75 
+
+foreach lvl  of global ausb {
+	qui su zpalter if m1202 == `lvl', det
+	mat GX`lvl' = `lvl', r(p25), r(mean), r(p50), r(p75) 
+	mat colname GX`lvl' = m1202 p25 mean median p75 
+	
+	local vallab1 :    label (m1202) `lvl'
+	mat rowname GX`lvl' =  "`vallab1'"
+}
+mat G = GX1\GX2\GX3\GX4
+frame 
+xsvmat G, collabels(coef) names(col) fast rownames(lab)
+list, noobs clean
+```
+
+
+
+
+***
+
+**[Übung](#retue3)**
+
+***
+
+
+
+## Übungen
+
+### Übung {#loop1}
+
++ Zählen Sie die Wörter in den folgenden beiden String-locals
+```{stata, eval = F}
+loc x1 "ein sehr langer satz mit vielen wörtern"
+
+ds *wib*
+loc x2 =  r(varlist)
+```
+
++ Wie würde eine Schleife aussehen, die jeweils ein Wort aus den locals nacheinander mit `display` ausgibt?
+
+### Übung {#retue1}
+
++ Laden Sie die Erwerbstätigenbefragung - am besten in der Version ohne Missings in den relevanten Variablen  ( `"${data}/BIBBBAuA_2018_suf1.0_clean.dta"`, siehe `01_init.do`)
+- Erstellen Sie eine Schleife, welche jeweils das Maximaleinkommen (basierend auf `F518_SUF`) für die Gemeindegrößenklassen (`gkpol`) anzeigt.
+  + Wie kommen Sie an den Maximalwert für `F518_SUF`? Verwenden Sie bspw. `su` oder `tabstat` zusammen mit `return list`.
+  + Erstellen Sie mit `display` eine aussagekräftige Ausgabe
+  + Testen Sie Ihre Schleifenlogik mit einem `local`, um anschließend die Schleife "außen herumzubauen"
+  + Welche Ausprägungen hat `gkpol` - wie können Sie diese automatisch in eine Schleife überführen?
+
+- *Optional* Passen Sie Ihre Schleife an, sodass für jeden Durchlauf ein `global gkX` erstellt wird, wobei `X` für die Ausprägung von `gkpol` steht und den entsprechenden Maximalwert von `F518_SUF` für die entsprechende Größenklasse enthält.
+
+### Übung {#retue2}
+
+- Kopieren Sie die in Übung 2 erstellte Schleife und passen Sie diese [so](#mcollect) an, dass jeweils die Werte für Min, Mean, Median, Max und N in `matrix` gesammelt werden. 
+  - Verwenden Sie den `row join` für `matrix` mit `,` um jeweils eine Ergebniszeile zu erstellen
+
+
+
+### Übung {#retue3}
+
+- Passen Ihre Schleife von eben mit `gkpol` so mit Hilfe der Schleife von [oben](#mrown) so an, dass die Labels für `gkpol` als `rownames` werden legen Sie die Ergebnismatrix in einen `frame` ab.
+  + Nutzen Sie die [`label (v') 1`](#labfun) extended macro function um das jeweilige Label anzuzeigen
+  + Setzen Sie das entsprechende Label als `rowname`
+  + Fügen Sie die einzelnen Ergebnis in eine `matrix` zusammen
+  + Nutzen Sie `xsvmat`, um einen `frame` zu erstellen
+  + Nutzen Sie `frame change`, um in die Ergebnis-`frame` zu wechseln (und wieder zurück)
+
+
+<!-- *Für alle, die schon fertig sind:* -->
+
+<!-- - Wie könnten Sie mit Hilfe einer Schleife den Schritt des Zusammenfügens mit weniger Tipparbeit erledigen?  -->
+<!-- ```{stata, eval = F} -->
+<!-- mat G = GX1\GX2\GX3\GX4\GX5\GX6\GX7 -->
+<!-- ``` -->
+
+<!--   + Tipp: Überführen Sie die erste Ergebnis-`matrix` in eine neue Ergebnismatrix, an die dann die weiteren `matrix` per `row join` angefügt werden - ggf. hilft hier `if`/`else` -->
+<!--   + Ließe sich auch ein Befehl integrieren, der die `matrix` für Einzelergebnisse dann gleich wieder löscht? -->
+
+
+
+
+

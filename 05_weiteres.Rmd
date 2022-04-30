@@ -1,0 +1,202 @@
+# Weitere `macro` & `matrix` Funktionen {#misc}
+
+```{r setup55, echo = F, message=F, warning = F}
+if(Sys.getenv("USERNAME") == "filse" ) .libPaths("D:/R-library4")  # set library
+# stataexe <- "C:/Program Files (x86)/Stata13/StataSE-64.exe"
+stataexe <- "C:/Program Files/Stata16/StataSE-64.exe"
+knitr::opts_chunk$set(engine.path=list(stata=stataexe))
+library(Statamarkdown)
+# library(tidyverse)
+# library(ggthemes)
+```
+
+
+
+## `capture`
+
+```{stata cap1, eval = F}
+cap drop S01 zpalter
+d S0? zp*
+```
+
+## Macro extended functions for parsing
+
+
+```{stata rep}
+local wanted : di _dup(10) "oo "
+local wanted : di _dup(10) "oo "
+dis "`wanted'"
+
+local wanted : di "{dup 10:99 }"
+```
+
+
+<!-- `pmacro` Seite 12: -->
+
+<!-- ```{stata, eval= F} -->
+<!-- word count string -->
+<!-- ``` -->
+<!-- returns the number of tokens in string. A token is a word (characters separated by spaces) or set of words enclosed in quotes. Do not enclose string in double quotes because word count will return 1. -->
+
+
+<!-- ```{stata, eval= F} -->
+<!-- word # of string -->
+<!-- ``` -->
+<!-- returns the #th token of string. Do not enclose string in double quotes. -->
+
+<!-- ```{stata, eval= F} -->
+<!-- piece #1 #2 of "string" , nobreak -->
+<!-- ``` -->
+<!-- returns a piece of string. This macro extended function provides a smart method of breaking a string into pieces of roughly the specified length. #1 specifies which piece to obtain. #2 specifies the maximum length of each piece. Each piece is built trying to fill to the maximum length without -->
+<!-- breaking in the middle of a word. However, when a word is longer than #2, the word will be split unless nobreak is specified. nobreak specifies that words not be broken, even if that would result in a string longer than #2 characters. Compound double quotes may be used around string and must be used when string itself might -->
+<!-- contain double quotes. -->
+
+<!-- ```{stata, eval = F} -->
+<!-- length {local|global} macname -->
+<!-- ``` -->
+
+<!-- Länge eines von `macname` in Characters. -->
+
+<!-- ```{stata, eval = F} -->
+<!-- subinstr local mname "from" "to" -->
+<!-- ``` -->
+<!-- returns the contents of mname, with the first occurrence of “from” changed to “to”. -->
+
+
+<!-- ```{stata, eval = F} -->
+<!-- subinstr local mname "from" "to", all -->
+<!-- ``` -->
+<!-- does the same thing but changes all occurrences of “from” to “to”. -->
+
+<!-- ```{stata, eval = F} -->
+<!-- subinstr local mname "from" "to", word -->
+<!-- ``` -->
+<!-- returns the contents of mname, with the first occurrence of the word “from” changed to “to”. A word is defined as a space-separated token or a token at the beginning or end of the string. -->
+
+
+<!-- ```{stata, eval = F} -->
+<!-- subinstr local mname "from" "to", all word -->
+<!-- ``` -->
+<!-- does the same thing but changes all occurrences of the word “from” to “to”. -->
+
+<!-- ```{stata, eval = F} -->
+<!-- subinstr global mname : : : -->
+<!-- ``` -->
+<!-- is the same as the above, but obtains the original string from the global macro $mname rather than from the local macro mname. -->
+
+
+<!-- ```{stata, eval = F} -->
+<!-- subinstr : : : global mname : : : , : : : count(fglobal j localg mname2) -->
+<!-- ``` -->
+<!-- in addition to the usual, places a count of the number of substitutions in the specified global or in local macro mname2. -->
+
+## weitere `matrix`-Befehle
+
+Wir können auch Rechnungen einfügen:
+```{stata mat04}
+matrix X1 = (1+1, 2*3/4 \ 5/2, 3)
+mat l X1 
+```
+
+### Teilmatrizen
+
+```{stata tm01}
+mat X1 = (1,2,3,4,5 \ 6,7,8,9,10 \ 0,-1,-2,-3,-5 \ -6,-7,-8,-9,-10)
+mat l X1
+```
+
+
+Wir können aus diesen Matrizen auch Teilbereiche auswählen:
+```{stata tm02, eval = F}
+matrix newmat = oldmat[Zeile(nbereich), Spalte(nbereich)]
+```
+Zeilenbereich und Spaltenbereich können einzelne Zahlen oder Bereiche mit durch zwei Punkte getrennten Start- und Endpositionen sein.
+
+Matrix B erstellen, welche die Zeile 2-4 und die Spalte 1-5 von X1 enthält:
+```{stata tm03, eval = F}
+matrix B = X1[2..4,1..5]
+mat l B
+mat l X1
+```
+```{stata tm04, echo = F}
+mat X1 = (1,2,3,4,5 \ 6,7,8,9,10 \ 0,-1,-2,-3,-5 \ -6,-7,-8,-9,-10)
+matrix B = X1[2..4,1..5]
+mat l B
+mat l X1
+```
+
+Um alle Zeilen nach der zweiten Zeile zu übernehmen, verwenden wir drei Punkte:
+```{stata tm05, eval = F}
+matrix C = X1[2...,1..5]
+mat l C
+mat l X1
+```
+
+```{stata tm06, echo = F}
+qui mat X1 = (1,2,3,4,5 \ 6,7,8,9,10 \ 0,-1,-2,-3,-5 \ -6,-7,-8,-9,-10)
+matrix C = X1[2...,1..5]
+mat l C
+mat l X1
+```
+
+### Spalten/Zeilen auswählen
+
+B1 enthält Spalte 1 und 3 aus `X1`:
+```{stata tm04b, eval = F}
+mat B1 = X1[1...,1],X1[1...,3]
+mat l B1
+mat l X1
+```
+
+```{stata tm04c, echo = F}
+mat X1 = (1,2,3,4,5 \ 6,7,8,9,10 \ 0,-1,-2,-3,-5 \ -6,-7,-8,-9,-10)
+mat B1 = X1[1...,1],X1[1...,3]
+mat l B1
+mat l X1
+```
+
+B2 enthält Zeile 1 und 3 aus `X1`:
+```{stata tm04d, eval = F}
+mat B2 = X1[1,1...] \ X1[4,1...]
+mat l B2
+mat l X1
+```
+
+```{stata tm04e, echo = F}
+mat X1 = (1,2,3,4,5 \ 6,7,8,9,10 \ 0,-1,-2,-3,-5 \ -6,-7,-8,-9,-10)
+mat B2 = X1[1,1...] \ X1[4,1...]
+mat l B2
+mat l X1
+```
+
+<!-- * https://thedatamonkey.blogspot.com/2011/01/stata-matrices.html -->
+### Namensbasierte Auswahl {#crnumb}
+
+Hier helfen `rownumb` und `colnumb`
+
+```{stata namesel}
+mat X1 = (1,2,3 \ 8,9,10 )
+mat colname X1 = var1 var2 var3
+mat rowname X1 = set1 set2
+
+mat X2 = X1[rownumb(X1,"set1"),1...]
+mat l X2
+```
+
+
+```{stata namesel2, eval = F}
+mat X3 = X1[1...,colnumb(X1,"var2")]
+mat l X3
+```
+
+
+```{stata namesel3, echo = F}
+mat X1 = (1,2,3 \ 8,9,10 )
+mat colname X1 = var1 var2 var3
+mat rowname X1 = set1 set2
+mat X3 = X1[1...,colnumb(X1,"var2")]
+mat l X3
+```
+
+
+

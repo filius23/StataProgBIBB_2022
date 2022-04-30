@@ -1,0 +1,11 @@
+# Weitere Literatur {#lit}
+
+
+[Cheatsheet/Spickzettel zu Programming with Stata](https://geocenter.github.io/StataTraining/pdf/StataCheatSheet_programming_2016_June.pdf)
+
+[Stata Manual zu macros](https://www.stata.com/manuals/u18.pdf)
+[Paper von Nick J Cox - Speaking Stata: Loops, again and again](https://journals.sagepub.com/doi/full/10.1177/1536867X20976340)
+
+
+
+https://data.princeton.edu/stata/programming

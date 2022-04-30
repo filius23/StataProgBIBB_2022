@@ -1,0 +1,809 @@
+# Macros {#macro}
+```{r setup1, echo = F, message=F, warning = F}
+if(Sys.getenv("USERNAME") == "filse" ) .libPaths("D:/R-library4")  # set library
+# stataexe <- "C:/Program Files (x86)/Stata13/StataSE-64.exe"
+stataexe <- "C:/Program Files/Stata16/StataSE-64.exe"
+knitr::opts_chunk$set(engine.path=list(stata=stataexe))
+library(Statamarkdown)
+# library(tidyverse)
+# library(ggthemes)
+```
+
+
+Macros ist die Sammelbezeichung für `global`s und `local`s in Stata.
+Beide dienen zur (vorläufigen) Speicherung von Text- oder Zahleninformationen.
+Definiert werden sie durch `global `*inhalt* oder `local `*inhalt* - oft mit `glo` und `loc` als Abkürzungen.
+`global`s können dann mit `$globalname`/`${globalname}` aufgerufen werden, `local`s mit ``localname'` - ganz einfach bspw. mit `dis[play]`:
+```{stata mac0}
+glo x = 1
+loc y = 2
+
+dis ${x}
+dis `y'
+```
+
+...oder mit `macro list`, hier sind die macros aber ohne "punctuation" (also `$` oder ``'`)
+```{stata mac1}
+glo x = 1
+loc y = 2
+mac list x
+mac list _y
+```
+
+Der Unterschied besteht vor allem darin, dass *local* macros 'lokal' für ein spezifisches Programm verfügbar sind, *globale* macros hingegen für alle Programme (innerhalb einer Stata-Session) verfügbar sind.
+Letztlich können wir jede Instanz, in der wir mehrere Zeilen eines DoFiles ausführen als 'Programm' ansehen. 
+
+`global`s können wir später nochmal aufrufen, `local`s nicht:
+```{stata macloc, eval =F}
+mac list xg
+```
+
+```{stata macloc2, echo =F,error=T}
+glo xg = 1
+mac list xg
+```
+
+```{stata macloc1, eval =F}
+mac list _xl
+```
+
+```{stata macloc12, echo =F,error=T}
+mac list _xl
+```
+
+
+## `=` macht einen Unterschied
+
+In der Regel können wir auch einfach `glo glname Wert` bzw. `loc locname Wert` statt `glo glname = Wert` bzw. `loc locname = Wert` angeben.
+Allerdings ist hier etwas Vorsicht geboten, denn das `=` ist entscheidend ob  die Rechnung abgelegt wird oder das Ergebnis (*Stichwort evaluation*):
++ Mit  `=` : der Ausdruck wird "evaluated"
++ Ohne `=` : der Ausdruck wird "aliased"
+
+
+Im Ergebnis sehen wir hier beides Mal das gleiche:
+```{stata mac2, echo = T}
+local m1 2+2
+display `m1'
+```
+```{stata mac2b, echo = T}
+local m2 = 2+2
+display `m2'
+```
+Aber wenn wir uns mit `mac list` die abgelegten Infos ansehen, dann sehen wir den entscheidenden Unterschied:
+```{stata mac3, eval = F}
+mac list _m1 _m2
+```
+```{stata mac3b, echo = F}
+local m1 2+2
+local m2 = 2+2
+mac list _m1 _m2
+```
+
+
+Wenn wir nämlich mit `m1` und `m2` weiterrechnen, da kann folgendes passieren:
+```{stata mac4, echo = T}
+local m1 2+2
+display `m1'*4
+```
+```{stata mac4b, echo = T}
+local m2 = 2+2
+display `m2'*4
+```
+Denn $2+2*4\neq4*4$ 
+
+## `local` und `global` sind getrennte Welten
+
+Geht, aber ist nicht zu empfehlen:
+```{stata mac5a1}
+glo yx = 1
+loc yx = 2
+mac list yx
+mac list _yx
+```
+
+## Macros mit Text
+
+Wir können macros zu Texten zusammenbauen:
+```{stata macrobau0}
+glo t1 "Hallo"
+glo t2 " zusammen"
+glo t3 "! :-)"
+
+glo t4 = "${t1}${t2}${t3}"
+dis "${t4}"
+mac list t1 t2 t3 t4
+```
+
+***
+
+**[Übung](#ue0)**
+
+***
+
+
+## Dateipfade 
+
+Ein macro kann auch Text enthalten und wir können diesen bspw. für Dateipfade macros verwenden:
+
+```{stata mac8, eval=F}
+glo pfad "D:\Projekt\daten\BIBB_BAuA" // wo liegt der Datensatz?
+use "${pfad}/BIBBBAuA_2018_suf1.0.dta", clear // laden des Datensatzes 
+```
+
+Wir können das auch nutzen, um DoFiles in Kooperationsprojekten zu bauen, wenn verschiedenen Personen die DoFiles verwenden:
+```{r pfadillu, echo = F,out.width = "80%",fig.height= 3, fig.align="center"}
+knitr::include_graphics("./pics/01_pfade.png")
+```
+
+```{stata mac8dir1, eval=F}
+glo pfad "C:\Projekte\Micha" // wo liegt der Datensatz bei Alex?
+glo pfad "D:\Arbeit\Alex"    // wo liegt der Datensatz bei Micha?
+
+glo prog "${pfad}/prog"  
+glo data "${pfad}/data"
+glo log  "${pfad}/log"
+```
+Micha würde dann immer den Pfad von Alex überspringen/auskommentieren und umgekehrt. 
+Wir lernen [gleich](#if1) noch eine Möglichkeit kennen, das auch direkt mit zu lösen mit dem Usernamen der verwendeten PCs.
+
+```{stata mac8dir2, eval=F}
+use "${data}/BIBBBAuA_2018_suf1.0.dta", clear // laden des Datensatzes 
+```
+
+Die `" "` sind nicht zwingend nötig in diesem Fall. 
+Sollten aber Leerzeichen im Pfad vorkommen, brauchen wir auf jeden Fall `" "`.
+Außerdem ist [`\` beim Zusammenbauen mit macros manchmal problematisch](#dir)) - auch hier helfen `" "`. 
+Alternativ hilft hier `/` statt `\` zu verwenden.
+
+
+Mit `mkdir` können wir auch Ordner erstellen.
+Wenn also noch kein log-Ordner existiert, können wir ihn so erstellen:
+```{stata mkdir, eval = F}
+mkdir ${log}
+```
+
+Mit `cap cd` können wir das vorher überprüfen:
+```{stata mkdir2, eval=F}
+capture cd 	"${log}"
+	if _rc!=0  {
+		mkdir ${log}
+		display "${log} erstellt"
+	} 
+```
+
+**Siehe `01_init_beispiel.do` für ein Beispiel für einige Befehle beim Erstellen eines Projektverzeichnisses.**
+
+## Bereits definierte Macros {#cmac}
+
+Mit `mac list` bekommen wir auch einige von Stata bereits vorgegebenen Macros angezeigt.
+```{stata mac5a, eval = F}
+mac list
+```
+
+Zwei sehr nützliche sind dabei `$S_DATE` `$S_TIME` - das aktuelle Datum und die aktuelle Zeit:
+```{stata mac5, eval = F}
+dis "$S_DATE"
+dis "$S_TIME"
+```
+```{stata mac5disp, eval = F}
+1 Dec 2021 
+12:44:22
+```
+
+
+Diese können wir beispielsweise am Anfang und Ende eines Abschnitts in einem LogFiles einblenden, um Start- und Endzeit zu dokumentieren:
+```{stata mac5log, eval = F}
+log using "${log}/logfile.txt", t replace
+use ....
+dis "Start: $S_DATE um $S_TIME"
+.
+.
+Hier kommen aufwändige Modelle
+.
+.
+.
+dis "Ende: $S_DATE um $S_TIME"
+.
+.
+.
+cap log close
+```
+
+So können wir beispielsweise automatisch log-Files mit einem Datum versehen:
+```{stata mac5log2, eval = F}
+global date = string( d($S_DATE), "%tdCY-N-D" )
+* help datetime_display_formats // für andere Datumsformate
+
+cap log close
+log using "${log}/01_macro_loops_${date}.log", replace text
+```
+
+```{stata logdisp, eval = F}
+. log using "${log}/01_macro_loops_${date}.log", replace text
+(note: file D:\Arbeit\Alex/log/01_macro_loops_2021-12-01.log not found)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  D:\Arbeit\Alex/log/01_macro_loops_2021-12-01.log
+  log type:  text
+ opened on:  01 Dec 2021, 10:45:04
+
+```
+
+Außerdem gibt es einige `locals` mit nützlichen Infos:
+```{stata mac5locs, eval = F}
+dis "`c(username)'"
+dis "`c(machine_type)'"
+dis "`c(os)'"
+```
+
+```{stata mac5locsT, eval = F}
+Filser
+PC (64-bit x86-64)
+Windows
+```
+
+
+Weitere "system parameters and settings" unter `help creturn` bspw.:
+`c(changed)` returns a numeric scalar equal to 0 if the dataset in memory has not changed since it was last saved and 1 otherwise. 
+`c(filename)` returns a string containing the filename last specified with a use or save, such as `"C:\Data\auto.dta"`. 
+`c(filedate)` returns a string containing the date and time the file in `c(filename)` was last saved, such as "7 Jul 2016 13:51". 
+
+
+### `if` {#if1}
+
+Mit `if (`local` == "...")` können wir macros abgleichen, um Befehle nur unter bestimmten Bedingungen auszuführen:
+```{stata macAM1, eval = F}
+if ("`c(username)'" == "Filser")  display "Du bist Filser"
+if ("`c(username)'" != "Fischer") display "Du bist nicht Fischer"
+```
+
+
+Das können wir für den Fall von eben mit mehreren Nutzern nutzen:
+```{stata macAM2, eval = F}
+if ("`c(username)'" == "Alex")   glo pfad "C:\Projekte\Micha" // wo liegt der Datensatz bei Alex?
+if ("`c(username)'" == "Micha")  glo pfad "D:\Arbeit\Alex"    // wo liegt der Datensatz bei Micha?
+
+glo prog "${pfad}/prog"  
+glo data "${pfad}/data"
+glo log  "${pfad}/log"
+
+use "${pfad}/BIBBBAuA_2018_suf1.0.dta", clear // laden des Datensatzes 
+```
+
+Für `if`-Bedingungen stehen uns die üblichen Operatoren zur Verfügung, die wir auch aus den `if`-Statements in Befehlen kennen:
+`>`, `<`, `==`, `>=`, `<=`, `!=`/`~=` (ungleich)
+Mit `|` können wir  *oder*-Bedingungen stellen.
+
++ `inrange`: einen Wertebereich auswählen 
+```{stata tabif1, eval = F}
+loc x = 20
+if `x' >= 20 & `x' <= 30 display "& yes"  
+if inrange(`x',20,30) display "inrange yes"
+```
+
+
+```{stata tabif1b, eval = F}
+loc x = 19
+if inrange(`x',20,30) display "yes"
+```
+
++ `inlist`: spezifische Werte angeben, um lange Folgen von `|` zu vermeiden:
+```{stata browseif, eval = F}
+loc x = 20
+if `x' == 18 | `x' == 20 | `x' == 22 | `x' == 28 display "| yes"  
+if inlist(`x',18,20,22,28) display "inlist yes"  
+```
+
+
+### Macros als Variablennamen und Befehle
+
+Auch so etwas ist möglich:
+```{stata macrobau1,eval = F}
+local n 200
+su F`n'
+```
+
+
+```{stata macrobaut,echo = F}
+qui use "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+local n 200
+su F`n'
+```
+
+Ein macro kann auch ein Programm sein:
+```{stata mac8b, eval=F}
+loc t tab
+`t' mobil
+```
+
+```{stata mac8b1, echo=F}
+qui use "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+loc t tab
+`t' mobil
+```
+
+$\Rightarrow$ sollen macros als Text verstanden werden, sind `""` nötig:
+```{stata mac8c1, error = T}
+loc opt ja
+if inlist(`opt',"ja","JA","Ja","ok") tab mobil
+```
+
+
+```{stata mac8c2, eval = F}
+loc opt ja
+if inlist("`opt'","ja","JA","Ja","ok") tab mobil
+```
+
+
+```{stata mac8c3, echo = F}
+qui use "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+loc opt ja
+if inlist("`opt'","ja","JA","Ja","ok") tab mobil
+```
+
+### `globals` durchsuchen {#allglo}
+
+Mit Hilfe sog. Wildcards können wir Zeichen "offen lassen":
+
++ `?` ersetzt ein Zeichen
++ `*` mehrere oder keines
+
+```{stata macall}
+glo x1 = 2
+glo x2 "das ist x2"
+glo x 291
+global allglo:  all globals "x*"
+global allglo2: all globals "x?"
+mac l allglo2 allglo
+```
+
+Hier haben wir auch schon die dritte Form der macro Definition kennengelernt, die sog. `extended macro function`, welche auf `:` folgt. Hier also `all globals`, im Laufe dieses Kurses werden wir noch zahlreiche dieser Funktionen kennenlernen. 
+
+
+## Wenn nicht `if`, dann `else`
+
+Mit `if` haben wir die Möglichkeiten aber noch nicht ausgeschöpft - aus `help if`:
+```{stata ifelseif, eval = F}
+if `n'==1 {
+	local word "one"
+     }
+else if `n'==2 {
+	local word "two"
+}
+else if `n'==3 {
+	local word "three"
+}
+else {
+	local word "big"
+}
+display "`word'"
+```
+
+Mit `exit` (`help exit_program`) können wir Stata zu einer Unterbrechung bringen:
+
+>   `exit` causes Stata to terminate the current process and returns control to the calling process.
+
+```{stata ifelseif2}
+if "`c(username)'" == "Alex" {
+  glo pfad "C:\Projekte\Micha" // wo liegt der Datensatz bei Alex?
+	} 
+else if "`c(username)'" == "Micha" {
+  glo pfad "D:\Arbeit\Alex"    // wo liegt der Datensatz bei Micha?
+}
+else {
+ display as error "Hier fehlt der passende Pfad"
+ exit 
+}
+tab mobil
+```
+
+
+***
+
+**[Übung](#ue1)**
+
+***
+
+
+
+## Schleifen:  `foreach` & `forvalues`
+
+Schleifen helfen uns das DRY ("Don't repeat yourself") Prinzip umzusetzen.
+
+```{stata tabloop01, eval = F}
+tab S1 if zpalter <= 19
+tab S1 if zpalter <= 24
+tab S1 if zpalter <= 29
+
+foreach v of numlist 19(5)29 {
+	display "Alter bis `v'"
+	tab S1 if zpalter <= `v'
+}
+```
+
+
+Ein vereinfachtes Syntaxdiagramm der `foreach`-Schleife sieht so aus:
+```{stata foreach1, eval = F}
+foreach lname listtype list {
+  Befehle
+}
+```
+
+`lname` steht dabei für ein `local` macro.
+
+Wir können unterschiedliche Typen von `foreach`-Listen verwenden:
+
+– `of varlist`: Variablenlisten  
+– `of newlist`: neue Variablen  
+– `of numlist`: Nummernlisten - bspw. `(0(1)5)` $\Rightarrow$ "1 bis 5 in Schritten von 1" [weitere Varianten](https://www.stata.com/manuals13/pnumlist.pdf)  
+– `in`: beliebige Listen von Buchstaben, Zahlen oder Wörtern (durch Leerzeichen getrennt)  
+
+
+```{stata allforach, eval = F}
+foreach lname in any_list {
+foreach lname of local    local      {
+foreach lname of global   global     {
+foreach lname of varlist  variablen  { //auch Wildcards möglich - analog zu d F2**
+foreach lname of newlist  newvarlist { //wenn variablen erst generiert werden
+foreach lname of numlist  numlist    {
+```
+
+```{stata foreachn}
+foreach n of numlist 1/3 6(1)9  {
+    dis "`n'"
+}
+```
+
+```{stata foreachn2}
+foreach n of numlist 6 4: -4  {
+    dis "`n'"
+}
+```
+
+### `ferest()` {#ferest}
+
+Mit  `ferest()` können wir uns die "noch übrigen Werte in der Liste anzeigen lassen:
+```{stata ferest}
+foreach n of numlist 1(1)5 {
+    dis "`n'"
+    dis "Es kommen noch: `ferest()'"
+}
+```
+
+### Weitere Schleifentypen
+
+Es gibt außerdem `forvalues`:
+```{stata forvalues, eval = F}
+forvalues lname=range {
+  Befehle
+}
+```
+
+`forvalues`-Schleife ist eine `foreach`-Schleife mit `numlist`.
+Aber: Die `foreach`-Schleife mit einer `numlist` funktioniert nicht mit einer beliebig hohen Anzahl von Ziffern.
+In der `forvalues`-Schleife gibt es keine Beschränkung. Außerdem ist `forvalues`-Schleife schneller im Abarbeiten von Nummernlisten.
+
+Und dann gibt es noch die `while`-Schleife:
+
+```{stata while}
+loc i = 1
+while `i' <= 5 {
+  display "`i'"
+  loc i = `i' + 1
+}
+```
+
+Eine Besonderheit bei `local`s ist, dass wir mit `loc ++i` den Wert um 1 erhöhen können. Somit führt folgende Syntax zum gleichen Ergebnis:
+```{stata while2, eval = F}
+loc i = 1
+while `i' <= 5 {
+  display "`i'"
+  loc ++i
+}
+```
+
+
+### Anwendung
+
+```{stata tabloop1, eval = F}
+foreach v of numlist 19(5)35 {
+	display "Alter bis `v'"
+	tab S1 if zpalter <= `v'
+}
+```
+
+
+```{stata tabloop2, echo = F}
+qui use "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+
+foreach v of numlist 19(5)35 {
+	display "Alter bis `v'"
+	tab S1 if zpalter <= `v'
+}
+```
+
+...oder mit `inrange()`, um lediglich die 5-Jahresaltersgruppe anzuzeigen:
+```{stata tabloop3, eval = F}
+foreach v of numlist 19(5)35 {
+	display "Alter " `v' - 4 " bis " `v'
+ 	tab S1 if inrange(zpalter,`v'-4, `v')
+	*su zpalter if inrange(zpalter,`v'-4, `v')
+}
+```
+
+
+```{stata tabloop4, echo = F}
+qui use "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+
+foreach v of numlist 19(5)35 {
+	display "Alter " `v' - 4 " bis " `v'
+ 	tab S1 if inrange(zpalter,`v'-4, `v')
+	*su zpalter if inrange(zpalter,`v'-4, `v')
+}
+```
+
+
+### Schleifen aufbauen
+
+Einfache Schleife mit `if`/`else`: ist Zahl gerade oder ungerade?
+
+```{stata loopbuild, eval = F}
+loc n = 5
+if trunc(`n'/2) == `n'/2 display "ja"
+if trunc(`n'/2) != `n'/2 display "nein"
+
+loc n = 5
+dis mod(`n',2) 
+
+
+forvalues n = 1/10 {
+	if  mod(`n',2)  == 0 dis "`n' ist gerade"
+	if  mod(`n',2)  >  0  dis "`n' ist ungerade"
+}
+
+forvalues n = 1/10 {
+	if  mod(`n',2)  == 0 {
+		dis "`n' ist gerade"
+	}
+	else if mod(`n',2)  > 0 {
+		dis "`n' ist ungerade"
+	} 
+}
+```
+
+[mod() ist der Modulo-Operator in Stata - es wird der "Rest" berechnet](https://de.wikipedia.org/wiki/Division_mit_Rest#Modulo)
+
+
+### nested loop
+
+```{stata nloop1}
+forvalues n1 = 1/3 {
+  forvalues n2 = 1/3 {
+    dis "n1 ist `n1' und n2 ist `n2' "
+  }
+}
+```
+
+
+
+### `display` vs. `macro list`
+
+`macro list` stoppt das DoFile wenn der macro nicht existiert, `display` zeigt nur ein leeres Feld an:
+```{stata dismacl, eval = F}
+global labormarket LABOUR
+
+display "${labormarket}"
+display "${labourmarket}"
+```
+
+```{stata dismacl2, eval = F}
+LABOUR
+
+```
+
+```{stata dismacl3, eval = F}
+mac list labormarket
+mac list labourmarket
+```
+```{stata dismacl4, eval = F}
+labormarket:    LABOUR
+
+global macro $labourmarket not found
+r(111);
+```
+
+
+
+
+
+***
+
+**[Übung](#ue2)**
+
+***
+
+<!-- - Variablen & value labels anzeigen/bearbeiten  -->
+<!-- - Creating interaction variables -->
+<!-- - Fitting models with alternative measures of education -->
+<!-- - Recoding multiple variables the same way -->
+<!-- - Creating a macro that holds accumulated information -->
+<!-- - Retrieving information returned by Stata -->
+
+
+
+
+## Übungen
+
+### Übung {#ue0}
+
+
++ Was ist das Ergebnis dieser Rechnung? Nehmen Sie sich einen Moment Zeit und rechnen Sie im Kopf - Überprüfen Sie dann ihr Ergebnis.
+```{stata, eval = F}
+loc x = 4
+glo y = 1+5
+loc y 1+5
+dis `x' * `y'
+```
+
++ Wie können Sie hier aus `Hallo zusammen! :-)` folgende Ausgabe machen: `Hallo, zusammen! :-)` ohne die macros zu verändern oder einen neuen anzulegen?
+```{stata, eval = F}
+glo t1 "Hallo"
+glo t2 " zusammen"
+glo t3 "! :-)"
+
+glo t4 = "${t1}${t2}${t3}"
+dis "${t4}"
+```
+
+
+### Übung {#ue1}
+
+- Pfad zusammenbauen für `use`: Erstellen Sie den Pfad für den `use`-Befehl schrittweise und unter Berücksichtigung Ihres Usernamens.
+  - ggf. Dateiverzeichnis einrichten mit Ordner *log*, *prog* und *data* (gerne auch mehr oder andere Namen)
+  - Legen Sie die Erwerbstätigenbefragung 2018 in den *data*-Ordner (oder dessen Äquivalent) 
+  - Wie ist der Username auf Ihrem Gerät?
+  - Verwenden Sie ein `if`-Statement, um den Dateipfad zu erstellen
+  - Erstellen Sie ein LogFile, welches das heutige Datum im Namen trägt.
+
+- Lassen Sie sich alle `globals`, die mit "S" beginnen, in ein `gobal allS` ablegen. Was wurde alles gefunden?
+  - Denken Sie an die `extended macro function`  [`all globals`](#allglo) 
+  - Wie könnten Sie eine Schleife bauen, die nacheinander alle  `globals` anzeigt, die mit "S" beginnen?
+  
+  
+### FizzBuzz-Challenge {#ue2}
+
+Fizz Buzz wird/wurde als ein Screening-Instrument für Programmierer\*innen verwendet. Fizz Buzz ist ein Kinderlernspiel, bei dem die Kinder üblicherweise im Kreis sitzen und reihum laut von eins aufwärts zählen. Allerdings gibt es drei Regeln:
+
++ Alle Zahlen, die durch drei teilbar sind, müssen durch das Wort "Fizz" ersetzt werden 
++ Alle Zahlen, die durch fünf teilbar sind, müssen durch das Wort "Buzz" ersetzt werden
++ Wenn eine Zahl durch drei und fünf teilbar ist, dann wird "Fizz Buzz" gerufen.
+
+Wie würden Sie mit `if` & `else` eine Schleife bauen, welche diese Regeln umsetzt. 
+Was wäre der erste Schritt? 
+Bauen Sie dann die Schleife und lassen Sie die Schleife für den Wertebereich 0-30 laufen.
+
+
+### Übung {#ue3}
+
+Passen Sie die Schleife mit [`ferest()`](#ferest) an, sodass hier im 5. Durchlauf nicht mehr `Es kommen noch:  ` steht, sondern `Fertig`.
+
+## Anhang
+
+### Windows Dateipfade mit macros {#dir}
+
+[Aus der Stata-Doku zu macros](https://www.stata.com/manuals/u18.pdf#u18.3.11): 
+
+Stata uses the \ character to tell its parser not to expand macros.
+Windows uses the \ character as the directory path separator.
+Mostly, there is no problem using a \ in a filename. However, if you are writing a program that contains a Windows path in macro path and a filename in fname, do not assemble the final result as `‘path’\‘fname’` because Stata will interpret the \ as an instruction to not expand `‘fname’`. 
+$\Rightarrow$ Instead, assemble the final result as `‘path’/‘fname’`.
+Stata understands `/` as a directory separator on all platforms.
+
+
+### Debugging: Wo ist der Wurm drin?
+
+Fehlersuch in langen `foreach`-Schleifen kann mühsam und nervig sein.
+in many cases you would like to go throuh the code step by step then, however, the value of the loop index (which is a `local`)
+In vielen Fällen möchte man den Code Schritt für Schritt durchgehen, dann aber den Wert des Schleifen-`locals` ist natürlich nach Abbruch der Schleife nicht mehr da.
+```{stata debug1, eval = F}
+forvalues y = 1982/1985 {
+	use "${data}/wages-year`y'", clear
+	capture log close
+	log using "${data}/log`y'.log", text replace
+	regress lwage exper expersq educ
+	avplots
+	graph export "${graph}/avplots`y'.png", replace
+}
+```
+
+Manchmal hilft ein einfacher Workaround: ein `global` aus dem `local` definieren:
+```{stata debug2, eval = F}
+forvalues y = 1982/1985 {
+	global Y = `y'
+	use "${data}/wages-year`y'", clear
+	capture log close
+	log using "${data}/log`y'.log", text replace
+	regress lwage exper expersq educ
+	avplots
+	graph export "${graph}/avplots`y'.png", replace
+}
+
+```
+
+
+Alternativ hilft häufig auch `set trace on` weiter. Hier werden immer die zuerst die macros und dann erst die eingesetzten Werte angezeigt:
+```{stata settracetabloop4a, eval = F}
+set trace on
+foreach v of numlist 19(5)35 {
+	display "Alter " `v' - 4 " bis " `v'
+}
+```
+
+```{stata settracetabloop4, echo = F}
+qui use "D:\Datenspeicher\BIBB_BAuA/BIBBBAuA_2018_suf1.0.dta", clear
+set trace on
+foreach v of numlist 19(5)35 {
+	display "Alter " `v' - 4 " bis " `v'
+}
+```
+
+<!-- ### `local x` entspricht `global _x` -->
+
+<!-- Theoretisch kann man auch mit `global _x` einen `local x` erzeugen: -->
+<!-- ```{stata det0a, eval= F} -->
+<!-- local   x = 2 -->
+<!-- global _x = 3 -->
+
+<!-- dis  -->
+<!-- ``` -->
+
+
+<!-- ```{stata det0b, eval= F} -->
+<!-- local i=1  -->
+<!-- global _i=1 -->
+<!-- ``` -->
+
+<!-- Damit könnte man auch so alle `locals` auflisten: -->
+
+<!-- ```{stata alllocas, eval = F} -->
+<!-- glo x1 = 2 -->
+<!-- glo x2 "das ist x2" -->
+<!-- glo x 291 -->
+<!-- global allglo:  all globals "_x*" -->
+<!-- mac l allglo -->
+<!-- ``` -->
+
+
+
+
+<!-- ```{stata det1, eval= F} -->
+<!-- global a "myvar" -->
+<!-- gen $a = oldvar   gen myvar = oldvar -->
+<!-- gen a = oldvar    gen a = oldvar -->
+
+<!-- local a "myvar" -->
+<!-- gen ‘a’ = oldvar gen myvar = oldvar -->
+
+<!-- gen a = oldvar gen a = oldvar -->
+<!-- global a "newvar" -->
+<!-- global i = 2 -->
+<!-- gen $a$i = oldvar gen newvar2 = oldvar -->
+<!-- local a "newvar" -->
+<!-- local i = 2 -->
+<!-- gen ‘a’‘i’ = oldvar gen newvar2 = oldvar -->
+<!-- global b1 "newvar" -->
+<!-- global i=1 -->
+<!-- gen ${b$i} = oldvar gen newvar = oldvar -->
+<!-- local b1 "newvar" -->
+<!-- local i=1 -->
+<!-- gen ‘b‘i’’ = oldvar gen newvar = oldvar -->
+<!-- global b1 "newvar" -->
+<!-- global a "b" -->
+<!-- global i = 1 -->
+<!-- gen ${$a$i} = oldvar gen newvar = oldvar -->
+<!-- local b1 "newvar" -->
+<!-- local a "b" -->
+<!-- local i = 1 -->
+<!-- gen ‘‘a’‘i’’ = oldvar gen newvar = oldvar -->
+<!-- ``` -->
+
