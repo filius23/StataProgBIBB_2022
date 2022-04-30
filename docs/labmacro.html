@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Label- und Variablenfunktionen | Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Label- und Variablenfunktionen | Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Label- und Variablenfunktionen | Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Andreas Filser" />
+
+
+<meta name="date" content="2022-04-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regres.html"/>
+<link rel="next" href="data.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Stata @ BIBB</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#herzlich-willkommen">Herzlich Willkommen<span></span></a></li>
+<li class="chapter" data-level="1" data-path="macro.html"><a href="macro.html"><i class="fa fa-check"></i><b>1</b> Macros<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="macro.html"><a href="macro.html#macht-einen-unterschied"><i class="fa fa-check"></i><b>1.1</b> <code>=</code> macht einen Unterschied<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="macro.html"><a href="macro.html#local-und-global-sind-getrennte-welten"><i class="fa fa-check"></i><b>1.2</b> <code>local</code> und <code>global</code> sind getrennte Welten<span></span></a></li>
+<li class="chapter" data-level="1.3" data-path="macro.html"><a href="macro.html#macros-mit-text"><i class="fa fa-check"></i><b>1.3</b> Macros mit Text<span></span></a></li>
+<li class="chapter" data-level="1.4" data-path="macro.html"><a href="macro.html#dateipfade"><i class="fa fa-check"></i><b>1.4</b> Dateipfade<span></span></a></li>
+<li class="chapter" data-level="1.5" data-path="macro.html"><a href="macro.html#cmac"><i class="fa fa-check"></i><b>1.5</b> Bereits definierte Macros<span></span></a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="macro.html"><a href="macro.html#if1"><i class="fa fa-check"></i><b>1.5.1</b> <code>if</code><span></span></a></li>
+<li class="chapter" data-level="1.5.2" data-path="macro.html"><a href="macro.html#macros-als-variablennamen-und-befehle"><i class="fa fa-check"></i><b>1.5.2</b> Macros als Variablennamen und Befehle<span></span></a></li>
+<li class="chapter" data-level="1.5.3" data-path="macro.html"><a href="macro.html#allglo"><i class="fa fa-check"></i><b>1.5.3</b> <code>globals</code> durchsuchen<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="macro.html"><a href="macro.html#wenn-nicht-if-dann-else"><i class="fa fa-check"></i><b>1.6</b> Wenn nicht <code>if</code>, dann <code>else</code><span></span></a></li>
+<li class="chapter" data-level="1.7" data-path="macro.html"><a href="macro.html#schleifen-foreach-forvalues"><i class="fa fa-check"></i><b>1.7</b> Schleifen: <code>foreach</code> &amp; <code>forvalues</code><span></span></a>
+<ul>
+<li class="chapter" data-level="1.7.1" data-path="macro.html"><a href="macro.html#ferest"><i class="fa fa-check"></i><b>1.7.1</b> <code>ferest()</code><span></span></a></li>
+<li class="chapter" data-level="1.7.2" data-path="macro.html"><a href="macro.html#weitere-schleifentypen"><i class="fa fa-check"></i><b>1.7.2</b> Weitere Schleifentypen<span></span></a></li>
+<li class="chapter" data-level="1.7.3" data-path="macro.html"><a href="macro.html#anwendung"><i class="fa fa-check"></i><b>1.7.3</b> Anwendung<span></span></a></li>
+<li class="chapter" data-level="1.7.4" data-path="macro.html"><a href="macro.html#schleifen-aufbauen"><i class="fa fa-check"></i><b>1.7.4</b> Schleifen aufbauen<span></span></a></li>
+<li class="chapter" data-level="1.7.5" data-path="macro.html"><a href="macro.html#nested-loop"><i class="fa fa-check"></i><b>1.7.5</b> nested loop<span></span></a></li>
+<li class="chapter" data-level="1.7.6" data-path="macro.html"><a href="macro.html#display-vs.-macro-list"><i class="fa fa-check"></i><b>1.7.6</b> <code>display</code> vs. <code>macro list</code><span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.8" data-path="macro.html"><a href="macro.html#übungen"><i class="fa fa-check"></i><b>1.8</b> Übungen<span></span></a>
+<ul>
+<li class="chapter" data-level="1.8.1" data-path="macro.html"><a href="macro.html#ue0"><i class="fa fa-check"></i><b>1.8.1</b> Übung<span></span></a></li>
+<li class="chapter" data-level="1.8.2" data-path="macro.html"><a href="macro.html#ue1"><i class="fa fa-check"></i><b>1.8.2</b> Übung<span></span></a></li>
+<li class="chapter" data-level="1.8.3" data-path="macro.html"><a href="macro.html#ue2"><i class="fa fa-check"></i><b>1.8.3</b> FizzBuzz-Challenge<span></span></a></li>
+<li class="chapter" data-level="1.8.4" data-path="macro.html"><a href="macro.html#ue3"><i class="fa fa-check"></i><b>1.8.4</b> Übung<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.9" data-path="macro.html"><a href="macro.html#anhang"><i class="fa fa-check"></i><b>1.9</b> Anhang<span></span></a>
+<ul>
+<li class="chapter" data-level="1.9.1" data-path="macro.html"><a href="macro.html#dir"><i class="fa fa-check"></i><b>1.9.1</b> Windows Dateipfade mit macros<span></span></a></li>
+<li class="chapter" data-level="1.9.2" data-path="macro.html"><a href="macro.html#debugging-wo-ist-der-wurm-drin"><i class="fa fa-check"></i><b>1.9.2</b> Debugging: Wo ist der Wurm drin?<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="loopmacro.html"><a href="loopmacro.html"><i class="fa fa-check"></i><b>2</b> Schleifen aus Macros<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="loopmacro.html"><a href="loopmacro.html#local-erstellen-und-für-schleifen-verwenden"><i class="fa fa-check"></i><b>2.1</b> local erstellen und für Schleifen verwenden<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="loopmacro.html"><a href="loopmacro.html#schleifen-über-strings"><i class="fa fa-check"></i><b>2.2</b> Schleifen über strings<span></span></a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="loopmacro.html"><a href="loopmacro.html#wörter-indizieren"><i class="fa fa-check"></i><b>2.2.1</b> Wörter indizieren<span></span></a></li>
+<li class="chapter" data-level="2.2.2" data-path="loopmacro.html"><a href="loopmacro.html#wörter-zählen"><i class="fa fa-check"></i><b>2.2.2</b> Wörter zählen<span></span></a></li>
+<li class="chapter" data-level="2.2.3" data-path="loopmacro.html"><a href="loopmacro.html#wörter-in-schleife"><i class="fa fa-check"></i><b>2.2.3</b> Wörter in Schleife<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="loopmacro.html"><a href="loopmacro.html#informationen-aus-schleifen-behalten"><i class="fa fa-check"></i><b>2.3</b> Informationen aus Schleifen behalten<span></span></a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="loopmacro.html"><a href="loopmacro.html#gespeichterte-ergebnisse"><i class="fa fa-check"></i><b>2.3.1</b> Gespeichterte Ergebnisse<span></span></a></li>
+<li class="chapter" data-level="2.3.2" data-path="loopmacro.html"><a href="loopmacro.html#e-und-r-sind-getrennte-welten"><i class="fa fa-check"></i><b>2.3.2</b> <code>e()</code> und <code>r()</code> sind getrennte Welten<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="loopmacro.html"><a href="loopmacro.html#ergebnisse-weiter-verwenden"><i class="fa fa-check"></i><b>2.4</b> Ergebnisse weiter verwenden<span></span></a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="loopmacro.html"><a href="loopmacro.html#recur"><i class="fa fa-check"></i><b>2.4.1</b> Rekursivität<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="loopmacro.html"><a href="loopmacro.html#mat1"><i class="fa fa-check"></i><b>2.5</b> Kennzahlen in einer <code>matrix</code> ablegen<span></span></a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="loopmacro.html"><a href="loopmacro.html#namen-für-spalten-und-zeilen-einer-matrix"><i class="fa fa-check"></i><b>2.5.1</b> Namen für Spalten und Zeilen einer <code>matrix</code><span></span></a></li>
+<li class="chapter" data-level="2.5.2" data-path="loopmacro.html"><a href="loopmacro.html#mcollect"><i class="fa fa-check"></i><b>2.5.2</b> <code>matrix</code> erstellen<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="loopmacro.html"><a href="loopmacro.html#labels-behalten"><i class="fa fa-check"></i><b>2.6</b> Labels behalten<span></span></a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="loopmacro.html"><a href="loopmacro.html#labfun"><i class="fa fa-check"></i><b>2.6.1</b> <code>extended macro function</code> für Labels<span></span></a></li>
+<li class="chapter" data-level="2.6.2" data-path="loopmacro.html"><a href="loopmacro.html#mrown"><i class="fa fa-check"></i><b>2.6.2</b> Labels als <code>rowname</code><span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="loopmacro.html"><a href="loopmacro.html#von-der-matrix-zum-datensatz"><i class="fa fa-check"></i><b>2.7</b> Von der <code>matrix</code> zum Datensatz<span></span></a></li>
+<li class="chapter" data-level="2.8" data-path="loopmacro.html"><a href="loopmacro.html#frame"><i class="fa fa-check"></i><b>2.8</b> <code>frame</code>: mehrere Datensätze in Stata<span></span></a></li>
+<li class="chapter" data-level="2.9" data-path="loopmacro.html"><a href="loopmacro.html#übungen-1"><i class="fa fa-check"></i><b>2.9</b> Übungen<span></span></a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="loopmacro.html"><a href="loopmacro.html#loop1"><i class="fa fa-check"></i><b>2.9.1</b> Übung<span></span></a></li>
+<li class="chapter" data-level="2.9.2" data-path="loopmacro.html"><a href="loopmacro.html#retue1"><i class="fa fa-check"></i><b>2.9.2</b> Übung<span></span></a></li>
+<li class="chapter" data-level="2.9.3" data-path="loopmacro.html"><a href="loopmacro.html#retue2"><i class="fa fa-check"></i><b>2.9.3</b> Übung<span></span></a></li>
+<li class="chapter" data-level="2.9.4" data-path="loopmacro.html"><a href="loopmacro.html#retue3"><i class="fa fa-check"></i><b>2.9.4</b> Übung<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="regres.html"><a href="regres.html"><i class="fa fa-check"></i><b>3</b> Regressionsergebnisse weiterverarbeiten<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="regres.html"><a href="regres.html#e-und-r-der-regressionsergebnisse"><i class="fa fa-check"></i><b>3.1</b> <code>e()</code> und <code>r()</code> der Regressionsergebnisse<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="regres.html"><a href="regres.html#koeffizienten-mit-_b-_se-aufrufen"><i class="fa fa-check"></i><b>3.1.1</b> Koeffizienten mit <code>_b</code> / <code>_se</code> aufrufen<span></span></a></li>
+<li class="chapter" data-level="3.1.2" data-path="regres.html"><a href="regres.html#komplette-regressionstabelle"><i class="fa fa-check"></i><b>3.1.2</b> Komplette Regressionstabelle<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="regres.html"><a href="regres.html#regressionstabellen-als-matrix-speichern-und-anpassen"><i class="fa fa-check"></i><b>3.2</b> Regressionstabellen als <code>matrix</code> speichern und anpassen<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="regres.html"><a href="regres.html#kategoriale-uv"><i class="fa fa-check"></i><b>3.3</b> kategoriale UV<span></span></a></li>
+<li class="chapter" data-level="3.4" data-path="regres.html"><a href="regres.html#als-datensatz-ablegen"><i class="fa fa-check"></i><b>3.4</b> Als Datensatz ablegen:<span></span></a></li>
+<li class="chapter" data-level="3.5" data-path="regres.html"><a href="regres.html#weitere-infos-aus-e"><i class="fa fa-check"></i><b>3.5</b> weitere Infos aus <code>e()</code><span></span></a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="regres.html"><a href="regres.html#esample"><i class="fa fa-check"></i><b>3.5.1</b> <code>e(sample)</code><span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="regres.html"><a href="regres.html#reg-schrittweise-aufbauen"><i class="fa fa-check"></i><b>3.6</b> <code>reg</code> schrittweise aufbauen<span></span></a></li>
+<li class="chapter" data-level="3.7" data-path="regres.html"><a href="regres.html#übungen-2"><i class="fa fa-check"></i><b>3.7</b> Übungen<span></span></a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="regres.html"><a href="regres.html#reg1"><i class="fa fa-check"></i><b>3.7.1</b> Übung<span></span></a></li>
+<li class="chapter" data-level="3.7.2" data-path="regres.html"><a href="regres.html#reg2"><i class="fa fa-check"></i><b>3.7.2</b> Übung<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="regres.html"><a href="regres.html#anhang-1"><i class="fa fa-check"></i><b>3.8</b> Anhang<span></span></a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="regres.html"><a href="regres.html#statsby"><i class="fa fa-check"></i><b>3.8.1</b> <code>statsby</code><span></span></a></li>
+<li class="chapter" data-level="3.8.2" data-path="regres.html"><a href="regres.html#reg-ergebnisse-für-modelle-sammeln-schleife"><i class="fa fa-check"></i><b>3.8.2</b> <code>reg</code>-Ergebnisse für Modelle sammeln: Schleife<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="labmacro.html"><a href="labmacro.html"><i class="fa fa-check"></i><b>4</b> Label- und Variablenfunktionen<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="labmacro.html"><a href="labmacro.html#stringfunktionen"><i class="fa fa-check"></i><b>4.1</b> Stringfunktionen<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="labmacro.html"><a href="labmacro.html#arbeiten-mit-regular-expressions"><i class="fa fa-check"></i><b>4.2</b> Arbeiten mit “Regular Expressions”<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="labmacro.html"><a href="labmacro.html#regex-grund-regeln"><i class="fa fa-check"></i><b>4.2.1</b> regex (Grund-)Regeln<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="labmacro.html"><a href="labmacro.html#beispiele"><i class="fa fa-check"></i><b>4.2.2</b> Beispiele<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="labmacro.html"><a href="labmacro.html#weiterführende-links"><i class="fa fa-check"></i><b>4.2.3</b> Weiterführende Links<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="labmacro.html"><a href="labmacro.html#labfuns"><i class="fa fa-check"></i><b>4.3</b> Label bearbeiten<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="labmacro.html"><a href="labmacro.html#abgleiche"><i class="fa fa-check"></i><b>4.4</b> Abgleiche<span></span></a></li>
+<li class="chapter" data-level="4.5" data-path="labmacro.html"><a href="labmacro.html#valsearch"><i class="fa fa-check"></i><b>4.5</b> wo kommt überall -4 vor?<span></span></a></li>
+<li class="chapter" data-level="4.6" data-path="labmacro.html"><a href="labmacro.html#übungen-3"><i class="fa fa-check"></i><b>4.6</b> Übungen<span></span></a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="labmacro.html"><a href="labmacro.html#strue"><i class="fa fa-check"></i><b>4.6.1</b> Übung<span></span></a></li>
+<li class="chapter" data-level="4.6.2" data-path="labmacro.html"><a href="labmacro.html#regexue"><i class="fa fa-check"></i><b>4.6.2</b> Übung<span></span></a></li>
+<li class="chapter" data-level="4.6.3" data-path="labmacro.html"><a href="labmacro.html#varlab"><i class="fa fa-check"></i><b>4.6.3</b> Übung<span></span></a></li>
+<li class="chapter" data-level="4.6.4" data-path="labmacro.html"><a href="labmacro.html#valuesearch"><i class="fa fa-check"></i><b>4.6.4</b> Übung<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="labmacro.html"><a href="labmacro.html#anhang-2"><i class="fa fa-check"></i><b>4.7</b> Anhang<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>5</b> Dateien- und DoFile-Verwaltung<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data.html"><a href="data.html#dir---alles-einlesen"><i class="fa fa-check"></i><b>5.1</b> <code>dir</code> - alles einlesen<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data.html"><a href="data.html#copy"><i class="fa fa-check"></i><b>5.1.1</b> <code>copy</code><span></span></a></li>
+<li class="chapter" data-level="5.1.2" data-path="data.html"><a href="data.html#erase"><i class="fa fa-check"></i><b>5.1.2</b> <code>erase</code><span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data.html"><a href="data.html#verzeichnisse-dofiles-erstellen"><i class="fa fa-check"></i><b>5.2</b> Verzeichnisse &amp; DoFiles erstellen<span></span></a></li>
+<li class="chapter" data-level="5.3" data-path="data.html"><a href="data.html#master-dofile"><i class="fa fa-check"></i><b>5.3</b> Master DoFile<span></span></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="data.html"><a href="data.html#dofile-mit-argumenten-starten"><i class="fa fa-check"></i><b>5.3.1</b> DoFile mit Argumenten starten<span></span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="data.html"><a href="data.html#in-neuer-session-starten"><i class="fa fa-check"></i><b>5.3.2</b> in neuer Session starten<span></span></a></li>
+<li class="chapter" data-level="5.3.3" data-path="data.html"><a href="data.html#mehrere-sessions-starten"><i class="fa fa-check"></i><b>5.3.3</b> mehrere Sessions starten<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="data.html"><a href="data.html#übungen-4"><i class="fa fa-check"></i><b>5.4</b> Übungen<span></span></a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="data.html"><a href="data.html#dir_readin"><i class="fa fa-check"></i><b>5.4.1</b> Übung<span></span></a></li>
+<li class="chapter" data-level="5.4.2" data-path="data.html"><a href="data.html#masterdofile"><i class="fa fa-check"></i><b>5.4.2</b> Übung<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="data.html"><a href="data.html#anhang-3"><i class="fa fa-check"></i><b>5.5</b> Anhang<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="misc.html"><a href="misc.html"><i class="fa fa-check"></i><b>6</b> Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="misc.html"><a href="misc.html#capture"><i class="fa fa-check"></i><b>6.1</b> <code>capture</code><span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="misc.html"><a href="misc.html#macro-extended-functions-for-parsing"><i class="fa fa-check"></i><b>6.2</b> Macro extended functions for parsing<span></span></a></li>
+<li class="chapter" data-level="6.3" data-path="misc.html"><a href="misc.html#weitere-matrix-befehle"><i class="fa fa-check"></i><b>6.3</b> weitere <code>matrix</code>-Befehle<span></span></a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="misc.html"><a href="misc.html#teilmatrizen"><i class="fa fa-check"></i><b>6.3.1</b> Teilmatrizen<span></span></a></li>
+<li class="chapter" data-level="6.3.2" data-path="misc.html"><a href="misc.html#spaltenzeilen-auswählen"><i class="fa fa-check"></i><b>6.3.2</b> Spalten/Zeilen auswählen<span></span></a></li>
+<li class="chapter" data-level="6.3.3" data-path="misc.html"><a href="misc.html#crnumb"><i class="fa fa-check"></i><b>6.3.3</b> Namensbasierte Auswahl<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lit.html"><a href="lit.html"><i class="fa fa-check"></i><b>7</b> Literatur &amp; Links<span></span></a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="labmacro" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Label- und Variablenfunktionen<a href="labmacro.html#labmacro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Inspiriert von der <a href="https://stats.idre.ucla.edu/stata/faq/how-can-i-extract-a-portion-of-a-string-variable-using-regular-expressions/">UCLA</a> einige Beispielstrings:</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb161-1"><a href="labmacro.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb161-2"><a href="labmacro.html#cb161-2" aria-hidden="true" tabindex="-1"></a>input str60 add</span>
+<span id="cb161-3"><a href="labmacro.html#cb161-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;4905 Lakeway Drive, College Station, Texas 77845 USA&quot;</span></span>
+<span id="cb161-4"><a href="labmacro.html#cb161-4" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;673 Jasmine Street, Los Angeles, CA 90024&quot;</span></span>
+<span id="cb161-5"><a href="labmacro.html#cb161-5" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;2376 First street, San Diego, CA 90126&quot;</span></span>
+<span id="cb161-6"><a href="labmacro.html#cb161-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;6 West Central St, Tempe AZ 80068&quot;</span></span>
+<span id="cb161-7"><a href="labmacro.html#cb161-7" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;1234 Main St. Cambridge, MA 01238-1234&quot;</span></span>
+<span id="cb161-8"><a href="labmacro.html#cb161-8" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Robert-Schuman-Platz 3, 53175 Bonn GERMANY&quot;</span></span>
+<span id="cb161-9"><a href="labmacro.html#cb161-9" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Regensburger Straße 100, 90478 Nürnberg Germany&quot;</span></span>
+<span id="cb161-10"><a href="labmacro.html#cb161-10" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;  Ammerländer Heerstraße 114-118, 26129 Oldenburg GERMANY  &quot;</span></span>
+<span id="cb161-11"><a href="labmacro.html#cb161-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<div id="stringfunktionen" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Stringfunktionen<a href="labmacro.html#stringfunktionen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>help string functions</code></p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb162-1"><a href="labmacro.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x1 = <span class="fu">substr</span>(add,5,10)   <span class="co">//  substring von add -&gt; Zeichen 5-10</span></span>
+<span id="cb162-2"><a href="labmacro.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">x2</span> = <span class="fu">wordcount</span>(add)       <span class="co">// Worte zählen</span></span>
+<span id="cb162-3"><a href="labmacro.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x3 = <span class="fu">word</span>(add,5)      <span class="co">// 5. Wort</span></span>
+<span id="cb162-4"><a href="labmacro.html#cb162-4" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x4 = <span class="fu">upper</span>(add)         <span class="co">// alles groß</span></span>
+<span id="cb162-5"><a href="labmacro.html#cb162-5" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x5 = <span class="fu">lower</span>(add)     <span class="co">// alles klein</span></span>
+<span id="cb162-6"><a href="labmacro.html#cb162-6" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x6 = <span class="fu">proper</span>(add)    <span class="co">// jeweiles erster Buchstabe eines Wortes groß</span></span>
+<span id="cb162-7"><a href="labmacro.html#cb162-7" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x7 = <span class="kw">trim</span>(add)      <span class="co">// Leerzeichen am Ende und Beginn raus</span></span>
+<span id="cb162-8"><a href="labmacro.html#cb162-8" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x8 = <span class="fu">strlen</span>(add)    <span class="co">// Anzahl der Zeichen in add</span></span></code></pre></div>
+<p>Allerdings sind diese Funktionen auf ASCII-Zeichen ausgelegt - einfach gesagt: Umlaute, ß usw. bereiten Probleme. Daher gibt es eine Erweiterung mit <code>usubstr</code>, <code>ustrupper()</code>, <code>ustrlower()</code> usw. - mehr dazu jeweils in der Hilfe.</p>
+<p>Der Weg zur passenden <code>regex</code> string-Funktion ist leider oft von vielen Versuchen begleitet, am einfachsten testet man mit <code>display</code>.
+So zeigt sich hier bspw., dass <code>proper()</code> hier “ß” und “ü” als Wortende/-beginn (mis-)versteht:</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb163-1"><a href="labmacro.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="fu">proper</span>(<span class="st">&quot;Regensburger Straße 100, 90478 nüRnberg germany&quot;</span>)</span></code></pre></div>
+<pre><code>Regensburger StraßE 100, 90478 NüRnberg Germany</code></pre>
+<p>…in der Hilfe finden wir <code>ustrtitle</code>:</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb165-1"><a href="labmacro.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> ustrtitle(<span class="st">&quot;Regensburger Straße 100, 90478 nüRnberg germany&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb166-1"><a href="labmacro.html#cb166-1" aria-hidden="true" tabindex="-1"></a>Regensburger Straße 100, 90478 Nürnberg Germany</span></code></pre></div>
+<p>Hier wenig hilfreich, aber häufig eine gute Abkürzung: <code>split</code>
+Mit <code>parse()</code> können wir einen Trenner angeben.</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb167-1"><a href="labmacro.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="kw">split</span> add, <span class="kw">parse</span>(<span class="st">&quot; &quot;</span>) <span class="kw">gen</span>(t)</span></code></pre></div>
+<hr />
+<p><strong><a href="labmacro.html#strue">Übung</a></strong></p>
+<hr />
+<p><strong>Tipp: <code>real()</code> ist deutlich schneller und unkomplizierter als <code>destring</code></strong></p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb168-1"><a href="labmacro.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb168-2"><a href="labmacro.html#cb168-2" aria-hidden="true" tabindex="-1"></a>input str1 x1</span>
+<span id="cb168-3"><a href="labmacro.html#cb168-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;2&quot;</span></span>
+<span id="cb168-4"><a href="labmacro.html#cb168-4" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;3&quot;</span></span>
+<span id="cb168-5"><a href="labmacro.html#cb168-5" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;5&quot;</span></span>
+<span id="cb168-6"><a href="labmacro.html#cb168-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;23&quot;</span></span>
+<span id="cb168-7"><a href="labmacro.html#cb168-7" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;21&quot;</span></span>
+<span id="cb168-8"><a href="labmacro.html#cb168-8" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;2&quot;</span></span>
+<span id="cb168-9"><a href="labmacro.html#cb168-9" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;--&quot;</span></span>
+<span id="cb168-10"><a href="labmacro.html#cb168-10" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;2&quot;</span></span>
+<span id="cb168-11"><a href="labmacro.html#cb168-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb168-12"><a href="labmacro.html#cb168-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-13"><a href="labmacro.html#cb168-13" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> num = <span class="fu">real</span>(x1)</span>
+<span id="cb168-14"><a href="labmacro.html#cb168-14" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span></span>
+<span id="cb168-15"><a href="labmacro.html#cb168-15" aria-hidden="true" tabindex="-1"></a><span class="kw">destring</span>(x1), <span class="kw">gen</span>(num2)</span>
+<span id="cb168-16"><a href="labmacro.html#cb168-16" aria-hidden="true" tabindex="-1"></a>            x1</span>
+<span id="cb168-17"><a href="labmacro.html#cb168-17" aria-hidden="true" tabindex="-1"></a>  1. <span class="st">&quot;2&quot;</span></span>
+<span id="cb168-18"><a href="labmacro.html#cb168-18" aria-hidden="true" tabindex="-1"></a>  2. <span class="st">&quot;3&quot;</span></span>
+<span id="cb168-19"><a href="labmacro.html#cb168-19" aria-hidden="true" tabindex="-1"></a>  3. <span class="st">&quot;5&quot;</span></span>
+<span id="cb168-20"><a href="labmacro.html#cb168-20" aria-hidden="true" tabindex="-1"></a>  4. <span class="st">&quot;23&quot;</span></span>
+<span id="cb168-21"><a href="labmacro.html#cb168-21" aria-hidden="true" tabindex="-1"></a>  5. <span class="st">&quot;21&quot;</span></span>
+<span id="cb168-22"><a href="labmacro.html#cb168-22" aria-hidden="true" tabindex="-1"></a>  6. <span class="st">&quot;2&quot;</span></span>
+<span id="cb168-23"><a href="labmacro.html#cb168-23" aria-hidden="true" tabindex="-1"></a>  7. <span class="st">&quot;--&quot;</span></span>
+<span id="cb168-24"><a href="labmacro.html#cb168-24" aria-hidden="true" tabindex="-1"></a>  8. <span class="st">&quot;2&quot;</span></span>
+<span id="cb168-25"><a href="labmacro.html#cb168-25" aria-hidden="true" tabindex="-1"></a>  9. <span class="kw">end</span></span>
+<span id="cb168-26"><a href="labmacro.html#cb168-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-27"><a href="labmacro.html#cb168-27" aria-hidden="true" tabindex="-1"></a>(1 <span class="fu">missing</span> <span class="ot">value</span> generated)</span>
+<span id="cb168-28"><a href="labmacro.html#cb168-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-29"><a href="labmacro.html#cb168-29" aria-hidden="true" tabindex="-1"></a>     +----------+</span>
+<span id="cb168-30"><a href="labmacro.html#cb168-30" aria-hidden="true" tabindex="-1"></a>     | x1   num |</span>
+<span id="cb168-31"><a href="labmacro.html#cb168-31" aria-hidden="true" tabindex="-1"></a>     |----------|</span>
+<span id="cb168-32"><a href="labmacro.html#cb168-32" aria-hidden="true" tabindex="-1"></a>  1. |  2     2 |</span>
+<span id="cb168-33"><a href="labmacro.html#cb168-33" aria-hidden="true" tabindex="-1"></a>  2. |  3     3 |</span>
+<span id="cb168-34"><a href="labmacro.html#cb168-34" aria-hidden="true" tabindex="-1"></a>  3. |  5     5 |</span>
+<span id="cb168-35"><a href="labmacro.html#cb168-35" aria-hidden="true" tabindex="-1"></a>  4. |  2     2 |</span>
+<span id="cb168-36"><a href="labmacro.html#cb168-36" aria-hidden="true" tabindex="-1"></a>  5. |  2     2 |</span>
+<span id="cb168-37"><a href="labmacro.html#cb168-37" aria-hidden="true" tabindex="-1"></a>     |----------|</span>
+<span id="cb168-38"><a href="labmacro.html#cb168-38" aria-hidden="true" tabindex="-1"></a>  6. |  2     2 |</span>
+<span id="cb168-39"><a href="labmacro.html#cb168-39" aria-hidden="true" tabindex="-1"></a>  7. |  -     . |</span>
+<span id="cb168-40"><a href="labmacro.html#cb168-40" aria-hidden="true" tabindex="-1"></a>  8. |  2     2 |</span>
+<span id="cb168-41"><a href="labmacro.html#cb168-41" aria-hidden="true" tabindex="-1"></a>     +----------+</span>
+<span id="cb168-42"><a href="labmacro.html#cb168-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-43"><a href="labmacro.html#cb168-43" aria-hidden="true" tabindex="-1"></a>x1: contains nonnumeric characters; no <span class="kw">generate</span></span></code></pre></div>
+</div>
+<div id="arbeiten-mit-regular-expressions" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Arbeiten mit “Regular Expressions”<a href="labmacro.html#arbeiten-mit-regular-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>“regular expressions” oder “regex” sind eine flexible Methode, strings (also Textinhalte) zu durchsuchen.
+Dabei suchen wir nach Mustern anstelle eines exakten matchings.</p>
+<p>In Stata können wir regex für Variablen, aber auch für macros und Labels verwenden.
+regex sind aber nicht immer die (einfachste) Lösung und oft werden die Befehle sehr unübersichtlich.
+Daher hier nur ein kurzer Überblick.</p>
+<p>Die drei Hauptfunktionen in Stata finden wir unter <code>help regex</code>:</p>
+<blockquote>
+<p><code>regexm(s,re)</code> allows you to search for the string described in your regular expressions. It evaluates to 1 if the string matches the expression.</p>
+</blockquote>
+<blockquote>
+<p><code>regexs(n)</code> returns the nth substring within an expression matched by regexm (hence, <code>regexm</code> must always be run before regexs).</p>
+</blockquote>
+<blockquote>
+<p><code>regexr(s1,re,s2)</code> searches for re within the string (s1) and replaces the matching portion with a new string (s2).</p>
+</blockquote>
+<p>Allerdings sind diese Funktionen auf ASCII-Zeichen ausgelegt - einfach gesagt: Umlaute, ß usw. bereiten Probleme. Daher gibt es eine Erweiterung mit <code>ustrregexm</code>, <code>ustrregexs</code>, <code>ustrregexrf</code> und <code>ustrregexra</code>.
+Auf die konzentrieren wir uns hier.</p>
+<div id="regex-grund-regeln" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> regex (Grund-)Regeln<a href="labmacro.html#regex-grund-regeln" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>regex basieren auf einer Reihe an Zeichen, mit Hilfe derer wir strings durchsuchen können:</p>
+<ul>
+<li><code>\d</code> matcht eine Zahl</li>
+<li><code>\w</code> matcht “alphanumeric characters” (Buchstaben &amp; Zahlen)</li>
+<li><code>\s</code> matcht ein Leerzeichen</li>
+<li><code>^</code> “matche Ausdruck am Anfang des strings”</li>
+<li><code>$</code> “matche Ausdruck am Ende des strings”</li>
+<li><code>-</code> lässt eine <em>range</em> zu: <code>a-z</code>, <code>0-9</code>, <code>5-8</code>, <code>F-M</code> etc.</li>
+<li><code>.</code> bedeutet “matche irgendein Zeichen”</li>
+<li><code>\</code> ist ein “escape character” für Zeichen, die ansonsten als regex-Operator verstanden würden</li>
+<li><code>|</code> oder-Operator</li>
+<li><code>[]</code> use in matching, such as <code>[a-zA-Z0-9]</code> for all alphanumeric characters</li>
+<li><code>()</code> darin angegebene Werte können wir mit <code>ustrregexs</code> extrahieren</li>
+<li><code>*</code> “matche 0 oder öfter” für den vorhergehenden Ausdruck</li>
+<li><code>+</code> “matche 1 oder öfter” für den vorhergehenden Ausdruck</li>
+</ul>
+</div>
+<div id="beispiele" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Beispiele<a href="labmacro.html#beispiele" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Inspiriert von der <a href="https://stats.idre.ucla.edu/stata/faq/how-can-i-extract-a-portion-of-a-string-variable-using-regular-expressions/">UCLA</a> einige Beispielstrings:</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb169-1"><a href="labmacro.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb169-2"><a href="labmacro.html#cb169-2" aria-hidden="true" tabindex="-1"></a>input str60 add</span>
+<span id="cb169-3"><a href="labmacro.html#cb169-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;4905 Lakeway Drive, College Station, Texas 77845 USA&quot;</span></span>
+<span id="cb169-4"><a href="labmacro.html#cb169-4" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;673 Jasmine Street, Los Angeles, CA 90024&quot;</span></span>
+<span id="cb169-5"><a href="labmacro.html#cb169-5" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;2376 First street, San Diego, CA 90126&quot;</span></span>
+<span id="cb169-6"><a href="labmacro.html#cb169-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;6 West Central St, Tempe AZ 80068&quot;</span></span>
+<span id="cb169-7"><a href="labmacro.html#cb169-7" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;1234 Main St. Cambridge, MA 01238-1234&quot;</span></span>
+<span id="cb169-8"><a href="labmacro.html#cb169-8" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Robert-Schuman-Platz 3, 53175 Bonn GERMANY&quot;</span></span>
+<span id="cb169-9"><a href="labmacro.html#cb169-9" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Regensburger Straße 100, 90478 Nürnberg Germany&quot;</span></span>
+<span id="cb169-10"><a href="labmacro.html#cb169-10" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Ammerländer Heerstraße 114-118, 26129 Oldenburg GERMANY&quot;</span></span>
+<span id="cb169-11"><a href="labmacro.html#cb169-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb170-1"><a href="labmacro.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">d</span> = ustrregexm(add, <span class="st">&quot;GERMANY|Germany&quot;</span>)</span></code></pre></div>
+<p>Das <code>m</code> in <code>ustrregexm</code> steht für match.
+Mit <code>ustrregexm</code> können wir nach Zeichenketten suchen.
+Wenn sie gefunden wird, wird eine 1 zurückzugeben, andernfalls 0.
+Hier suchen wir nach “entweder GERMANY <em>oder</em> Germany”.</p>
+<p>Wir können aber auch den gefundenen Inhalt extrahieren.
+Bei Übereinstimmungen werden die matches gespeichert, darauf können wir mit <code>ustrregexs</code> zurückgreifen:</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb171-1"><a href="labmacro.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> d2 = ustrregexs(0) <span class="kw">if</span> ustrregexm(add, <span class="st">&quot;GERMANY|Germany&quot;</span>)</span></code></pre></div>
+<p><code>s</code> steht für subexpressions (oder “tokens”).
+Token 0 enthält alle übereinstimmenden Muster.
+Wird eine Zeichenkette mehrfach gefunden, dann enthält Token 0 alle Übereinstimmungen, Token 1 die erste, Token 2 die zweite und so weiter.</p>
+<p><code>ustrregexrf</code> und <code>ustrregexra</code> helfen uns schließlich, Inhalte zu ersetzen.
+<code>rf</code> bzw. <code>ra</code> stehen dabei für “replace first” bzw. “replace all”.
+<code>ustrregexrf</code> ersetzt also nur den ersten match, <code>ustrregexra</code> hingegen alle.</p>
+<p>Basierend auf den Regeln von oben ergeben diese beiden Befehle unterschiedliche Ergebnisse:</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb172-1"><a href="labmacro.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> s1 = ustrregexra(add, <span class="st">&quot;street&quot;</span>,   <span class="st">&quot;!&quot;</span>)</span>
+<span id="cb172-2"><a href="labmacro.html#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> s2 = ustrregexra(add, <span class="st">&quot;[street]&quot;</span>, <span class="st">&quot;!&quot;</span>)</span></code></pre></div>
+<p>In <code>s1</code> wurden alle matches “street” gelöscht und durch ! ersetzt.
+In <code>s2</code> wurden alle matches von “s”,“t”,“r”,“e” und “t” gelöscht und durch ! ersetzt.</p>
+<p>Weitere Beispiele für ersetzen mit regex-Regelausdrücken - siehe DoFile:</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb173-1"><a href="labmacro.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> z1 =  ustrregexra(add, <span class="st">&quot;\w&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="co">// alle alphanumeric ersetzen</span></span>
+<span id="cb173-2"><a href="labmacro.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> z2 = ustrregexra(add, <span class="st">&quot;\W&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="co">// alle nicht-alphanumeric ersetzen</span></span>
+<span id="cb173-3"><a href="labmacro.html#cb173-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> z3 =  ustrregexra(add, <span class="st">&quot;\d&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="co">// alle Zahlen ersetzen </span></span>
+<span id="cb173-4"><a href="labmacro.html#cb173-4" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> z4 = ustrregexra(add, <span class="st">&quot;\D&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="co">// alle nicht-Zahlen ersetzen </span></span>
+<span id="cb173-5"><a href="labmacro.html#cb173-5" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> z5 = ustrregexra(add, <span class="st">&quot;.+,&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="co">// alles vor dem Komma ersetzen</span></span>
+<span id="cb173-6"><a href="labmacro.html#cb173-6" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> z6 = ustrregexra(add, <span class="st">&quot;,.+&quot;</span>, <span class="st">&quot;&quot;</span>) <span class="co">// alles nach dem Komma ersetzen</span></span></code></pre></div>
+<p>Nach Zahlen suchen:</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb174-1"><a href="labmacro.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> r1 = ustrregexs(0) <span class="kw">if</span> ustrregexm(add, <span class="st">&quot;\d&quot;</span>)  <span class="co">// Zahl</span></span>
+<span id="cb174-2"><a href="labmacro.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> r2 = ustrregexs(0) <span class="kw">if</span> ustrregexm(add, <span class="st">&quot;\d+&quot;</span>) <span class="co">// Zahlenfolge</span></span>
+<span id="cb174-3"><a href="labmacro.html#cb174-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> r3 = ustrregexs(0) <span class="kw">if</span> ustrregexm(add, <span class="st">&quot;(\d{5})&quot;</span>) <span class="co">// 5-stellige Zahl</span></span>
+<span id="cb174-4"><a href="labmacro.html#cb174-4" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> r4 = ustrregexs(0) <span class="kw">if</span> ustrregexm(add, <span class="st">&quot;^(\d+)&quot;</span>) <span class="co">// Zahlenfolge am Anfang</span></span>
+<span id="cb174-5"><a href="labmacro.html#cb174-5" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> r5 = ustrregexs(0) <span class="kw">if</span> ustrregexm(add, <span class="st">&quot;(\d+).*(\d+)&quot;</span>) <span class="co">// Zahlenfolgen und alles was dazwischen kommt </span></span>
+<span id="cb174-6"><a href="labmacro.html#cb174-6" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> r6 = ustrregexs(0) <span class="kw">if</span> ustrregexm(r5, <span class="st">&quot;(\d+)$&quot;</span>) <span class="co">// Zahlenfolge am Ende -&gt; aus r5!</span></span></code></pre></div>
+</div>
+<div id="weiterführende-links" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Weiterführende Links<a href="labmacro.html#weiterführende-links" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><a href="https://github.com/asjadnaqvi/The-Stata-Guide/blob/master/Stata_regex_cheatsheet_v1.pdf">Hier</a> findet sich ein sehr gutes “Cheatsheet” zu den gebräuchlichsten regex.
+Das zugehörige <a href="https://medium.com/the-stata-guide/regular-expressions-regex-in-stata-6e5c200ef27c">Tutorial</a> ist ebenfalls sehr lesenswert.
+Die Übersicht der <a href="https://stats.idre.ucla.edu/stata/faq/how-can-i-extract-a-portion-of-a-string-variable-using-regular-expressions/">UCLA</a> bietet auch nochmal einige Hinweise - allerdings auf Basis der ASCII-basierten Befehle.
+<a href="http://www.stata.com/support/faqs/data/regex.html">Stata Hilfe</a>
+<a href="http://w.bruunisejs.dk/StataHacks/Datamanagement/regex/regular_expressions/">Hier</a> findet sich ein weiteres hilfreiches Tutorial</p>
+<hr />
+<p><strong><a href="labmacro.html#regexue">Übung</a></strong></p>
+<hr />
+</div>
+</div>
+<div id="labfuns" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Label bearbeiten<a href="labmacro.html#labfuns" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Um Informationen zu Variablen &amp; Labels abzurufen, stehen eine ganze Reihe an extended macro functions zur Verfügung:</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb175-1"><a href="labmacro.html#cb175-1" aria-hidden="true" tabindex="-1"></a>loc v m1202</span>
+<span id="cb175-2"><a href="labmacro.html#cb175-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb175-3"><a href="labmacro.html#cb175-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> vartype:     <span class="dv">type</span> <span class="ot">`v&#39;</span>                   <span class="co">// Variablen &quot;storage type&quot; (byte etc)</span></span>
+<span id="cb175-4"><a href="labmacro.html#cb175-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> varlab:      <span class="kw">variable</span> <span class="kw">label</span> <span class="ot">`v&#39;</span> <span class="co">// variable label</span></span>
+<span id="cb175-5"><a href="labmacro.html#cb175-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> vallabname:  <span class="ot">value</span> <span class="kw">label</span> <span class="ot">`v&#39;</span>    <span class="co">// Name des value label</span></span>
+<span id="cb175-6"><a href="labmacro.html#cb175-6" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> vallab1 :    <span class="kw">label</span> (<span class="ot">`v&#39;</span>) 1            <span class="co">// Value label für Wert = 1</span></span></code></pre></div>
+<p>Die so erstellten <code>local</code>s können wir dann in der bekannten Methode wieder darstellen:</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb176-1"><a href="labmacro.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">&quot;`vartype&#39;&quot;</span>     <span class="co">// display local &quot;vartype&quot;</span></span>
+<span id="cb176-2"><a href="labmacro.html#cb176-2" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">&quot;`varlab&#39;&quot;</span>      <span class="co">// display local &quot;varlabel&quot;</span></span>
+<span id="cb176-3"><a href="labmacro.html#cb176-3" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">&quot;`vallabname&#39;&quot;</span>  <span class="co">// display local &quot;valuelabname&quot;</span></span>
+<span id="cb176-4"><a href="labmacro.html#cb176-4" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">&quot;`vallab1&#39;&quot;</span>     <span class="co">// display local &quot;valuelab1&quot;</span></span></code></pre></div>
+<p>Wir können die Labels und Eigenschaften von `v’ auch in einem Schritt anzeigen lassen, die Syntax sieht aber etwas eigenwillig aus:</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb177-1"><a href="labmacro.html#cb177-1" aria-hidden="true" tabindex="-1"></a>loc v m1202</span>
+<span id="cb177-2"><a href="labmacro.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">&quot;`: type `v&#39;&#39;&quot;</span>                  <span class="co">// &quot;storage type&quot; (byte etc) der Variable</span></span>
+<span id="cb177-3"><a href="labmacro.html#cb177-3" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">&quot;`: variable label `v&#39;&#39;&quot;</span>  <span class="co">// variable label</span></span>
+<span id="cb177-4"><a href="labmacro.html#cb177-4" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">&quot;`: value label `v&#39;&#39;&quot;</span>         <span class="co">// Name des value label</span></span>
+<span id="cb177-5"><a href="labmacro.html#cb177-5" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">&quot;`: label (`v&#39;) 1&#39;&quot;</span>         <span class="co">// Value label für Wert = 1</span></span></code></pre></div>
+<p>Damit können wir bspw. ein Variable Label kürzen:</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb178-1"><a href="labmacro.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> longlabel: <span class="kw">var</span> <span class="kw">label</span> m1202        <span class="co">// variable label für variable m1202 suchen</span></span>
+<span id="cb178-2"><a href="labmacro.html#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> shortlabel = <span class="fu">substr</span>(<span class="st">&quot;`longlabel&#39;&quot;</span>,1,10) <span class="co">// verändern mit string Funktion </span></span>
+<span id="cb178-3"><a href="labmacro.html#cb178-3" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">var</span> m1202 <span class="st">&quot;`shortlabel&#39;&quot;</span>         <span class="co">// anwenden</span></span></code></pre></div>
+<p>Um an die Value Labels zu kommen, braucht es etwas mehr:</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb179-1"><a href="labmacro.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> lblname: <span class="ot">value</span> <span class="kw">label</span> m1202    <span class="co">// value labels für variable m1202 suchen</span></span>
+<span id="cb179-2"><a href="labmacro.html#cb179-2" aria-hidden="true" tabindex="-1"></a>cap <span class="kw">label</span> <span class="kw">drop</span> <span class="ot">`lblname&#39;</span>_n          <span class="co">//neuen namen droppen zur Sicherheit</span></span>
+<span id="cb179-3"><a href="labmacro.html#cb179-3" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> copy <span class="ot">`lblname&#39;</span> <span class="ot">`lblname&#39;</span>_n    <span class="co">// value labelbook kopieren</span></span>
+<span id="cb179-4"><a href="labmacro.html#cb179-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-5"><a href="labmacro.html#cb179-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> lab1: <span class="kw">label</span> (m1202) 2 <span class="co">// value label für Wert = 2 aufrufen</span></span>
+<span id="cb179-6"><a href="labmacro.html#cb179-6" aria-hidden="true" tabindex="-1"></a>loc lab2 = <span class="fu">upper</span>(<span class="st">&quot;`lab1&#39;&quot;</span>)      <span class="co">// dieses value labels verändern</span></span>
+<span id="cb179-7"><a href="labmacro.html#cb179-7" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">define</span> <span class="ot">`lblname&#39;</span>_n <span class="ot">`lvl&#39;</span> <span class="st">&quot;`lab2&#39;&quot;</span>, modify <span class="co">// in neues value labelbook einfügen</span></span>
+<span id="cb179-8"><a href="labmacro.html#cb179-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-9"><a href="labmacro.html#cb179-9" aria-hidden="true" tabindex="-1"></a><span class="kw">labelbook</span> <span class="ot">`lblname&#39;</span> <span class="ot">`lblname&#39;</span>_n <span class="co">// vergleich alt vs neu</span></span></code></pre></div>
+<p>Mit <code>label copy oldname newname</code>, <code>local lblname: value label var</code> und <code>local lab1: label (var) level</code> können wir auch value-Labels bearbeiten:</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb180-1"><a href="labmacro.html#cb180-1" aria-hidden="true" tabindex="-1"></a>loc v m1202 </span>
+<span id="cb180-2"><a href="labmacro.html#cb180-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-3"><a href="labmacro.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> lblname: <span class="ot">value</span> <span class="kw">label</span> <span class="ot">`v&#39;</span>       <span class="co">// value label aufrufen</span></span>
+<span id="cb180-4"><a href="labmacro.html#cb180-4" aria-hidden="true" tabindex="-1"></a>cap <span class="kw">label</span> <span class="kw">drop</span> <span class="ot">`lblname&#39;</span>_n           <span class="co">// neuen Namen zur Sicherheit droppen</span></span>
+<span id="cb180-5"><a href="labmacro.html#cb180-5" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> copy <span class="ot">`lblname&#39;</span> <span class="ot">`lblname&#39;</span>_n     <span class="co">// kopieren</span></span>
+<span id="cb180-6"><a href="labmacro.html#cb180-6" aria-hidden="true" tabindex="-1"></a><span class="kw">levelsof</span> <span class="ot">`v&#39;</span>, loc(x)                 <span class="co">// Werte für die Variable aufrufen</span></span>
+<span id="cb180-7"><a href="labmacro.html#cb180-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-8"><a href="labmacro.html#cb180-8" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> lvl <span class="kw">of</span> <span class="kw">local</span> x {</span>
+<span id="cb180-9"><a href="labmacro.html#cb180-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> lab1: <span class="kw">label</span> (<span class="ot">`v&#39;</span>) <span class="ot">`lvl&#39;</span>     <span class="co">// Value label Variable v bei Level lvl</span></span>
+<span id="cb180-10"><a href="labmacro.html#cb180-10" aria-hidden="true" tabindex="-1"></a>    loc lab2 = <span class="fu">substr</span>(<span class="st">&quot;`lab1&#39;&quot;</span>,1,8)         <span class="co">// kürzen </span></span>
+<span id="cb180-11"><a href="labmacro.html#cb180-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb180-12"><a href="labmacro.html#cb180-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">label</span> <span class="kw">define</span> <span class="ot">`lblname&#39;</span>_n <span class="ot">`lvl&#39;</span> <span class="st">&quot;`lab2&#39;&quot;</span>, modify <span class="co">// im neuen value label ändern</span></span>
+<span id="cb180-13"><a href="labmacro.html#cb180-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb180-14"><a href="labmacro.html#cb180-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb180-15"><a href="labmacro.html#cb180-15" aria-hidden="true" tabindex="-1"></a>lab val <span class="ot">`v&#39;</span> <span class="ot">`lblname&#39;</span>_n             <span class="co">// anwenden</span></span></code></pre></div>
+<hr />
+<p><strong><a href="labmacro.html#varlab">Übung 2</a></strong></p>
+<hr />
+</div>
+<div id="abgleiche" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Abgleiche<a href="labmacro.html#abgleiche" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Existiert eine Variable?</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb181-1"><a href="labmacro.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="kw">capture</span> <span class="kw">confirm</span>  <span class="kw">variable</span> lm02</span>
+<span id="cb181-2"><a href="labmacro.html#cb181-2" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> !<span class="dt">_rc</span> dis <span class="st">&quot;ja&quot;</span></span>
+<span id="cb181-3"><a href="labmacro.html#cb181-3" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> <span class="dt">_rc</span>  dis <span class="st">&quot;nein&quot;</span></span></code></pre></div>
+<p>Ist variable numerisch?</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb182-1"><a href="labmacro.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="kw">capture</span> <span class="kw">confirm</span> <span class="kw">numeric</span> <span class="kw">variable</span> az</span>
+<span id="cb182-2"><a href="labmacro.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> !<span class="dt">_rc</span> dis <span class="st">&quot;ja&quot;</span></span>
+<span id="cb182-3"><a href="labmacro.html#cb182-3" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> <span class="dt">_rc</span>  dis <span class="st">&quot;nein&quot;</span></span></code></pre></div>
+<pre><code>ja</code></pre>
+<p><code>help data_types</code></p>
+</div>
+<div id="valsearch" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> wo kommt überall -4 vor?<a href="labmacro.html#valsearch" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb184"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb184-1"><a href="labmacro.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">ds</span></span>
+<span id="cb184-2"><a href="labmacro.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> varlist1 <span class="ot">`r(varlist)&#39;</span></span>
+<span id="cb184-3"><a href="labmacro.html#cb184-3" aria-hidden="true" tabindex="-1"></a>*<span class="kw">display</span> <span class="st">&quot;`varlist1&#39;&quot;</span></span>
+<span id="cb184-4"><a href="labmacro.html#cb184-4" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> v <span class="kw">of</span> varlist1 {</span>
+<span id="cb184-5"><a href="labmacro.html#cb184-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">qui</span> <span class="fu">count</span> <span class="kw">if</span> <span class="ot">`v&#39;</span> == -4</span>
+<span id="cb184-6"><a href="labmacro.html#cb184-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> <span class="fu">r</span>(<span class="kw">N</span>) &gt; 0 <span class="kw">display</span> <span class="st">&quot;`v&#39;&quot;</span></span>
+<span id="cb184-7"><a href="labmacro.html#cb184-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb184-8"><a href="labmacro.html#cb184-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-9"><a href="labmacro.html#cb184-9" aria-hidden="true" tabindex="-1"></a>* oder direkt:</span>
+<span id="cb184-10"><a href="labmacro.html#cb184-10" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> v <span class="kw">of</span> <span class="kw">varlist</span> * {</span>
+<span id="cb184-11"><a href="labmacro.html#cb184-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">qui</span> <span class="fu">count</span> <span class="kw">if</span> <span class="ot">`v&#39;</span> == -4</span>
+<span id="cb184-12"><a href="labmacro.html#cb184-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> <span class="fu">r</span>(<span class="kw">N</span>) &gt; 0 <span class="kw">display</span> <span class="st">&quot;`v&#39;&quot;</span></span>
+<span id="cb184-13"><a href="labmacro.html#cb184-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<hr />
+<p><strong><a href="labmacro.html#valuesearch">Übung</a></strong></p>
+<hr />
+</div>
+<div id="übungen-3" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Übungen<a href="labmacro.html#übungen-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="strue" class="section level3 hasAnchor" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> Übung<a href="labmacro.html#strue" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Verwenden Sie mit <code>input</code> die Adressdaten von <a href="labmacro.html#labmacro">oben</a></li>
+<li>Wie kommen Sie jeweils an das vorletzte Wort aus der Adressliste?</li>
+<li>Extrahieren Sie die zehn letzten Zeichen aus <code>add</code>, aber lassen die drei letzten Zeichen weg. (“Zeichen 10 bis 4 von hinten her gezählt”).</li>
+</ul>
+</div>
+<div id="regexue" class="section level3 hasAnchor" number="4.6.2">
+<h3><span class="header-section-number">4.6.2</span> Übung<a href="labmacro.html#regexue" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Laden Sie den <code>regex.dta</code>:<br />
+<code>use "https://github.com/filius23/StataProgBIBB/raw/main/docs/regex1.dta", clear</code>
+und teilen Sie die Informationen aus <code>address</code> in 4 Variablen auf: Hausnummer (erste Zahl), Straße, PLZ, Region
+<ul>
+<li>Wandeln Sie alle Einträge in Großbuchstaben um</li>
+<li>Verwenden Sie <code>split</code> mit geeignetem <code>parse()</code>-Argument, um zwischen Hausnummer &amp; Straße und PLZ &amp; Region zu trennen.</li>
+<li>Wie können Sie jetzt die Zahlen vom Text trennen? (Tipp: Suchen Sie erst nach den Zahlen. Tipp2: Was wollen wir dann in den Textvariablen nicht mehr?)</li>
+<li>Löschen Sie ggf. Leerzeichen zu Beginn und am Ende der Variablen</li>
+</ul></li>
+</ul>
+</div>
+<div id="varlab" class="section level3 hasAnchor" number="4.6.3">
+<h3><span class="header-section-number">4.6.3</span> Übung<a href="labmacro.html#varlab" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Laden Sie der Erwerbstätigenbefragung</p></li>
+<li><p>Kürzen die die <code>variable labels</code> für alle Variablen mit “wissensintensiver Beruf” im Label (<code>d *wib*</code>)</p>
+<ul>
+<li>Ersetzen Sie “wissensintensiver Beruf” in den <code>variable labels</code> mit “wib”.</li>
+<li>Spielen Sie die Routine erst für eine Variable durch: welche Label-Befehle brauchen Sie?</li>
+<li>Denken Sie an <code>foreach ... of varlist</code> und die Möglichkeit, wildcards zu verwenden. Alternativ hilft evtl. auch <a href="labmacro.html#valsearch"><code>ds</code></a> mit Wildcards</li>
+</ul></li>
+</ul>
+<p>So können Sie überpürfen, ob das geklappt hat:</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb185-1"><a href="labmacro.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="kw">d</span> *wib*</span></code></pre></div>
+<ul>
+<li>Bearbeiten Sie das value label für <code>nuts2</code> - nutzen Sie dafür die <code>regex</code> und <code>string</code>-Funktionen von oben
+<ul>
+<li>Löschen Sie “Statistische” aus den den value labels und ersetzen Sie “Direktionsbezirk” durch “Bezirk”:</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb186"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb186-1"><a href="labmacro.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> nuts2</span></code></pre></div>
+<ul>
+<li>Kehren Sie die Codierung vom <code>m1202</code> um: <code>gen m1202_n = 10 - m1202</code> und passen Sie die value labels entsprechend an die neue Codierung an.
+<ul>
+<li>Tipp: auch die value labels müssen dann jeweils <code>10 - x</code> genommen werden.</li>
+</ul></li>
+</ul>
+<p><strong>Für alle, die schon fertig sind:</strong></p>
+<ul>
+<li>Wie könnten Sie automatisiert den Variable label für die Muttersprachenvariablen (<code>F1606_*</code>) kürzen, sodass statt “Muttersprache:” nur noch “MSpr” im label steht?</li>
+</ul>
+</div>
+<div id="valuesearch" class="section level3 hasAnchor" number="4.6.4">
+<h3><span class="header-section-number">4.6.4</span> Übung<a href="labmacro.html#valuesearch" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>In welchen Variablen aus der Erwerbstätigenbefragung kommt der der Wert <code>-9</code> vor?</li>
+<li>Füttern Sie diese Information in <code>mvdecode</code>, um die Missings zu überschreiben.
+<ul>
+<li>Sammeln Sie die Information, welche Variablen <code>-9</code> enthalten (Stichwort <a href="loopmacro.html#recur">rekursive macro-Definition</a>)</li>
+<li>Erstellen Sie einen <code>mvdecode</code>-Befehle, welcher die Information aufnimmt und in allen gefundenen Variablen <code>-9</code> durch <code>.</code> ersetzt.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="anhang-2" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Anhang<a href="labmacro.html#anhang-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Variablen mit bestimmten Eigenschaften identifizieren in ein <code>macro</code></p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb187-1"><a href="labmacro.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ds</span>, has(<span class="dv">type</span> <span class="kw">byte</span>)</span>
+<span id="cb187-2"><a href="labmacro.html#cb187-2" aria-hidden="true" tabindex="-1"></a>loc bytevars <span class="ot">`r(varlist)&#39;</span></span>
+<span id="cb187-3"><a href="labmacro.html#cb187-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb187-4"><a href="labmacro.html#cb187-4" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> v <span class="kw">of</span> <span class="kw">local</span> bytevars {</span>
+<span id="cb187-5"><a href="labmacro.html#cb187-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">rename</span> <span class="ot">`v&#39;</span> b_<span class="ot">`v&#39;</span></span>
+<span id="cb187-6"><a href="labmacro.html#cb187-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regres.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Progammieren mit Stata BIBB.pdf", "Progammieren mit Stata BIBB.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

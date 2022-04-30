@@ -31,7 +31,7 @@ library(ggthemes)
 # Herzlich Willkommen {-}
 
 
-Hier entsteht das Begleitskript für die Weiterbildung **Programmieren mit Postestimates, Macros und Schleifen in Stata** am BIBB von Andreas Filser am 17.12.2021
+Hier entsteht das Begleitskript für die Weiterbildung **Programmieren mit Postestimates, Macros und Schleifen in Stata** am BIBB von Andreas Filser am 20.05.2022
 
 ```{r index_illustration, echo = F,out.width = "80%",fig.height= 3, fig.align="center"}
 knitr::include_graphics("./pics/00_titel.png")
