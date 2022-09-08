@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Schleifen aus Macros | Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Schleifen aus Macros | Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Andreas Filser" />
 
 
-<meta name="date" content="2022-04-30" />
+<meta name="date" content="2022-09-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -138,162 +138,166 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Stata @ BIBB</a></li>
 
 <li class="divider"></li>
-<li><a href="index.html#herzlich-willkommen">Herzlich Willkommen<span></span></a></li>
-<li class="chapter" data-level="1" data-path="macro.html"><a href="macro.html"><i class="fa fa-check"></i><b>1</b> Macros<span></span></a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Herzlich Willkommen</a></li>
+<li class="chapter" data-level="1" data-path="macro.html"><a href="macro.html"><i class="fa fa-check"></i><b>1</b> Macros</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="macro.html"><a href="macro.html#macht-einen-unterschied"><i class="fa fa-check"></i><b>1.1</b> <code>=</code> macht einen Unterschied<span></span></a></li>
-<li class="chapter" data-level="1.2" data-path="macro.html"><a href="macro.html#local-und-global-sind-getrennte-welten"><i class="fa fa-check"></i><b>1.2</b> <code>local</code> und <code>global</code> sind getrennte Welten<span></span></a></li>
-<li class="chapter" data-level="1.3" data-path="macro.html"><a href="macro.html#macros-mit-text"><i class="fa fa-check"></i><b>1.3</b> Macros mit Text<span></span></a></li>
-<li class="chapter" data-level="1.4" data-path="macro.html"><a href="macro.html#dateipfade"><i class="fa fa-check"></i><b>1.4</b> Dateipfade<span></span></a></li>
-<li class="chapter" data-level="1.5" data-path="macro.html"><a href="macro.html#cmac"><i class="fa fa-check"></i><b>1.5</b> Bereits definierte Macros<span></span></a>
+<li class="chapter" data-level="1.1" data-path="macro.html"><a href="macro.html#macht-einen-unterschied"><i class="fa fa-check"></i><b>1.1</b> <code>=</code> macht einen Unterschied</a></li>
+<li class="chapter" data-level="1.2" data-path="macro.html"><a href="macro.html#local-und-global-sind-getrennte-welten"><i class="fa fa-check"></i><b>1.2</b> <code>local</code> und <code>global</code> sind getrennte Welten</a></li>
+<li class="chapter" data-level="1.3" data-path="macro.html"><a href="macro.html#macros-mit-text"><i class="fa fa-check"></i><b>1.3</b> Macros mit Text</a></li>
+<li class="chapter" data-level="1.4" data-path="macro.html"><a href="macro.html#dateipfade"><i class="fa fa-check"></i><b>1.4</b> Dateipfade</a></li>
+<li class="chapter" data-level="1.5" data-path="macro.html"><a href="macro.html#cmac"><i class="fa fa-check"></i><b>1.5</b> Bereits definierte Macros</a>
 <ul>
-<li class="chapter" data-level="1.5.1" data-path="macro.html"><a href="macro.html#if1"><i class="fa fa-check"></i><b>1.5.1</b> <code>if</code><span></span></a></li>
-<li class="chapter" data-level="1.5.2" data-path="macro.html"><a href="macro.html#macros-als-variablennamen-und-befehle"><i class="fa fa-check"></i><b>1.5.2</b> Macros als Variablennamen und Befehle<span></span></a></li>
-<li class="chapter" data-level="1.5.3" data-path="macro.html"><a href="macro.html#allglo"><i class="fa fa-check"></i><b>1.5.3</b> <code>globals</code> durchsuchen<span></span></a></li>
+<li class="chapter" data-level="1.5.1" data-path="macro.html"><a href="macro.html#if1"><i class="fa fa-check"></i><b>1.5.1</b> <code>if</code></a></li>
+<li class="chapter" data-level="1.5.2" data-path="macro.html"><a href="macro.html#macros-als-variablennamen-und-befehle"><i class="fa fa-check"></i><b>1.5.2</b> Macros als Variablennamen und Befehle</a></li>
+<li class="chapter" data-level="1.5.3" data-path="macro.html"><a href="macro.html#allglo"><i class="fa fa-check"></i><b>1.5.3</b> <code>globals</code> durchsuchen</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="macro.html"><a href="macro.html#wenn-nicht-if-dann-else"><i class="fa fa-check"></i><b>1.6</b> Wenn nicht <code>if</code>, dann <code>else</code><span></span></a></li>
-<li class="chapter" data-level="1.7" data-path="macro.html"><a href="macro.html#schleifen-foreach-forvalues"><i class="fa fa-check"></i><b>1.7</b> Schleifen: <code>foreach</code> &amp; <code>forvalues</code><span></span></a>
+<li class="chapter" data-level="1.6" data-path="macro.html"><a href="macro.html#wenn-nicht-if-dann-else"><i class="fa fa-check"></i><b>1.6</b> Wenn nicht <code>if</code>, dann <code>else</code></a></li>
+<li class="chapter" data-level="1.7" data-path="macro.html"><a href="macro.html#unterbrechen-wenn-ein-fehler-vorliegt"><i class="fa fa-check"></i><b>1.7</b> Unterbrechen wenn ein Fehler vorliegt</a></li>
+<li class="chapter" data-level="1.8" data-path="macro.html"><a href="macro.html#schleifen-foreach-forvalues"><i class="fa fa-check"></i><b>1.8</b> Schleifen: <code>foreach</code> &amp; <code>forvalues</code></a>
 <ul>
-<li class="chapter" data-level="1.7.1" data-path="macro.html"><a href="macro.html#ferest"><i class="fa fa-check"></i><b>1.7.1</b> <code>ferest()</code><span></span></a></li>
-<li class="chapter" data-level="1.7.2" data-path="macro.html"><a href="macro.html#weitere-schleifentypen"><i class="fa fa-check"></i><b>1.7.2</b> Weitere Schleifentypen<span></span></a></li>
-<li class="chapter" data-level="1.7.3" data-path="macro.html"><a href="macro.html#anwendung"><i class="fa fa-check"></i><b>1.7.3</b> Anwendung<span></span></a></li>
-<li class="chapter" data-level="1.7.4" data-path="macro.html"><a href="macro.html#schleifen-aufbauen"><i class="fa fa-check"></i><b>1.7.4</b> Schleifen aufbauen<span></span></a></li>
-<li class="chapter" data-level="1.7.5" data-path="macro.html"><a href="macro.html#nested-loop"><i class="fa fa-check"></i><b>1.7.5</b> nested loop<span></span></a></li>
-<li class="chapter" data-level="1.7.6" data-path="macro.html"><a href="macro.html#display-vs.-macro-list"><i class="fa fa-check"></i><b>1.7.6</b> <code>display</code> vs. <code>macro list</code><span></span></a></li>
+<li class="chapter" data-level="1.8.1" data-path="macro.html"><a href="macro.html#ferest"><i class="fa fa-check"></i><b>1.8.1</b> <code>ferest()</code></a></li>
+<li class="chapter" data-level="1.8.2" data-path="macro.html"><a href="macro.html#weitere-schleifentypen"><i class="fa fa-check"></i><b>1.8.2</b> Weitere Schleifentypen</a></li>
+<li class="chapter" data-level="1.8.3" data-path="macro.html"><a href="macro.html#anwendung"><i class="fa fa-check"></i><b>1.8.3</b> Anwendung</a></li>
+<li class="chapter" data-level="1.8.4" data-path="macro.html"><a href="macro.html#schleifen-aufbauen"><i class="fa fa-check"></i><b>1.8.4</b> Schleifen aufbauen</a></li>
+<li class="chapter" data-level="1.8.5" data-path="macro.html"><a href="macro.html#nested-loop"><i class="fa fa-check"></i><b>1.8.5</b> nested loop</a></li>
+<li class="chapter" data-level="1.8.6" data-path="macro.html"><a href="macro.html#display-vs.-macro-list"><i class="fa fa-check"></i><b>1.8.6</b> <code>display</code> vs. <code>macro list</code></a></li>
 </ul></li>
-<li class="chapter" data-level="1.8" data-path="macro.html"><a href="macro.html#übungen"><i class="fa fa-check"></i><b>1.8</b> Übungen<span></span></a>
+<li class="chapter" data-level="1.9" data-path="macro.html"><a href="macro.html#übungen"><i class="fa fa-check"></i><b>1.9</b> Übungen</a>
 <ul>
-<li class="chapter" data-level="1.8.1" data-path="macro.html"><a href="macro.html#ue0"><i class="fa fa-check"></i><b>1.8.1</b> Übung<span></span></a></li>
-<li class="chapter" data-level="1.8.2" data-path="macro.html"><a href="macro.html#ue1"><i class="fa fa-check"></i><b>1.8.2</b> Übung<span></span></a></li>
-<li class="chapter" data-level="1.8.3" data-path="macro.html"><a href="macro.html#ue2"><i class="fa fa-check"></i><b>1.8.3</b> FizzBuzz-Challenge<span></span></a></li>
-<li class="chapter" data-level="1.8.4" data-path="macro.html"><a href="macro.html#ue3"><i class="fa fa-check"></i><b>1.8.4</b> Übung<span></span></a></li>
+<li class="chapter" data-level="1.9.1" data-path="macro.html"><a href="macro.html#ue0"><i class="fa fa-check"></i><b>1.9.1</b> Übung</a></li>
+<li class="chapter" data-level="1.9.2" data-path="macro.html"><a href="macro.html#ue1"><i class="fa fa-check"></i><b>1.9.2</b> Übung</a></li>
+<li class="chapter" data-level="1.9.3" data-path="macro.html"><a href="macro.html#ue2"><i class="fa fa-check"></i><b>1.9.3</b> FizzBuzz-Challenge</a></li>
+<li class="chapter" data-level="1.9.4" data-path="macro.html"><a href="macro.html#ue3"><i class="fa fa-check"></i><b>1.9.4</b> Übung</a></li>
 </ul></li>
-<li class="chapter" data-level="1.9" data-path="macro.html"><a href="macro.html#anhang"><i class="fa fa-check"></i><b>1.9</b> Anhang<span></span></a>
+<li class="chapter" data-level="1.10" data-path="macro.html"><a href="macro.html#anhang"><i class="fa fa-check"></i><b>1.10</b> Anhang</a>
 <ul>
-<li class="chapter" data-level="1.9.1" data-path="macro.html"><a href="macro.html#dir"><i class="fa fa-check"></i><b>1.9.1</b> Windows Dateipfade mit macros<span></span></a></li>
-<li class="chapter" data-level="1.9.2" data-path="macro.html"><a href="macro.html#debugging-wo-ist-der-wurm-drin"><i class="fa fa-check"></i><b>1.9.2</b> Debugging: Wo ist der Wurm drin?<span></span></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="loopmacro.html"><a href="loopmacro.html"><i class="fa fa-check"></i><b>2</b> Schleifen aus Macros<span></span></a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="loopmacro.html"><a href="loopmacro.html#local-erstellen-und-für-schleifen-verwenden"><i class="fa fa-check"></i><b>2.1</b> local erstellen und für Schleifen verwenden<span></span></a></li>
-<li class="chapter" data-level="2.2" data-path="loopmacro.html"><a href="loopmacro.html#schleifen-über-strings"><i class="fa fa-check"></i><b>2.2</b> Schleifen über strings<span></span></a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="loopmacro.html"><a href="loopmacro.html#wörter-indizieren"><i class="fa fa-check"></i><b>2.2.1</b> Wörter indizieren<span></span></a></li>
-<li class="chapter" data-level="2.2.2" data-path="loopmacro.html"><a href="loopmacro.html#wörter-zählen"><i class="fa fa-check"></i><b>2.2.2</b> Wörter zählen<span></span></a></li>
-<li class="chapter" data-level="2.2.3" data-path="loopmacro.html"><a href="loopmacro.html#wörter-in-schleife"><i class="fa fa-check"></i><b>2.2.3</b> Wörter in Schleife<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="loopmacro.html"><a href="loopmacro.html#informationen-aus-schleifen-behalten"><i class="fa fa-check"></i><b>2.3</b> Informationen aus Schleifen behalten<span></span></a>
-<ul>
-<li class="chapter" data-level="2.3.1" data-path="loopmacro.html"><a href="loopmacro.html#gespeichterte-ergebnisse"><i class="fa fa-check"></i><b>2.3.1</b> Gespeichterte Ergebnisse<span></span></a></li>
-<li class="chapter" data-level="2.3.2" data-path="loopmacro.html"><a href="loopmacro.html#e-und-r-sind-getrennte-welten"><i class="fa fa-check"></i><b>2.3.2</b> <code>e()</code> und <code>r()</code> sind getrennte Welten<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="2.4" data-path="loopmacro.html"><a href="loopmacro.html#ergebnisse-weiter-verwenden"><i class="fa fa-check"></i><b>2.4</b> Ergebnisse weiter verwenden<span></span></a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="loopmacro.html"><a href="loopmacro.html#recur"><i class="fa fa-check"></i><b>2.4.1</b> Rekursivität<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="loopmacro.html"><a href="loopmacro.html#mat1"><i class="fa fa-check"></i><b>2.5</b> Kennzahlen in einer <code>matrix</code> ablegen<span></span></a>
-<ul>
-<li class="chapter" data-level="2.5.1" data-path="loopmacro.html"><a href="loopmacro.html#namen-für-spalten-und-zeilen-einer-matrix"><i class="fa fa-check"></i><b>2.5.1</b> Namen für Spalten und Zeilen einer <code>matrix</code><span></span></a></li>
-<li class="chapter" data-level="2.5.2" data-path="loopmacro.html"><a href="loopmacro.html#mcollect"><i class="fa fa-check"></i><b>2.5.2</b> <code>matrix</code> erstellen<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="2.6" data-path="loopmacro.html"><a href="loopmacro.html#labels-behalten"><i class="fa fa-check"></i><b>2.6</b> Labels behalten<span></span></a>
-<ul>
-<li class="chapter" data-level="2.6.1" data-path="loopmacro.html"><a href="loopmacro.html#labfun"><i class="fa fa-check"></i><b>2.6.1</b> <code>extended macro function</code> für Labels<span></span></a></li>
-<li class="chapter" data-level="2.6.2" data-path="loopmacro.html"><a href="loopmacro.html#mrown"><i class="fa fa-check"></i><b>2.6.2</b> Labels als <code>rowname</code><span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="2.7" data-path="loopmacro.html"><a href="loopmacro.html#von-der-matrix-zum-datensatz"><i class="fa fa-check"></i><b>2.7</b> Von der <code>matrix</code> zum Datensatz<span></span></a></li>
-<li class="chapter" data-level="2.8" data-path="loopmacro.html"><a href="loopmacro.html#frame"><i class="fa fa-check"></i><b>2.8</b> <code>frame</code>: mehrere Datensätze in Stata<span></span></a></li>
-<li class="chapter" data-level="2.9" data-path="loopmacro.html"><a href="loopmacro.html#übungen-1"><i class="fa fa-check"></i><b>2.9</b> Übungen<span></span></a>
-<ul>
-<li class="chapter" data-level="2.9.1" data-path="loopmacro.html"><a href="loopmacro.html#loop1"><i class="fa fa-check"></i><b>2.9.1</b> Übung<span></span></a></li>
-<li class="chapter" data-level="2.9.2" data-path="loopmacro.html"><a href="loopmacro.html#retue1"><i class="fa fa-check"></i><b>2.9.2</b> Übung<span></span></a></li>
-<li class="chapter" data-level="2.9.3" data-path="loopmacro.html"><a href="loopmacro.html#retue2"><i class="fa fa-check"></i><b>2.9.3</b> Übung<span></span></a></li>
-<li class="chapter" data-level="2.9.4" data-path="loopmacro.html"><a href="loopmacro.html#retue3"><i class="fa fa-check"></i><b>2.9.4</b> Übung<span></span></a></li>
+<li class="chapter" data-level="1.10.1" data-path="macro.html"><a href="macro.html#dir"><i class="fa fa-check"></i><b>1.10.1</b> Windows Dateipfade mit macros</a></li>
+<li class="chapter" data-level="1.10.2" data-path="macro.html"><a href="macro.html#debugging-wo-ist-der-wurm-drin"><i class="fa fa-check"></i><b>1.10.2</b> Debugging: Wo ist der Wurm drin?</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="regres.html"><a href="regres.html"><i class="fa fa-check"></i><b>3</b> Regressionsergebnisse weiterverarbeiten<span></span></a>
+<li class="chapter" data-level="2" data-path="loopmacro.html"><a href="loopmacro.html"><i class="fa fa-check"></i><b>2</b> Schleifen aus Macros</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="regres.html"><a href="regres.html#e-und-r-der-regressionsergebnisse"><i class="fa fa-check"></i><b>3.1</b> <code>e()</code> und <code>r()</code> der Regressionsergebnisse<span></span></a>
+<li class="chapter" data-level="2.1" data-path="loopmacro.html"><a href="loopmacro.html#local-erstellen-und-für-schleifen-verwenden"><i class="fa fa-check"></i><b>2.1</b> local erstellen und für Schleifen verwenden</a></li>
+<li class="chapter" data-level="2.2" data-path="loopmacro.html"><a href="loopmacro.html#schleifen-über-strings"><i class="fa fa-check"></i><b>2.2</b> Schleifen über strings</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="regres.html"><a href="regres.html#koeffizienten-mit-_b-_se-aufrufen"><i class="fa fa-check"></i><b>3.1.1</b> Koeffizienten mit <code>_b</code> / <code>_se</code> aufrufen<span></span></a></li>
-<li class="chapter" data-level="3.1.2" data-path="regres.html"><a href="regres.html#komplette-regressionstabelle"><i class="fa fa-check"></i><b>3.1.2</b> Komplette Regressionstabelle<span></span></a></li>
+<li class="chapter" data-level="2.2.1" data-path="loopmacro.html"><a href="loopmacro.html#wörter-indizieren"><i class="fa fa-check"></i><b>2.2.1</b> Wörter indizieren</a></li>
+<li class="chapter" data-level="2.2.2" data-path="loopmacro.html"><a href="loopmacro.html#wörter-zählen"><i class="fa fa-check"></i><b>2.2.2</b> Wörter zählen</a></li>
+<li class="chapter" data-level="2.2.3" data-path="loopmacro.html"><a href="loopmacro.html#wörter-in-schleife"><i class="fa fa-check"></i><b>2.2.3</b> Wörter in Schleife</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="regres.html"><a href="regres.html#regressionstabellen-als-matrix-speichern-und-anpassen"><i class="fa fa-check"></i><b>3.2</b> Regressionstabellen als <code>matrix</code> speichern und anpassen<span></span></a></li>
-<li class="chapter" data-level="3.3" data-path="regres.html"><a href="regres.html#kategoriale-uv"><i class="fa fa-check"></i><b>3.3</b> kategoriale UV<span></span></a></li>
-<li class="chapter" data-level="3.4" data-path="regres.html"><a href="regres.html#als-datensatz-ablegen"><i class="fa fa-check"></i><b>3.4</b> Als Datensatz ablegen:<span></span></a></li>
-<li class="chapter" data-level="3.5" data-path="regres.html"><a href="regres.html#weitere-infos-aus-e"><i class="fa fa-check"></i><b>3.5</b> weitere Infos aus <code>e()</code><span></span></a>
+<li class="chapter" data-level="2.3" data-path="loopmacro.html"><a href="loopmacro.html#informationen-aus-schleifen-behalten"><i class="fa fa-check"></i><b>2.3</b> Informationen aus Schleifen behalten</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="regres.html"><a href="regres.html#esample"><i class="fa fa-check"></i><b>3.5.1</b> <code>e(sample)</code><span></span></a></li>
+<li class="chapter" data-level="2.3.1" data-path="loopmacro.html"><a href="loopmacro.html#gespeichterte-ergebnisse"><i class="fa fa-check"></i><b>2.3.1</b> Gespeichterte Ergebnisse</a></li>
+<li class="chapter" data-level="2.3.2" data-path="loopmacro.html"><a href="loopmacro.html#e-und-r-sind-getrennte-welten"><i class="fa fa-check"></i><b>2.3.2</b> <code>e()</code> und <code>r()</code> sind getrennte Welten</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="regres.html"><a href="regres.html#reg-schrittweise-aufbauen"><i class="fa fa-check"></i><b>3.6</b> <code>reg</code> schrittweise aufbauen<span></span></a></li>
-<li class="chapter" data-level="3.7" data-path="regres.html"><a href="regres.html#übungen-2"><i class="fa fa-check"></i><b>3.7</b> Übungen<span></span></a>
+<li class="chapter" data-level="2.4" data-path="loopmacro.html"><a href="loopmacro.html#ergebnisse-weiter-verwenden"><i class="fa fa-check"></i><b>2.4</b> Ergebnisse weiter verwenden</a>
 <ul>
-<li class="chapter" data-level="3.7.1" data-path="regres.html"><a href="regres.html#reg1"><i class="fa fa-check"></i><b>3.7.1</b> Übung<span></span></a></li>
-<li class="chapter" data-level="3.7.2" data-path="regres.html"><a href="regres.html#reg2"><i class="fa fa-check"></i><b>3.7.2</b> Übung<span></span></a></li>
+<li class="chapter" data-level="2.4.1" data-path="loopmacro.html"><a href="loopmacro.html#recur"><i class="fa fa-check"></i><b>2.4.1</b> Rekursivität</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="regres.html"><a href="regres.html#anhang-1"><i class="fa fa-check"></i><b>3.8</b> Anhang<span></span></a>
+<li class="chapter" data-level="2.5" data-path="loopmacro.html"><a href="loopmacro.html#mat1"><i class="fa fa-check"></i><b>2.5</b> Kennzahlen in einer <code>matrix</code> ablegen</a>
 <ul>
-<li class="chapter" data-level="3.8.1" data-path="regres.html"><a href="regres.html#statsby"><i class="fa fa-check"></i><b>3.8.1</b> <code>statsby</code><span></span></a></li>
-<li class="chapter" data-level="3.8.2" data-path="regres.html"><a href="regres.html#reg-ergebnisse-für-modelle-sammeln-schleife"><i class="fa fa-check"></i><b>3.8.2</b> <code>reg</code>-Ergebnisse für Modelle sammeln: Schleife<span></span></a></li>
+<li class="chapter" data-level="2.5.1" data-path="loopmacro.html"><a href="loopmacro.html#namen-für-spalten-und-zeilen-einer-matrix"><i class="fa fa-check"></i><b>2.5.1</b> Namen für Spalten und Zeilen einer <code>matrix</code></a></li>
+<li class="chapter" data-level="2.5.2" data-path="loopmacro.html"><a href="loopmacro.html#mcollect"><i class="fa fa-check"></i><b>2.5.2</b> <code>matrix</code> erstellen</a></li>
 </ul></li>
+<li class="chapter" data-level="2.6" data-path="loopmacro.html"><a href="loopmacro.html#labels-behalten"><i class="fa fa-check"></i><b>2.6</b> Labels behalten</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="loopmacro.html"><a href="loopmacro.html#labfun"><i class="fa fa-check"></i><b>2.6.1</b> <code>extended macro function</code> für Labels</a></li>
+<li class="chapter" data-level="2.6.2" data-path="loopmacro.html"><a href="loopmacro.html#mrown"><i class="fa fa-check"></i><b>2.6.2</b> Labels als <code>rowname</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="labmacro.html"><a href="labmacro.html"><i class="fa fa-check"></i><b>4</b> Label- und Variablenfunktionen<span></span></a>
+<li class="chapter" data-level="2.7" data-path="loopmacro.html"><a href="loopmacro.html#von-der-matrix-zum-datensatz"><i class="fa fa-check"></i><b>2.7</b> Von der <code>matrix</code> zum Datensatz</a></li>
+<li class="chapter" data-level="2.8" data-path="loopmacro.html"><a href="loopmacro.html#frame"><i class="fa fa-check"></i><b>2.8</b> <code>frame</code>: mehrere Datensätze in Stata</a></li>
+<li class="chapter" data-level="2.9" data-path="loopmacro.html"><a href="loopmacro.html#übungen-1"><i class="fa fa-check"></i><b>2.9</b> Übungen</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="labmacro.html"><a href="labmacro.html#stringfunktionen"><i class="fa fa-check"></i><b>4.1</b> Stringfunktionen<span></span></a></li>
-<li class="chapter" data-level="4.2" data-path="labmacro.html"><a href="labmacro.html#arbeiten-mit-regular-expressions"><i class="fa fa-check"></i><b>4.2</b> Arbeiten mit “Regular Expressions”<span></span></a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="labmacro.html"><a href="labmacro.html#regex-grund-regeln"><i class="fa fa-check"></i><b>4.2.1</b> regex (Grund-)Regeln<span></span></a></li>
-<li class="chapter" data-level="4.2.2" data-path="labmacro.html"><a href="labmacro.html#beispiele"><i class="fa fa-check"></i><b>4.2.2</b> Beispiele<span></span></a></li>
-<li class="chapter" data-level="4.2.3" data-path="labmacro.html"><a href="labmacro.html#weiterführende-links"><i class="fa fa-check"></i><b>4.2.3</b> Weiterführende Links<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="labmacro.html"><a href="labmacro.html#labfuns"><i class="fa fa-check"></i><b>4.3</b> Label bearbeiten<span></span></a></li>
-<li class="chapter" data-level="4.4" data-path="labmacro.html"><a href="labmacro.html#abgleiche"><i class="fa fa-check"></i><b>4.4</b> Abgleiche<span></span></a></li>
-<li class="chapter" data-level="4.5" data-path="labmacro.html"><a href="labmacro.html#valsearch"><i class="fa fa-check"></i><b>4.5</b> wo kommt überall -4 vor?<span></span></a></li>
-<li class="chapter" data-level="4.6" data-path="labmacro.html"><a href="labmacro.html#übungen-3"><i class="fa fa-check"></i><b>4.6</b> Übungen<span></span></a>
-<ul>
-<li class="chapter" data-level="4.6.1" data-path="labmacro.html"><a href="labmacro.html#strue"><i class="fa fa-check"></i><b>4.6.1</b> Übung<span></span></a></li>
-<li class="chapter" data-level="4.6.2" data-path="labmacro.html"><a href="labmacro.html#regexue"><i class="fa fa-check"></i><b>4.6.2</b> Übung<span></span></a></li>
-<li class="chapter" data-level="4.6.3" data-path="labmacro.html"><a href="labmacro.html#varlab"><i class="fa fa-check"></i><b>4.6.3</b> Übung<span></span></a></li>
-<li class="chapter" data-level="4.6.4" data-path="labmacro.html"><a href="labmacro.html#valuesearch"><i class="fa fa-check"></i><b>4.6.4</b> Übung<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="4.7" data-path="labmacro.html"><a href="labmacro.html#anhang-2"><i class="fa fa-check"></i><b>4.7</b> Anhang<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>5</b> Dateien- und DoFile-Verwaltung<span></span></a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="data.html"><a href="data.html#dir---alles-einlesen"><i class="fa fa-check"></i><b>5.1</b> <code>dir</code> - alles einlesen<span></span></a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="data.html"><a href="data.html#copy"><i class="fa fa-check"></i><b>5.1.1</b> <code>copy</code><span></span></a></li>
-<li class="chapter" data-level="5.1.2" data-path="data.html"><a href="data.html#erase"><i class="fa fa-check"></i><b>5.1.2</b> <code>erase</code><span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="data.html"><a href="data.html#verzeichnisse-dofiles-erstellen"><i class="fa fa-check"></i><b>5.2</b> Verzeichnisse &amp; DoFiles erstellen<span></span></a></li>
-<li class="chapter" data-level="5.3" data-path="data.html"><a href="data.html#master-dofile"><i class="fa fa-check"></i><b>5.3</b> Master DoFile<span></span></a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="data.html"><a href="data.html#dofile-mit-argumenten-starten"><i class="fa fa-check"></i><b>5.3.1</b> DoFile mit Argumenten starten<span></span></a></li>
-<li class="chapter" data-level="5.3.2" data-path="data.html"><a href="data.html#in-neuer-session-starten"><i class="fa fa-check"></i><b>5.3.2</b> in neuer Session starten<span></span></a></li>
-<li class="chapter" data-level="5.3.3" data-path="data.html"><a href="data.html#mehrere-sessions-starten"><i class="fa fa-check"></i><b>5.3.3</b> mehrere Sessions starten<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="data.html"><a href="data.html#übungen-4"><i class="fa fa-check"></i><b>5.4</b> Übungen<span></span></a>
-<ul>
-<li class="chapter" data-level="5.4.1" data-path="data.html"><a href="data.html#dir_readin"><i class="fa fa-check"></i><b>5.4.1</b> Übung<span></span></a></li>
-<li class="chapter" data-level="5.4.2" data-path="data.html"><a href="data.html#masterdofile"><i class="fa fa-check"></i><b>5.4.2</b> Übung<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="data.html"><a href="data.html#anhang-3"><i class="fa fa-check"></i><b>5.5</b> Anhang<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="misc.html"><a href="misc.html"><i class="fa fa-check"></i><b>6</b> Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen<span></span></a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="misc.html"><a href="misc.html#capture"><i class="fa fa-check"></i><b>6.1</b> <code>capture</code><span></span></a></li>
-<li class="chapter" data-level="6.2" data-path="misc.html"><a href="misc.html#macro-extended-functions-for-parsing"><i class="fa fa-check"></i><b>6.2</b> Macro extended functions for parsing<span></span></a></li>
-<li class="chapter" data-level="6.3" data-path="misc.html"><a href="misc.html#weitere-matrix-befehle"><i class="fa fa-check"></i><b>6.3</b> weitere <code>matrix</code>-Befehle<span></span></a>
-<ul>
-<li class="chapter" data-level="6.3.1" data-path="misc.html"><a href="misc.html#teilmatrizen"><i class="fa fa-check"></i><b>6.3.1</b> Teilmatrizen<span></span></a></li>
-<li class="chapter" data-level="6.3.2" data-path="misc.html"><a href="misc.html#spaltenzeilen-auswählen"><i class="fa fa-check"></i><b>6.3.2</b> Spalten/Zeilen auswählen<span></span></a></li>
-<li class="chapter" data-level="6.3.3" data-path="misc.html"><a href="misc.html#crnumb"><i class="fa fa-check"></i><b>6.3.3</b> Namensbasierte Auswahl<span></span></a></li>
+<li class="chapter" data-level="2.9.1" data-path="loopmacro.html"><a href="loopmacro.html#loop1"><i class="fa fa-check"></i><b>2.9.1</b> Übung</a></li>
+<li class="chapter" data-level="2.9.2" data-path="loopmacro.html"><a href="loopmacro.html#retue1"><i class="fa fa-check"></i><b>2.9.2</b> Übung</a></li>
+<li class="chapter" data-level="2.9.3" data-path="loopmacro.html"><a href="loopmacro.html#retue2"><i class="fa fa-check"></i><b>2.9.3</b> Übung</a></li>
+<li class="chapter" data-level="2.9.4" data-path="loopmacro.html"><a href="loopmacro.html#retue3"><i class="fa fa-check"></i><b>2.9.4</b> Übung</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="lit.html"><a href="lit.html"><i class="fa fa-check"></i><b>7</b> Literatur &amp; Links<span></span></a></li>
+<li class="chapter" data-level="3" data-path="regres.html"><a href="regres.html"><i class="fa fa-check"></i><b>3</b> Regressionsergebnisse weiterverarbeiten</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="regres.html"><a href="regres.html#e-und-r-der-regressionsergebnisse"><i class="fa fa-check"></i><b>3.1</b> <code>e()</code> und <code>r()</code> der Regressionsergebnisse</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="regres.html"><a href="regres.html#koeffizienten-mit-_b-_se-aufrufen"><i class="fa fa-check"></i><b>3.1.1</b> Koeffizienten mit <code>_b</code> / <code>_se</code> aufrufen</a></li>
+<li class="chapter" data-level="3.1.2" data-path="regres.html"><a href="regres.html#komplette-regressionstabelle"><i class="fa fa-check"></i><b>3.1.2</b> Komplette Regressionstabelle</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="regres.html"><a href="regres.html#regressionstabellen-als-matrix-speichern-und-anpassen"><i class="fa fa-check"></i><b>3.2</b> Regressionstabellen als <code>matrix</code> speichern und anpassen</a></li>
+<li class="chapter" data-level="3.3" data-path="regres.html"><a href="regres.html#kategoriale-uv"><i class="fa fa-check"></i><b>3.3</b> kategoriale UV</a></li>
+<li class="chapter" data-level="3.4" data-path="regres.html"><a href="regres.html#als-datensatz-ablegen"><i class="fa fa-check"></i><b>3.4</b> Als Datensatz ablegen:</a></li>
+<li class="chapter" data-level="3.5" data-path="regres.html"><a href="regres.html#weitere-infos-aus-e"><i class="fa fa-check"></i><b>3.5</b> weitere Infos aus <code>e()</code></a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="regres.html"><a href="regres.html#esample"><i class="fa fa-check"></i><b>3.5.1</b> <code>e(sample)</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="regres.html"><a href="regres.html#reg-schrittweise-aufbauen"><i class="fa fa-check"></i><b>3.6</b> <code>reg</code> schrittweise aufbauen</a></li>
+<li class="chapter" data-level="3.7" data-path="regres.html"><a href="regres.html#übungen-2"><i class="fa fa-check"></i><b>3.7</b> Übungen</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="regres.html"><a href="regres.html#reg1"><i class="fa fa-check"></i><b>3.7.1</b> Übung</a></li>
+<li class="chapter" data-level="3.7.2" data-path="regres.html"><a href="regres.html#reg2"><i class="fa fa-check"></i><b>3.7.2</b> Übung</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="regres.html"><a href="regres.html#anhang-1"><i class="fa fa-check"></i><b>3.8</b> Anhang</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="regres.html"><a href="regres.html#statsby"><i class="fa fa-check"></i><b>3.8.1</b> <code>statsby</code></a></li>
+<li class="chapter" data-level="3.8.2" data-path="regres.html"><a href="regres.html#reg-ergebnisse-für-modelle-sammeln-schleife"><i class="fa fa-check"></i><b>3.8.2</b> <code>reg</code>-Ergebnisse für Modelle sammeln: Schleife</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="labmacro.html"><a href="labmacro.html"><i class="fa fa-check"></i><b>4</b> Label- und Variablenfunktionen</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="labmacro.html"><a href="labmacro.html#stringfunktionen"><i class="fa fa-check"></i><b>4.1</b> Stringfunktionen</a></li>
+<li class="chapter" data-level="4.2" data-path="labmacro.html"><a href="labmacro.html#arbeiten-mit-regular-expressions"><i class="fa fa-check"></i><b>4.2</b> Arbeiten mit “Regular Expressions”</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="labmacro.html"><a href="labmacro.html#regex-grund-regeln"><i class="fa fa-check"></i><b>4.2.1</b> regex (Grund-)Regeln</a></li>
+<li class="chapter" data-level="4.2.2" data-path="labmacro.html"><a href="labmacro.html#beispiele"><i class="fa fa-check"></i><b>4.2.2</b> Beispiele</a></li>
+<li class="chapter" data-level="4.2.3" data-path="labmacro.html"><a href="labmacro.html#weiterführende-links"><i class="fa fa-check"></i><b>4.2.3</b> Weiterführende Links</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="labmacro.html"><a href="labmacro.html#labfuns"><i class="fa fa-check"></i><b>4.3</b> Label bearbeiten</a></li>
+<li class="chapter" data-level="4.4" data-path="labmacro.html"><a href="labmacro.html#abgleiche"><i class="fa fa-check"></i><b>4.4</b> Abgleiche</a></li>
+<li class="chapter" data-level="4.5" data-path="labmacro.html"><a href="labmacro.html#valsearch"><i class="fa fa-check"></i><b>4.5</b> wo kommt überall -4 vor?</a></li>
+<li class="chapter" data-level="4.6" data-path="labmacro.html"><a href="labmacro.html#übungen-3"><i class="fa fa-check"></i><b>4.6</b> Übungen</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="labmacro.html"><a href="labmacro.html#strue"><i class="fa fa-check"></i><b>4.6.1</b> Übung</a></li>
+<li class="chapter" data-level="4.6.2" data-path="labmacro.html"><a href="labmacro.html#regexue"><i class="fa fa-check"></i><b>4.6.2</b> Übung</a></li>
+<li class="chapter" data-level="4.6.3" data-path="labmacro.html"><a href="labmacro.html#varlab"><i class="fa fa-check"></i><b>4.6.3</b> Übung</a></li>
+<li class="chapter" data-level="4.6.4" data-path="labmacro.html"><a href="labmacro.html#valuesearch"><i class="fa fa-check"></i><b>4.6.4</b> Übung</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="labmacro.html"><a href="labmacro.html#anhang-2"><i class="fa fa-check"></i><b>4.7</b> Anhang</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>5</b> Dateien- und DoFile-Verwaltung</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data.html"><a href="data.html#dir---alles-einlesen"><i class="fa fa-check"></i><b>5.1</b> <code>dir</code> - alles einlesen</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data.html"><a href="data.html#copy"><i class="fa fa-check"></i><b>5.1.1</b> <code>copy</code></a></li>
+<li class="chapter" data-level="5.1.2" data-path="data.html"><a href="data.html#erase"><i class="fa fa-check"></i><b>5.1.2</b> <code>erase</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data.html"><a href="data.html#verzeichnisse-dofiles-erstellen"><i class="fa fa-check"></i><b>5.2</b> Verzeichnisse &amp; DoFiles erstellen</a></li>
+<li class="chapter" data-level="5.3" data-path="data.html"><a href="data.html#master-dofile"><i class="fa fa-check"></i><b>5.3</b> Master DoFile</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="data.html"><a href="data.html#dofile-mit-argumenten-starten"><i class="fa fa-check"></i><b>5.3.1</b> DoFile mit Argumenten starten</a></li>
+<li class="chapter" data-level="5.3.2" data-path="data.html"><a href="data.html#in-neuer-session-starten"><i class="fa fa-check"></i><b>5.3.2</b> in neuer Session starten</a></li>
+<li class="chapter" data-level="5.3.3" data-path="data.html"><a href="data.html#mehrere-sessions-starten"><i class="fa fa-check"></i><b>5.3.3</b> mehrere Sessions starten</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="data.html"><a href="data.html#übungen-4"><i class="fa fa-check"></i><b>5.4</b> Übungen</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="data.html"><a href="data.html#dir_readin"><i class="fa fa-check"></i><b>5.4.1</b> Übung</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data.html"><a href="data.html#masterdofile"><i class="fa fa-check"></i><b>5.4.2</b> Übung</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="data.html"><a href="data.html#anhang-3"><i class="fa fa-check"></i><b>5.5</b> Anhang</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="misc.html"><a href="misc.html"><i class="fa fa-check"></i><b>6</b> Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="misc.html"><a href="misc.html#capture"><i class="fa fa-check"></i><b>6.1</b> <code>capture</code></a></li>
+<li class="chapter" data-level="6.2" data-path="misc.html"><a href="misc.html#macro-extended-functions-for-parsing"><i class="fa fa-check"></i><b>6.2</b> Macro extended functions for parsing</a></li>
+<li class="chapter" data-level="6.3" data-path="misc.html"><a href="misc.html#weitere-matrix-befehle"><i class="fa fa-check"></i><b>6.3</b> weitere <code>matrix</code>-Befehle</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="misc.html"><a href="misc.html#teilmatrizen"><i class="fa fa-check"></i><b>6.3.1</b> Teilmatrizen</a></li>
+<li class="chapter" data-level="6.3.2" data-path="misc.html"><a href="misc.html#spaltenzeilen-auswählen"><i class="fa fa-check"></i><b>6.3.2</b> Spalten/Zeilen auswählen</a></li>
+<li class="chapter" data-level="6.3.3" data-path="misc.html"><a href="misc.html#crnumb"><i class="fa fa-check"></i><b>6.3.3</b> Namensbasierte Auswahl</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lit.html"><a href="lit.html"><i class="fa fa-check"></i><b>7</b> Literatur &amp; Links</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<p>Alle Kursinhalte &copy; 2022 von <a href="https://afilser.netlify.app/">Andreas Filser</a><br>
+CC Lizenz mit Namensnennung <i class="fab fa-creative-commons"></i> <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a><br>
+Code <a href="https://github.com/filius23/StataProgBIBB_2022">hier einsehbar</a> <i class="fab fa-github"></i><br>
+<a href="https://github.com/rstudio/bookdown" target="blank">Erstellt mit bookdown</a> und <a href="https://www.ssc.wisc.edu/~hemken/Stataworkshops/Statamarkdown/stata-and-r-markdown.html" target="blank">Statamarkdown</a></p>
 
 </ul>
 
@@ -504,7 +508,7 @@ c()
 <span id="cb73-2"><a href="loopmacro.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span> <span class="ot">list</span></span></code></pre></div>
 <pre><code> Geschlecht |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-   mÃ¤nnlich |     10,074       50.34       50.34
+   männlich |     10,074       50.34       50.34
    weiblich |      9,938       49.66      100.00
 ------------+-----------------------------------
       Total |     20,012      100.00
@@ -1071,7 +1075,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Progammieren mit Stata BIBB.pdf", "Progammieren mit Stata BIBB.epub"],
+"download": ["Progammieren mit Stata BIBB.pdf"],
 "search": {
 "engine": "fuse",
 "options": null
@@ -1089,7 +1093,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

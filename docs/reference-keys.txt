@@ -8,6 +8,7 @@ if1
 macros-als-variablennamen-und-befehle
 allglo
 wenn-nicht-if-dann-else
+unterbrechen-wenn-ein-fehler-vorliegt
 schleifen-foreach-forvalues
 ferest
 weitere-schleifentypen

@@ -186,7 +186,7 @@ dis "$S_DATE"
 dis "$S_TIME"
 ```
 ```{stata mac5disp, eval = F}
-1 Dec 2021 
+2 May 2022
 12:44:22
 ```
 
@@ -244,9 +244,10 @@ Windows
 
 
 Weitere "system parameters and settings" unter `help creturn` bspw.:
-`c(changed)` returns a numeric scalar equal to 0 if the dataset in memory has not changed since it was last saved and 1 otherwise. 
-`c(filename)` returns a string containing the filename last specified with a use or save, such as `"C:\Data\auto.dta"`. 
-`c(filedate)` returns a string containing the date and time the file in `c(filename)` was last saved, such as "7 Jul 2016 13:51". 
+
++ `c(changed)` returns a numeric scalar equal to 0 if the dataset in memory has not changed since it was last saved and 1 otherwise. 
++ `c(filename)` returns a string containing the filename last specified with a use or save, such as `"C:\Data\auto.dta"`. 
++ `c(filedate)` returns a string containing the date and time the file in `c(filename)` was last saved, such as "7 Jul 2016 13:51". 
 
 
 ### `if` {#if1}
@@ -378,6 +379,8 @@ else {
 }
 display "`word'"
 ```
+
+## Unterbrechen wenn ein Fehler vorliegt
 
 Mit `exit` (`help exit_program`) können wir Stata zu einer Unterbrechung bringen:
 
@@ -731,7 +734,7 @@ forvalues y = 1982/1985 {
 ```
 
 
-Alternativ hilft häufig auch `set trace on` weiter. Hier werden immer die zuerst die macros und dann erst die eingesetzten Werte angezeigt:
+Alternativ hilft häufig auch `set trace on` weiter. Hier werden immer die zuerst die macros und dann die eingesetzten Werte angezeigt:
 ```{stata settracetabloop4a, eval = F}
 set trace on
 foreach v of numlist 19(5)35 {

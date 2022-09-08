@@ -21,8 +21,11 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Stata @ BIBB</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    download: ["pdf", "epub"]
+        <p>Alle Kursinhalte &copy; 2022 von <a href="https://afilser.netlify.app/">Andreas Filser</a><br>
+        CC Lizenz mit Namensnennung <i class="fab fa-creative-commons"></i> <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a><br>
+        Code <a href="https://github.com/filius23/StataProgBIBB_2022">hier einsehbar</a> <i class="fab fa-github"></i><br>
+        <a href="https://github.com/rstudio/bookdown" target="blank">Erstellt mit bookdown</a> und <a href="https://www.ssc.wisc.edu/~hemken/Stataworkshops/Statamarkdown/stata-and-r-markdown.html" target="blank">Statamarkdown</a></p>
+    download: ["pdf"]
 
 # bookdown::pdf_book:
 #   includes:

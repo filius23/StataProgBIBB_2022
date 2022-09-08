@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1 Macros | Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1 Macros | Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Andreas Filser" />
 
 
-<meta name="date" content="2022-04-30" />
+<meta name="date" content="2022-09-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -138,162 +138,166 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Stata @ BIBB</a></li>
 
 <li class="divider"></li>
-<li><a href="index.html#herzlich-willkommen">Herzlich Willkommen<span></span></a></li>
-<li class="chapter" data-level="1" data-path="macro.html"><a href="macro.html"><i class="fa fa-check"></i><b>1</b> Macros<span></span></a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Herzlich Willkommen</a></li>
+<li class="chapter" data-level="1" data-path="macro.html"><a href="macro.html"><i class="fa fa-check"></i><b>1</b> Macros</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="macro.html"><a href="macro.html#macht-einen-unterschied"><i class="fa fa-check"></i><b>1.1</b> <code>=</code> macht einen Unterschied<span></span></a></li>
-<li class="chapter" data-level="1.2" data-path="macro.html"><a href="macro.html#local-und-global-sind-getrennte-welten"><i class="fa fa-check"></i><b>1.2</b> <code>local</code> und <code>global</code> sind getrennte Welten<span></span></a></li>
-<li class="chapter" data-level="1.3" data-path="macro.html"><a href="macro.html#macros-mit-text"><i class="fa fa-check"></i><b>1.3</b> Macros mit Text<span></span></a></li>
-<li class="chapter" data-level="1.4" data-path="macro.html"><a href="macro.html#dateipfade"><i class="fa fa-check"></i><b>1.4</b> Dateipfade<span></span></a></li>
-<li class="chapter" data-level="1.5" data-path="macro.html"><a href="macro.html#cmac"><i class="fa fa-check"></i><b>1.5</b> Bereits definierte Macros<span></span></a>
+<li class="chapter" data-level="1.1" data-path="macro.html"><a href="macro.html#macht-einen-unterschied"><i class="fa fa-check"></i><b>1.1</b> <code>=</code> macht einen Unterschied</a></li>
+<li class="chapter" data-level="1.2" data-path="macro.html"><a href="macro.html#local-und-global-sind-getrennte-welten"><i class="fa fa-check"></i><b>1.2</b> <code>local</code> und <code>global</code> sind getrennte Welten</a></li>
+<li class="chapter" data-level="1.3" data-path="macro.html"><a href="macro.html#macros-mit-text"><i class="fa fa-check"></i><b>1.3</b> Macros mit Text</a></li>
+<li class="chapter" data-level="1.4" data-path="macro.html"><a href="macro.html#dateipfade"><i class="fa fa-check"></i><b>1.4</b> Dateipfade</a></li>
+<li class="chapter" data-level="1.5" data-path="macro.html"><a href="macro.html#cmac"><i class="fa fa-check"></i><b>1.5</b> Bereits definierte Macros</a>
 <ul>
-<li class="chapter" data-level="1.5.1" data-path="macro.html"><a href="macro.html#if1"><i class="fa fa-check"></i><b>1.5.1</b> <code>if</code><span></span></a></li>
-<li class="chapter" data-level="1.5.2" data-path="macro.html"><a href="macro.html#macros-als-variablennamen-und-befehle"><i class="fa fa-check"></i><b>1.5.2</b> Macros als Variablennamen und Befehle<span></span></a></li>
-<li class="chapter" data-level="1.5.3" data-path="macro.html"><a href="macro.html#allglo"><i class="fa fa-check"></i><b>1.5.3</b> <code>globals</code> durchsuchen<span></span></a></li>
+<li class="chapter" data-level="1.5.1" data-path="macro.html"><a href="macro.html#if1"><i class="fa fa-check"></i><b>1.5.1</b> <code>if</code></a></li>
+<li class="chapter" data-level="1.5.2" data-path="macro.html"><a href="macro.html#macros-als-variablennamen-und-befehle"><i class="fa fa-check"></i><b>1.5.2</b> Macros als Variablennamen und Befehle</a></li>
+<li class="chapter" data-level="1.5.3" data-path="macro.html"><a href="macro.html#allglo"><i class="fa fa-check"></i><b>1.5.3</b> <code>globals</code> durchsuchen</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="macro.html"><a href="macro.html#wenn-nicht-if-dann-else"><i class="fa fa-check"></i><b>1.6</b> Wenn nicht <code>if</code>, dann <code>else</code><span></span></a></li>
-<li class="chapter" data-level="1.7" data-path="macro.html"><a href="macro.html#schleifen-foreach-forvalues"><i class="fa fa-check"></i><b>1.7</b> Schleifen: <code>foreach</code> &amp; <code>forvalues</code><span></span></a>
+<li class="chapter" data-level="1.6" data-path="macro.html"><a href="macro.html#wenn-nicht-if-dann-else"><i class="fa fa-check"></i><b>1.6</b> Wenn nicht <code>if</code>, dann <code>else</code></a></li>
+<li class="chapter" data-level="1.7" data-path="macro.html"><a href="macro.html#unterbrechen-wenn-ein-fehler-vorliegt"><i class="fa fa-check"></i><b>1.7</b> Unterbrechen wenn ein Fehler vorliegt</a></li>
+<li class="chapter" data-level="1.8" data-path="macro.html"><a href="macro.html#schleifen-foreach-forvalues"><i class="fa fa-check"></i><b>1.8</b> Schleifen: <code>foreach</code> &amp; <code>forvalues</code></a>
 <ul>
-<li class="chapter" data-level="1.7.1" data-path="macro.html"><a href="macro.html#ferest"><i class="fa fa-check"></i><b>1.7.1</b> <code>ferest()</code><span></span></a></li>
-<li class="chapter" data-level="1.7.2" data-path="macro.html"><a href="macro.html#weitere-schleifentypen"><i class="fa fa-check"></i><b>1.7.2</b> Weitere Schleifentypen<span></span></a></li>
-<li class="chapter" data-level="1.7.3" data-path="macro.html"><a href="macro.html#anwendung"><i class="fa fa-check"></i><b>1.7.3</b> Anwendung<span></span></a></li>
-<li class="chapter" data-level="1.7.4" data-path="macro.html"><a href="macro.html#schleifen-aufbauen"><i class="fa fa-check"></i><b>1.7.4</b> Schleifen aufbauen<span></span></a></li>
-<li class="chapter" data-level="1.7.5" data-path="macro.html"><a href="macro.html#nested-loop"><i class="fa fa-check"></i><b>1.7.5</b> nested loop<span></span></a></li>
-<li class="chapter" data-level="1.7.6" data-path="macro.html"><a href="macro.html#display-vs.-macro-list"><i class="fa fa-check"></i><b>1.7.6</b> <code>display</code> vs. <code>macro list</code><span></span></a></li>
+<li class="chapter" data-level="1.8.1" data-path="macro.html"><a href="macro.html#ferest"><i class="fa fa-check"></i><b>1.8.1</b> <code>ferest()</code></a></li>
+<li class="chapter" data-level="1.8.2" data-path="macro.html"><a href="macro.html#weitere-schleifentypen"><i class="fa fa-check"></i><b>1.8.2</b> Weitere Schleifentypen</a></li>
+<li class="chapter" data-level="1.8.3" data-path="macro.html"><a href="macro.html#anwendung"><i class="fa fa-check"></i><b>1.8.3</b> Anwendung</a></li>
+<li class="chapter" data-level="1.8.4" data-path="macro.html"><a href="macro.html#schleifen-aufbauen"><i class="fa fa-check"></i><b>1.8.4</b> Schleifen aufbauen</a></li>
+<li class="chapter" data-level="1.8.5" data-path="macro.html"><a href="macro.html#nested-loop"><i class="fa fa-check"></i><b>1.8.5</b> nested loop</a></li>
+<li class="chapter" data-level="1.8.6" data-path="macro.html"><a href="macro.html#display-vs.-macro-list"><i class="fa fa-check"></i><b>1.8.6</b> <code>display</code> vs. <code>macro list</code></a></li>
 </ul></li>
-<li class="chapter" data-level="1.8" data-path="macro.html"><a href="macro.html#übungen"><i class="fa fa-check"></i><b>1.8</b> Übungen<span></span></a>
+<li class="chapter" data-level="1.9" data-path="macro.html"><a href="macro.html#übungen"><i class="fa fa-check"></i><b>1.9</b> Übungen</a>
 <ul>
-<li class="chapter" data-level="1.8.1" data-path="macro.html"><a href="macro.html#ue0"><i class="fa fa-check"></i><b>1.8.1</b> Übung<span></span></a></li>
-<li class="chapter" data-level="1.8.2" data-path="macro.html"><a href="macro.html#ue1"><i class="fa fa-check"></i><b>1.8.2</b> Übung<span></span></a></li>
-<li class="chapter" data-level="1.8.3" data-path="macro.html"><a href="macro.html#ue2"><i class="fa fa-check"></i><b>1.8.3</b> FizzBuzz-Challenge<span></span></a></li>
-<li class="chapter" data-level="1.8.4" data-path="macro.html"><a href="macro.html#ue3"><i class="fa fa-check"></i><b>1.8.4</b> Übung<span></span></a></li>
+<li class="chapter" data-level="1.9.1" data-path="macro.html"><a href="macro.html#ue0"><i class="fa fa-check"></i><b>1.9.1</b> Übung</a></li>
+<li class="chapter" data-level="1.9.2" data-path="macro.html"><a href="macro.html#ue1"><i class="fa fa-check"></i><b>1.9.2</b> Übung</a></li>
+<li class="chapter" data-level="1.9.3" data-path="macro.html"><a href="macro.html#ue2"><i class="fa fa-check"></i><b>1.9.3</b> FizzBuzz-Challenge</a></li>
+<li class="chapter" data-level="1.9.4" data-path="macro.html"><a href="macro.html#ue3"><i class="fa fa-check"></i><b>1.9.4</b> Übung</a></li>
 </ul></li>
-<li class="chapter" data-level="1.9" data-path="macro.html"><a href="macro.html#anhang"><i class="fa fa-check"></i><b>1.9</b> Anhang<span></span></a>
+<li class="chapter" data-level="1.10" data-path="macro.html"><a href="macro.html#anhang"><i class="fa fa-check"></i><b>1.10</b> Anhang</a>
 <ul>
-<li class="chapter" data-level="1.9.1" data-path="macro.html"><a href="macro.html#dir"><i class="fa fa-check"></i><b>1.9.1</b> Windows Dateipfade mit macros<span></span></a></li>
-<li class="chapter" data-level="1.9.2" data-path="macro.html"><a href="macro.html#debugging-wo-ist-der-wurm-drin"><i class="fa fa-check"></i><b>1.9.2</b> Debugging: Wo ist der Wurm drin?<span></span></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="loopmacro.html"><a href="loopmacro.html"><i class="fa fa-check"></i><b>2</b> Schleifen aus Macros<span></span></a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="loopmacro.html"><a href="loopmacro.html#local-erstellen-und-für-schleifen-verwenden"><i class="fa fa-check"></i><b>2.1</b> local erstellen und für Schleifen verwenden<span></span></a></li>
-<li class="chapter" data-level="2.2" data-path="loopmacro.html"><a href="loopmacro.html#schleifen-über-strings"><i class="fa fa-check"></i><b>2.2</b> Schleifen über strings<span></span></a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="loopmacro.html"><a href="loopmacro.html#wörter-indizieren"><i class="fa fa-check"></i><b>2.2.1</b> Wörter indizieren<span></span></a></li>
-<li class="chapter" data-level="2.2.2" data-path="loopmacro.html"><a href="loopmacro.html#wörter-zählen"><i class="fa fa-check"></i><b>2.2.2</b> Wörter zählen<span></span></a></li>
-<li class="chapter" data-level="2.2.3" data-path="loopmacro.html"><a href="loopmacro.html#wörter-in-schleife"><i class="fa fa-check"></i><b>2.2.3</b> Wörter in Schleife<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="loopmacro.html"><a href="loopmacro.html#informationen-aus-schleifen-behalten"><i class="fa fa-check"></i><b>2.3</b> Informationen aus Schleifen behalten<span></span></a>
-<ul>
-<li class="chapter" data-level="2.3.1" data-path="loopmacro.html"><a href="loopmacro.html#gespeichterte-ergebnisse"><i class="fa fa-check"></i><b>2.3.1</b> Gespeichterte Ergebnisse<span></span></a></li>
-<li class="chapter" data-level="2.3.2" data-path="loopmacro.html"><a href="loopmacro.html#e-und-r-sind-getrennte-welten"><i class="fa fa-check"></i><b>2.3.2</b> <code>e()</code> und <code>r()</code> sind getrennte Welten<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="2.4" data-path="loopmacro.html"><a href="loopmacro.html#ergebnisse-weiter-verwenden"><i class="fa fa-check"></i><b>2.4</b> Ergebnisse weiter verwenden<span></span></a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="loopmacro.html"><a href="loopmacro.html#recur"><i class="fa fa-check"></i><b>2.4.1</b> Rekursivität<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="loopmacro.html"><a href="loopmacro.html#mat1"><i class="fa fa-check"></i><b>2.5</b> Kennzahlen in einer <code>matrix</code> ablegen<span></span></a>
-<ul>
-<li class="chapter" data-level="2.5.1" data-path="loopmacro.html"><a href="loopmacro.html#namen-für-spalten-und-zeilen-einer-matrix"><i class="fa fa-check"></i><b>2.5.1</b> Namen für Spalten und Zeilen einer <code>matrix</code><span></span></a></li>
-<li class="chapter" data-level="2.5.2" data-path="loopmacro.html"><a href="loopmacro.html#mcollect"><i class="fa fa-check"></i><b>2.5.2</b> <code>matrix</code> erstellen<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="2.6" data-path="loopmacro.html"><a href="loopmacro.html#labels-behalten"><i class="fa fa-check"></i><b>2.6</b> Labels behalten<span></span></a>
-<ul>
-<li class="chapter" data-level="2.6.1" data-path="loopmacro.html"><a href="loopmacro.html#labfun"><i class="fa fa-check"></i><b>2.6.1</b> <code>extended macro function</code> für Labels<span></span></a></li>
-<li class="chapter" data-level="2.6.2" data-path="loopmacro.html"><a href="loopmacro.html#mrown"><i class="fa fa-check"></i><b>2.6.2</b> Labels als <code>rowname</code><span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="2.7" data-path="loopmacro.html"><a href="loopmacro.html#von-der-matrix-zum-datensatz"><i class="fa fa-check"></i><b>2.7</b> Von der <code>matrix</code> zum Datensatz<span></span></a></li>
-<li class="chapter" data-level="2.8" data-path="loopmacro.html"><a href="loopmacro.html#frame"><i class="fa fa-check"></i><b>2.8</b> <code>frame</code>: mehrere Datensätze in Stata<span></span></a></li>
-<li class="chapter" data-level="2.9" data-path="loopmacro.html"><a href="loopmacro.html#übungen-1"><i class="fa fa-check"></i><b>2.9</b> Übungen<span></span></a>
-<ul>
-<li class="chapter" data-level="2.9.1" data-path="loopmacro.html"><a href="loopmacro.html#loop1"><i class="fa fa-check"></i><b>2.9.1</b> Übung<span></span></a></li>
-<li class="chapter" data-level="2.9.2" data-path="loopmacro.html"><a href="loopmacro.html#retue1"><i class="fa fa-check"></i><b>2.9.2</b> Übung<span></span></a></li>
-<li class="chapter" data-level="2.9.3" data-path="loopmacro.html"><a href="loopmacro.html#retue2"><i class="fa fa-check"></i><b>2.9.3</b> Übung<span></span></a></li>
-<li class="chapter" data-level="2.9.4" data-path="loopmacro.html"><a href="loopmacro.html#retue3"><i class="fa fa-check"></i><b>2.9.4</b> Übung<span></span></a></li>
+<li class="chapter" data-level="1.10.1" data-path="macro.html"><a href="macro.html#dir"><i class="fa fa-check"></i><b>1.10.1</b> Windows Dateipfade mit macros</a></li>
+<li class="chapter" data-level="1.10.2" data-path="macro.html"><a href="macro.html#debugging-wo-ist-der-wurm-drin"><i class="fa fa-check"></i><b>1.10.2</b> Debugging: Wo ist der Wurm drin?</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="regres.html"><a href="regres.html"><i class="fa fa-check"></i><b>3</b> Regressionsergebnisse weiterverarbeiten<span></span></a>
+<li class="chapter" data-level="2" data-path="loopmacro.html"><a href="loopmacro.html"><i class="fa fa-check"></i><b>2</b> Schleifen aus Macros</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="regres.html"><a href="regres.html#e-und-r-der-regressionsergebnisse"><i class="fa fa-check"></i><b>3.1</b> <code>e()</code> und <code>r()</code> der Regressionsergebnisse<span></span></a>
+<li class="chapter" data-level="2.1" data-path="loopmacro.html"><a href="loopmacro.html#local-erstellen-und-für-schleifen-verwenden"><i class="fa fa-check"></i><b>2.1</b> local erstellen und für Schleifen verwenden</a></li>
+<li class="chapter" data-level="2.2" data-path="loopmacro.html"><a href="loopmacro.html#schleifen-über-strings"><i class="fa fa-check"></i><b>2.2</b> Schleifen über strings</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="regres.html"><a href="regres.html#koeffizienten-mit-_b-_se-aufrufen"><i class="fa fa-check"></i><b>3.1.1</b> Koeffizienten mit <code>_b</code> / <code>_se</code> aufrufen<span></span></a></li>
-<li class="chapter" data-level="3.1.2" data-path="regres.html"><a href="regres.html#komplette-regressionstabelle"><i class="fa fa-check"></i><b>3.1.2</b> Komplette Regressionstabelle<span></span></a></li>
+<li class="chapter" data-level="2.2.1" data-path="loopmacro.html"><a href="loopmacro.html#wörter-indizieren"><i class="fa fa-check"></i><b>2.2.1</b> Wörter indizieren</a></li>
+<li class="chapter" data-level="2.2.2" data-path="loopmacro.html"><a href="loopmacro.html#wörter-zählen"><i class="fa fa-check"></i><b>2.2.2</b> Wörter zählen</a></li>
+<li class="chapter" data-level="2.2.3" data-path="loopmacro.html"><a href="loopmacro.html#wörter-in-schleife"><i class="fa fa-check"></i><b>2.2.3</b> Wörter in Schleife</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="regres.html"><a href="regres.html#regressionstabellen-als-matrix-speichern-und-anpassen"><i class="fa fa-check"></i><b>3.2</b> Regressionstabellen als <code>matrix</code> speichern und anpassen<span></span></a></li>
-<li class="chapter" data-level="3.3" data-path="regres.html"><a href="regres.html#kategoriale-uv"><i class="fa fa-check"></i><b>3.3</b> kategoriale UV<span></span></a></li>
-<li class="chapter" data-level="3.4" data-path="regres.html"><a href="regres.html#als-datensatz-ablegen"><i class="fa fa-check"></i><b>3.4</b> Als Datensatz ablegen:<span></span></a></li>
-<li class="chapter" data-level="3.5" data-path="regres.html"><a href="regres.html#weitere-infos-aus-e"><i class="fa fa-check"></i><b>3.5</b> weitere Infos aus <code>e()</code><span></span></a>
+<li class="chapter" data-level="2.3" data-path="loopmacro.html"><a href="loopmacro.html#informationen-aus-schleifen-behalten"><i class="fa fa-check"></i><b>2.3</b> Informationen aus Schleifen behalten</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="regres.html"><a href="regres.html#esample"><i class="fa fa-check"></i><b>3.5.1</b> <code>e(sample)</code><span></span></a></li>
+<li class="chapter" data-level="2.3.1" data-path="loopmacro.html"><a href="loopmacro.html#gespeichterte-ergebnisse"><i class="fa fa-check"></i><b>2.3.1</b> Gespeichterte Ergebnisse</a></li>
+<li class="chapter" data-level="2.3.2" data-path="loopmacro.html"><a href="loopmacro.html#e-und-r-sind-getrennte-welten"><i class="fa fa-check"></i><b>2.3.2</b> <code>e()</code> und <code>r()</code> sind getrennte Welten</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="regres.html"><a href="regres.html#reg-schrittweise-aufbauen"><i class="fa fa-check"></i><b>3.6</b> <code>reg</code> schrittweise aufbauen<span></span></a></li>
-<li class="chapter" data-level="3.7" data-path="regres.html"><a href="regres.html#übungen-2"><i class="fa fa-check"></i><b>3.7</b> Übungen<span></span></a>
+<li class="chapter" data-level="2.4" data-path="loopmacro.html"><a href="loopmacro.html#ergebnisse-weiter-verwenden"><i class="fa fa-check"></i><b>2.4</b> Ergebnisse weiter verwenden</a>
 <ul>
-<li class="chapter" data-level="3.7.1" data-path="regres.html"><a href="regres.html#reg1"><i class="fa fa-check"></i><b>3.7.1</b> Übung<span></span></a></li>
-<li class="chapter" data-level="3.7.2" data-path="regres.html"><a href="regres.html#reg2"><i class="fa fa-check"></i><b>3.7.2</b> Übung<span></span></a></li>
+<li class="chapter" data-level="2.4.1" data-path="loopmacro.html"><a href="loopmacro.html#recur"><i class="fa fa-check"></i><b>2.4.1</b> Rekursivität</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="regres.html"><a href="regres.html#anhang-1"><i class="fa fa-check"></i><b>3.8</b> Anhang<span></span></a>
+<li class="chapter" data-level="2.5" data-path="loopmacro.html"><a href="loopmacro.html#mat1"><i class="fa fa-check"></i><b>2.5</b> Kennzahlen in einer <code>matrix</code> ablegen</a>
 <ul>
-<li class="chapter" data-level="3.8.1" data-path="regres.html"><a href="regres.html#statsby"><i class="fa fa-check"></i><b>3.8.1</b> <code>statsby</code><span></span></a></li>
-<li class="chapter" data-level="3.8.2" data-path="regres.html"><a href="regres.html#reg-ergebnisse-für-modelle-sammeln-schleife"><i class="fa fa-check"></i><b>3.8.2</b> <code>reg</code>-Ergebnisse für Modelle sammeln: Schleife<span></span></a></li>
+<li class="chapter" data-level="2.5.1" data-path="loopmacro.html"><a href="loopmacro.html#namen-für-spalten-und-zeilen-einer-matrix"><i class="fa fa-check"></i><b>2.5.1</b> Namen für Spalten und Zeilen einer <code>matrix</code></a></li>
+<li class="chapter" data-level="2.5.2" data-path="loopmacro.html"><a href="loopmacro.html#mcollect"><i class="fa fa-check"></i><b>2.5.2</b> <code>matrix</code> erstellen</a></li>
 </ul></li>
+<li class="chapter" data-level="2.6" data-path="loopmacro.html"><a href="loopmacro.html#labels-behalten"><i class="fa fa-check"></i><b>2.6</b> Labels behalten</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="loopmacro.html"><a href="loopmacro.html#labfun"><i class="fa fa-check"></i><b>2.6.1</b> <code>extended macro function</code> für Labels</a></li>
+<li class="chapter" data-level="2.6.2" data-path="loopmacro.html"><a href="loopmacro.html#mrown"><i class="fa fa-check"></i><b>2.6.2</b> Labels als <code>rowname</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="labmacro.html"><a href="labmacro.html"><i class="fa fa-check"></i><b>4</b> Label- und Variablenfunktionen<span></span></a>
+<li class="chapter" data-level="2.7" data-path="loopmacro.html"><a href="loopmacro.html#von-der-matrix-zum-datensatz"><i class="fa fa-check"></i><b>2.7</b> Von der <code>matrix</code> zum Datensatz</a></li>
+<li class="chapter" data-level="2.8" data-path="loopmacro.html"><a href="loopmacro.html#frame"><i class="fa fa-check"></i><b>2.8</b> <code>frame</code>: mehrere Datensätze in Stata</a></li>
+<li class="chapter" data-level="2.9" data-path="loopmacro.html"><a href="loopmacro.html#übungen-1"><i class="fa fa-check"></i><b>2.9</b> Übungen</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="labmacro.html"><a href="labmacro.html#stringfunktionen"><i class="fa fa-check"></i><b>4.1</b> Stringfunktionen<span></span></a></li>
-<li class="chapter" data-level="4.2" data-path="labmacro.html"><a href="labmacro.html#arbeiten-mit-regular-expressions"><i class="fa fa-check"></i><b>4.2</b> Arbeiten mit “Regular Expressions”<span></span></a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="labmacro.html"><a href="labmacro.html#regex-grund-regeln"><i class="fa fa-check"></i><b>4.2.1</b> regex (Grund-)Regeln<span></span></a></li>
-<li class="chapter" data-level="4.2.2" data-path="labmacro.html"><a href="labmacro.html#beispiele"><i class="fa fa-check"></i><b>4.2.2</b> Beispiele<span></span></a></li>
-<li class="chapter" data-level="4.2.3" data-path="labmacro.html"><a href="labmacro.html#weiterführende-links"><i class="fa fa-check"></i><b>4.2.3</b> Weiterführende Links<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="labmacro.html"><a href="labmacro.html#labfuns"><i class="fa fa-check"></i><b>4.3</b> Label bearbeiten<span></span></a></li>
-<li class="chapter" data-level="4.4" data-path="labmacro.html"><a href="labmacro.html#abgleiche"><i class="fa fa-check"></i><b>4.4</b> Abgleiche<span></span></a></li>
-<li class="chapter" data-level="4.5" data-path="labmacro.html"><a href="labmacro.html#valsearch"><i class="fa fa-check"></i><b>4.5</b> wo kommt überall -4 vor?<span></span></a></li>
-<li class="chapter" data-level="4.6" data-path="labmacro.html"><a href="labmacro.html#übungen-3"><i class="fa fa-check"></i><b>4.6</b> Übungen<span></span></a>
-<ul>
-<li class="chapter" data-level="4.6.1" data-path="labmacro.html"><a href="labmacro.html#strue"><i class="fa fa-check"></i><b>4.6.1</b> Übung<span></span></a></li>
-<li class="chapter" data-level="4.6.2" data-path="labmacro.html"><a href="labmacro.html#regexue"><i class="fa fa-check"></i><b>4.6.2</b> Übung<span></span></a></li>
-<li class="chapter" data-level="4.6.3" data-path="labmacro.html"><a href="labmacro.html#varlab"><i class="fa fa-check"></i><b>4.6.3</b> Übung<span></span></a></li>
-<li class="chapter" data-level="4.6.4" data-path="labmacro.html"><a href="labmacro.html#valuesearch"><i class="fa fa-check"></i><b>4.6.4</b> Übung<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="4.7" data-path="labmacro.html"><a href="labmacro.html#anhang-2"><i class="fa fa-check"></i><b>4.7</b> Anhang<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>5</b> Dateien- und DoFile-Verwaltung<span></span></a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="data.html"><a href="data.html#dir---alles-einlesen"><i class="fa fa-check"></i><b>5.1</b> <code>dir</code> - alles einlesen<span></span></a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="data.html"><a href="data.html#copy"><i class="fa fa-check"></i><b>5.1.1</b> <code>copy</code><span></span></a></li>
-<li class="chapter" data-level="5.1.2" data-path="data.html"><a href="data.html#erase"><i class="fa fa-check"></i><b>5.1.2</b> <code>erase</code><span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="data.html"><a href="data.html#verzeichnisse-dofiles-erstellen"><i class="fa fa-check"></i><b>5.2</b> Verzeichnisse &amp; DoFiles erstellen<span></span></a></li>
-<li class="chapter" data-level="5.3" data-path="data.html"><a href="data.html#master-dofile"><i class="fa fa-check"></i><b>5.3</b> Master DoFile<span></span></a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="data.html"><a href="data.html#dofile-mit-argumenten-starten"><i class="fa fa-check"></i><b>5.3.1</b> DoFile mit Argumenten starten<span></span></a></li>
-<li class="chapter" data-level="5.3.2" data-path="data.html"><a href="data.html#in-neuer-session-starten"><i class="fa fa-check"></i><b>5.3.2</b> in neuer Session starten<span></span></a></li>
-<li class="chapter" data-level="5.3.3" data-path="data.html"><a href="data.html#mehrere-sessions-starten"><i class="fa fa-check"></i><b>5.3.3</b> mehrere Sessions starten<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="data.html"><a href="data.html#übungen-4"><i class="fa fa-check"></i><b>5.4</b> Übungen<span></span></a>
-<ul>
-<li class="chapter" data-level="5.4.1" data-path="data.html"><a href="data.html#dir_readin"><i class="fa fa-check"></i><b>5.4.1</b> Übung<span></span></a></li>
-<li class="chapter" data-level="5.4.2" data-path="data.html"><a href="data.html#masterdofile"><i class="fa fa-check"></i><b>5.4.2</b> Übung<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="data.html"><a href="data.html#anhang-3"><i class="fa fa-check"></i><b>5.5</b> Anhang<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="misc.html"><a href="misc.html"><i class="fa fa-check"></i><b>6</b> Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen<span></span></a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="misc.html"><a href="misc.html#capture"><i class="fa fa-check"></i><b>6.1</b> <code>capture</code><span></span></a></li>
-<li class="chapter" data-level="6.2" data-path="misc.html"><a href="misc.html#macro-extended-functions-for-parsing"><i class="fa fa-check"></i><b>6.2</b> Macro extended functions for parsing<span></span></a></li>
-<li class="chapter" data-level="6.3" data-path="misc.html"><a href="misc.html#weitere-matrix-befehle"><i class="fa fa-check"></i><b>6.3</b> weitere <code>matrix</code>-Befehle<span></span></a>
-<ul>
-<li class="chapter" data-level="6.3.1" data-path="misc.html"><a href="misc.html#teilmatrizen"><i class="fa fa-check"></i><b>6.3.1</b> Teilmatrizen<span></span></a></li>
-<li class="chapter" data-level="6.3.2" data-path="misc.html"><a href="misc.html#spaltenzeilen-auswählen"><i class="fa fa-check"></i><b>6.3.2</b> Spalten/Zeilen auswählen<span></span></a></li>
-<li class="chapter" data-level="6.3.3" data-path="misc.html"><a href="misc.html#crnumb"><i class="fa fa-check"></i><b>6.3.3</b> Namensbasierte Auswahl<span></span></a></li>
+<li class="chapter" data-level="2.9.1" data-path="loopmacro.html"><a href="loopmacro.html#loop1"><i class="fa fa-check"></i><b>2.9.1</b> Übung</a></li>
+<li class="chapter" data-level="2.9.2" data-path="loopmacro.html"><a href="loopmacro.html#retue1"><i class="fa fa-check"></i><b>2.9.2</b> Übung</a></li>
+<li class="chapter" data-level="2.9.3" data-path="loopmacro.html"><a href="loopmacro.html#retue2"><i class="fa fa-check"></i><b>2.9.3</b> Übung</a></li>
+<li class="chapter" data-level="2.9.4" data-path="loopmacro.html"><a href="loopmacro.html#retue3"><i class="fa fa-check"></i><b>2.9.4</b> Übung</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="lit.html"><a href="lit.html"><i class="fa fa-check"></i><b>7</b> Literatur &amp; Links<span></span></a></li>
+<li class="chapter" data-level="3" data-path="regres.html"><a href="regres.html"><i class="fa fa-check"></i><b>3</b> Regressionsergebnisse weiterverarbeiten</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="regres.html"><a href="regres.html#e-und-r-der-regressionsergebnisse"><i class="fa fa-check"></i><b>3.1</b> <code>e()</code> und <code>r()</code> der Regressionsergebnisse</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="regres.html"><a href="regres.html#koeffizienten-mit-_b-_se-aufrufen"><i class="fa fa-check"></i><b>3.1.1</b> Koeffizienten mit <code>_b</code> / <code>_se</code> aufrufen</a></li>
+<li class="chapter" data-level="3.1.2" data-path="regres.html"><a href="regres.html#komplette-regressionstabelle"><i class="fa fa-check"></i><b>3.1.2</b> Komplette Regressionstabelle</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="regres.html"><a href="regres.html#regressionstabellen-als-matrix-speichern-und-anpassen"><i class="fa fa-check"></i><b>3.2</b> Regressionstabellen als <code>matrix</code> speichern und anpassen</a></li>
+<li class="chapter" data-level="3.3" data-path="regres.html"><a href="regres.html#kategoriale-uv"><i class="fa fa-check"></i><b>3.3</b> kategoriale UV</a></li>
+<li class="chapter" data-level="3.4" data-path="regres.html"><a href="regres.html#als-datensatz-ablegen"><i class="fa fa-check"></i><b>3.4</b> Als Datensatz ablegen:</a></li>
+<li class="chapter" data-level="3.5" data-path="regres.html"><a href="regres.html#weitere-infos-aus-e"><i class="fa fa-check"></i><b>3.5</b> weitere Infos aus <code>e()</code></a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="regres.html"><a href="regres.html#esample"><i class="fa fa-check"></i><b>3.5.1</b> <code>e(sample)</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="regres.html"><a href="regres.html#reg-schrittweise-aufbauen"><i class="fa fa-check"></i><b>3.6</b> <code>reg</code> schrittweise aufbauen</a></li>
+<li class="chapter" data-level="3.7" data-path="regres.html"><a href="regres.html#übungen-2"><i class="fa fa-check"></i><b>3.7</b> Übungen</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="regres.html"><a href="regres.html#reg1"><i class="fa fa-check"></i><b>3.7.1</b> Übung</a></li>
+<li class="chapter" data-level="3.7.2" data-path="regres.html"><a href="regres.html#reg2"><i class="fa fa-check"></i><b>3.7.2</b> Übung</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="regres.html"><a href="regres.html#anhang-1"><i class="fa fa-check"></i><b>3.8</b> Anhang</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="regres.html"><a href="regres.html#statsby"><i class="fa fa-check"></i><b>3.8.1</b> <code>statsby</code></a></li>
+<li class="chapter" data-level="3.8.2" data-path="regres.html"><a href="regres.html#reg-ergebnisse-für-modelle-sammeln-schleife"><i class="fa fa-check"></i><b>3.8.2</b> <code>reg</code>-Ergebnisse für Modelle sammeln: Schleife</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="labmacro.html"><a href="labmacro.html"><i class="fa fa-check"></i><b>4</b> Label- und Variablenfunktionen</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="labmacro.html"><a href="labmacro.html#stringfunktionen"><i class="fa fa-check"></i><b>4.1</b> Stringfunktionen</a></li>
+<li class="chapter" data-level="4.2" data-path="labmacro.html"><a href="labmacro.html#arbeiten-mit-regular-expressions"><i class="fa fa-check"></i><b>4.2</b> Arbeiten mit “Regular Expressions”</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="labmacro.html"><a href="labmacro.html#regex-grund-regeln"><i class="fa fa-check"></i><b>4.2.1</b> regex (Grund-)Regeln</a></li>
+<li class="chapter" data-level="4.2.2" data-path="labmacro.html"><a href="labmacro.html#beispiele"><i class="fa fa-check"></i><b>4.2.2</b> Beispiele</a></li>
+<li class="chapter" data-level="4.2.3" data-path="labmacro.html"><a href="labmacro.html#weiterführende-links"><i class="fa fa-check"></i><b>4.2.3</b> Weiterführende Links</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="labmacro.html"><a href="labmacro.html#labfuns"><i class="fa fa-check"></i><b>4.3</b> Label bearbeiten</a></li>
+<li class="chapter" data-level="4.4" data-path="labmacro.html"><a href="labmacro.html#abgleiche"><i class="fa fa-check"></i><b>4.4</b> Abgleiche</a></li>
+<li class="chapter" data-level="4.5" data-path="labmacro.html"><a href="labmacro.html#valsearch"><i class="fa fa-check"></i><b>4.5</b> wo kommt überall -4 vor?</a></li>
+<li class="chapter" data-level="4.6" data-path="labmacro.html"><a href="labmacro.html#übungen-3"><i class="fa fa-check"></i><b>4.6</b> Übungen</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="labmacro.html"><a href="labmacro.html#strue"><i class="fa fa-check"></i><b>4.6.1</b> Übung</a></li>
+<li class="chapter" data-level="4.6.2" data-path="labmacro.html"><a href="labmacro.html#regexue"><i class="fa fa-check"></i><b>4.6.2</b> Übung</a></li>
+<li class="chapter" data-level="4.6.3" data-path="labmacro.html"><a href="labmacro.html#varlab"><i class="fa fa-check"></i><b>4.6.3</b> Übung</a></li>
+<li class="chapter" data-level="4.6.4" data-path="labmacro.html"><a href="labmacro.html#valuesearch"><i class="fa fa-check"></i><b>4.6.4</b> Übung</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="labmacro.html"><a href="labmacro.html#anhang-2"><i class="fa fa-check"></i><b>4.7</b> Anhang</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>5</b> Dateien- und DoFile-Verwaltung</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data.html"><a href="data.html#dir---alles-einlesen"><i class="fa fa-check"></i><b>5.1</b> <code>dir</code> - alles einlesen</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data.html"><a href="data.html#copy"><i class="fa fa-check"></i><b>5.1.1</b> <code>copy</code></a></li>
+<li class="chapter" data-level="5.1.2" data-path="data.html"><a href="data.html#erase"><i class="fa fa-check"></i><b>5.1.2</b> <code>erase</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data.html"><a href="data.html#verzeichnisse-dofiles-erstellen"><i class="fa fa-check"></i><b>5.2</b> Verzeichnisse &amp; DoFiles erstellen</a></li>
+<li class="chapter" data-level="5.3" data-path="data.html"><a href="data.html#master-dofile"><i class="fa fa-check"></i><b>5.3</b> Master DoFile</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="data.html"><a href="data.html#dofile-mit-argumenten-starten"><i class="fa fa-check"></i><b>5.3.1</b> DoFile mit Argumenten starten</a></li>
+<li class="chapter" data-level="5.3.2" data-path="data.html"><a href="data.html#in-neuer-session-starten"><i class="fa fa-check"></i><b>5.3.2</b> in neuer Session starten</a></li>
+<li class="chapter" data-level="5.3.3" data-path="data.html"><a href="data.html#mehrere-sessions-starten"><i class="fa fa-check"></i><b>5.3.3</b> mehrere Sessions starten</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="data.html"><a href="data.html#übungen-4"><i class="fa fa-check"></i><b>5.4</b> Übungen</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="data.html"><a href="data.html#dir_readin"><i class="fa fa-check"></i><b>5.4.1</b> Übung</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data.html"><a href="data.html#masterdofile"><i class="fa fa-check"></i><b>5.4.2</b> Übung</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="data.html"><a href="data.html#anhang-3"><i class="fa fa-check"></i><b>5.5</b> Anhang</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="misc.html"><a href="misc.html"><i class="fa fa-check"></i><b>6</b> Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="misc.html"><a href="misc.html#capture"><i class="fa fa-check"></i><b>6.1</b> <code>capture</code></a></li>
+<li class="chapter" data-level="6.2" data-path="misc.html"><a href="misc.html#macro-extended-functions-for-parsing"><i class="fa fa-check"></i><b>6.2</b> Macro extended functions for parsing</a></li>
+<li class="chapter" data-level="6.3" data-path="misc.html"><a href="misc.html#weitere-matrix-befehle"><i class="fa fa-check"></i><b>6.3</b> weitere <code>matrix</code>-Befehle</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="misc.html"><a href="misc.html#teilmatrizen"><i class="fa fa-check"></i><b>6.3.1</b> Teilmatrizen</a></li>
+<li class="chapter" data-level="6.3.2" data-path="misc.html"><a href="misc.html#spaltenzeilen-auswählen"><i class="fa fa-check"></i><b>6.3.2</b> Spalten/Zeilen auswählen</a></li>
+<li class="chapter" data-level="6.3.3" data-path="misc.html"><a href="misc.html#crnumb"><i class="fa fa-check"></i><b>6.3.3</b> Namensbasierte Auswahl</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lit.html"><a href="lit.html"><i class="fa fa-check"></i><b>7</b> Literatur &amp; Links</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<p>Alle Kursinhalte &copy; 2022 von <a href="https://afilser.netlify.app/">Andreas Filser</a><br>
+CC Lizenz mit Namensnennung <i class="fab fa-creative-commons"></i> <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a><br>
+Code <a href="https://github.com/filius23/StataProgBIBB_2022">hier einsehbar</a> <i class="fab fa-github"></i><br>
+<a href="https://github.com/rstudio/bookdown" target="blank">Erstellt mit bookdown</a> und <a href="https://www.ssc.wisc.edu/~hemken/Stataworkshops/Statamarkdown/stata-and-r-markdown.html" target="blank">Statamarkdown</a></p>
 
 </ul>
 
@@ -439,7 +443,7 @@ Wenn also noch kein log-Ordner existiert, können wir ihn so erstellen:</p>
 <p>Zwei sehr nützliche sind dabei <code>$S_DATE</code> <code>$S_TIME</code> - das aktuelle Datum und die aktuelle Zeit:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb21-1"><a href="macro.html#cb21-1" aria-hidden="true" tabindex="-1"></a>dis <span class="st">&quot;$S_DATE&quot;</span></span>
 <span id="cb21-2"><a href="macro.html#cb21-2" aria-hidden="true" tabindex="-1"></a>dis <span class="st">&quot;$S_TIME&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb22-1"><a href="macro.html#cb22-1" aria-hidden="true" tabindex="-1"></a>1 Dec 2021 </span>
+<div class="sourceCode" id="cb22"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb22-1"><a href="macro.html#cb22-1" aria-hidden="true" tabindex="-1"></a>2 May 2022</span>
 <span id="cb22-2"><a href="macro.html#cb22-2" aria-hidden="true" tabindex="-1"></a>12:44:22</span></code></pre></div>
 <p>Diese können wir beispielsweise am Anfang und Ende eines Abschnitts in einem LogFiles einblenden, um Start- und Endzeit zu dokumentieren:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb23-1"><a href="macro.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> <span class="kw">using</span> <span class="st">&quot;${log}/logfile.txt&quot;</span>, t <span class="kw">replace</span></span>
@@ -476,10 +480,12 @@ Wenn also noch kein log-Ordner existiert, können wir ihn so erstellen:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb27-1"><a href="macro.html#cb27-1" aria-hidden="true" tabindex="-1"></a>Filser</span>
 <span id="cb27-2"><a href="macro.html#cb27-2" aria-hidden="true" tabindex="-1"></a>PC (64-bit x86-64)</span>
 <span id="cb27-3"><a href="macro.html#cb27-3" aria-hidden="true" tabindex="-1"></a>Windows</span></code></pre></div>
-<p>Weitere “system parameters and settings” unter <code>help creturn</code> bspw.:
-<code>c(changed)</code> returns a numeric scalar equal to 0 if the dataset in memory has not changed since it was last saved and 1 otherwise.
-<code>c(filename)</code> returns a string containing the filename last specified with a use or save, such as <code>"C:\Data\auto.dta"</code>.
-<code>c(filedate)</code> returns a string containing the date and time the file in <code>c(filename)</code> was last saved, such as “7 Jul 2016 13:51”.</p>
+<p>Weitere “system parameters and settings” unter <code>help creturn</code> bspw.:</p>
+<ul>
+<li><code>c(changed)</code> returns a numeric scalar equal to 0 if the dataset in memory has not changed since it was last saved and 1 otherwise.</li>
+<li><code>c(filename)</code> returns a string containing the filename last specified with a use or save, such as <code>"C:\Data\auto.dta"</code>.</li>
+<li><code>c(filedate)</code> returns a string containing the date and time the file in <code>c(filename)</code> was last saved, such as “7 Jul 2016 13:51”.</li>
+</ul>
 <div id="if1" class="section level3 hasAnchor" number="1.5.1">
 <h3><span class="header-section-number">1.5.1</span> <code>if</code><a href="macro.html#if1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Mit <code>if (</code>local<code>== "...")</code> können wir macros abgleichen, um Befehle nur unter bestimmten Bedingungen auszuführen:</p>
@@ -582,6 +588,9 @@ Mit <code>|</code> können wir <em>oder</em>-Bedingungen stellen.</p>
 <span id="cb41-11"><a href="macro.html#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="fu">word</span> <span class="st">&quot;big&quot;</span></span>
 <span id="cb41-12"><a href="macro.html#cb41-12" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb41-13"><a href="macro.html#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">&quot;`word&#39;&quot;</span></span></code></pre></div>
+</div>
+<div id="unterbrechen-wenn-ein-fehler-vorliegt" class="section level2 hasAnchor" number="1.7">
+<h2><span class="header-section-number">1.7</span> Unterbrechen wenn ein Fehler vorliegt<a href="macro.html#unterbrechen-wenn-ein-fehler-vorliegt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Mit <code>exit</code> (<code>help exit_program</code>) können wir Stata zu einer Unterbrechung bringen:</p>
 <blockquote>
 <p><code>exit</code> causes Stata to terminate the current process and returns control to the calling process.</p>
@@ -604,8 +613,8 @@ Mit <code>|</code> können wir <em>oder</em>-Bedingungen stellen.</p>
 <p><strong><a href="macro.html#ue1">Übung</a></strong></p>
 <hr />
 </div>
-<div id="schleifen-foreach-forvalues" class="section level2 hasAnchor" number="1.7">
-<h2><span class="header-section-number">1.7</span> Schleifen: <code>foreach</code> &amp; <code>forvalues</code><a href="macro.html#schleifen-foreach-forvalues" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="schleifen-foreach-forvalues" class="section level2 hasAnchor" number="1.8">
+<h2><span class="header-section-number">1.8</span> Schleifen: <code>foreach</code> &amp; <code>forvalues</code><a href="macro.html#schleifen-foreach-forvalues" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Schleifen helfen uns das DRY (“Don’t repeat yourself”) Prinzip umzusetzen.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb43-1"><a href="macro.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> S1 <span class="kw">if</span> zpalter &lt;= 19</span>
 <span id="cb43-2"><a href="macro.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> S1 <span class="kw">if</span> zpalter &lt;= 24</span>
@@ -650,8 +659,8 @@ Mit <code>|</code> können wir <em>oder</em>-Bedingungen stellen.</p>
 <span id="cb47-7"><a href="macro.html#cb47-7" aria-hidden="true" tabindex="-1"></a>0</span>
 <span id="cb47-8"><a href="macro.html#cb47-8" aria-hidden="true" tabindex="-1"></a>-2</span>
 <span id="cb47-9"><a href="macro.html#cb47-9" aria-hidden="true" tabindex="-1"></a>-4</span></code></pre></div>
-<div id="ferest" class="section level3 hasAnchor" number="1.7.1">
-<h3><span class="header-section-number">1.7.1</span> <code>ferest()</code><a href="macro.html#ferest" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="ferest" class="section level3 hasAnchor" number="1.8.1">
+<h3><span class="header-section-number">1.8.1</span> <code>ferest()</code><a href="macro.html#ferest" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Mit <code>ferest()</code> können wir uns die “noch übrigen Werte in der Liste anzeigen lassen:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb48-1"><a href="macro.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> n <span class="kw">of</span> numlist 1(1)5 {</span>
 <span id="cb48-2"><a href="macro.html#cb48-2" aria-hidden="true" tabindex="-1"></a>    dis <span class="st">&quot;`n&#39;&quot;</span></span>
@@ -668,8 +677,8 @@ Mit <code>|</code> können wir <em>oder</em>-Bedingungen stellen.</p>
 <span id="cb48-13"><a href="macro.html#cb48-13" aria-hidden="true" tabindex="-1"></a>5</span>
 <span id="cb48-14"><a href="macro.html#cb48-14" aria-hidden="true" tabindex="-1"></a>Es kommen noch: </span></code></pre></div>
 </div>
-<div id="weitere-schleifentypen" class="section level3 hasAnchor" number="1.7.2">
-<h3><span class="header-section-number">1.7.2</span> Weitere Schleifentypen<a href="macro.html#weitere-schleifentypen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="weitere-schleifentypen" class="section level3 hasAnchor" number="1.8.2">
+<h3><span class="header-section-number">1.8.2</span> Weitere Schleifentypen<a href="macro.html#weitere-schleifentypen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Es gibt außerdem <code>forvalues</code>:</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb49-1"><a href="macro.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">forvalues</span> <span class="fu">lname</span>=<span class="kw">range</span> {</span>
 <span id="cb49-2"><a href="macro.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  Befehle</span>
@@ -695,8 +704,8 @@ In der <code>forvalues</code>-Schleife gibt es keine Beschränkung. Außerdem is
 <span id="cb51-4"><a href="macro.html#cb51-4" aria-hidden="true" tabindex="-1"></a>  loc ++i</span>
 <span id="cb51-5"><a href="macro.html#cb51-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
-<div id="anwendung" class="section level3 hasAnchor" number="1.7.3">
-<h3><span class="header-section-number">1.7.3</span> Anwendung<a href="macro.html#anwendung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="anwendung" class="section level3 hasAnchor" number="1.8.3">
+<h3><span class="header-section-number">1.8.3</span> Anwendung<a href="macro.html#anwendung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb52"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb52-1"><a href="macro.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> v <span class="kw">of</span> numlist 19(5)35 {</span>
 <span id="cb52-2"><a href="macro.html#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">display</span> <span class="st">&quot;Alter bis `v&#39;&quot;</span></span>
 <span id="cb52-3"><a href="macro.html#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">tab</span> S1 <span class="kw">if</span> zpalter &lt;= <span class="ot">`v&#39;</span></span>
@@ -705,7 +714,7 @@ In der <code>forvalues</code>-Schleife gibt es keine Beschränkung. Außerdem is
 
  Geschlecht |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-   mÃ¤nnlich |         41       67.21       67.21
+   männlich |         41       67.21       67.21
    weiblich |         20       32.79      100.00
 ------------+-----------------------------------
       Total |         61      100.00
@@ -713,7 +722,7 @@ Alter bis 24
 
  Geschlecht |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-   mÃ¤nnlich |        373       65.10       65.10
+   männlich |        373       65.10       65.10
    weiblich |        200       34.90      100.00
 ------------+-----------------------------------
       Total |        573      100.00
@@ -721,7 +730,7 @@ Alter bis 29
 
  Geschlecht |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-   mÃ¤nnlich |        991       60.46       60.46
+   männlich |        991       60.46       60.46
    weiblich |        648       39.54      100.00
 ------------+-----------------------------------
       Total |      1,639      100.00
@@ -729,7 +738,7 @@ Alter bis 34
 
  Geschlecht |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-   mÃ¤nnlich |      1,984       59.03       59.03
+   männlich |      1,984       59.03       59.03
    weiblich |      1,377       40.97      100.00
 ------------+-----------------------------------
       Total |      3,361      100.00</code></pre>
@@ -743,7 +752,7 @@ Alter bis 34
 
  Geschlecht |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-   mÃ¤nnlich |         41       67.21       67.21
+   männlich |         41       67.21       67.21
    weiblich |         20       32.79      100.00
 ------------+-----------------------------------
       Total |         61      100.00
@@ -751,7 +760,7 @@ Alter 20 bis 24
 
  Geschlecht |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-   mÃ¤nnlich |        332       64.84       64.84
+   männlich |        332       64.84       64.84
    weiblich |        180       35.16      100.00
 ------------+-----------------------------------
       Total |        512      100.00
@@ -759,7 +768,7 @@ Alter 25 bis 29
 
  Geschlecht |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-   mÃ¤nnlich |        618       57.97       57.97
+   männlich |        618       57.97       57.97
    weiblich |        448       42.03      100.00
 ------------+-----------------------------------
       Total |      1,066      100.00
@@ -767,13 +776,13 @@ Alter 30 bis 34
 
  Geschlecht |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-   mÃ¤nnlich |        993       57.67       57.67
+   männlich |        993       57.67       57.67
    weiblich |        729       42.33      100.00
 ------------+-----------------------------------
       Total |      1,722      100.00</code></pre>
 </div>
-<div id="schleifen-aufbauen" class="section level3 hasAnchor" number="1.7.4">
-<h3><span class="header-section-number">1.7.4</span> Schleifen aufbauen<a href="macro.html#schleifen-aufbauen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="schleifen-aufbauen" class="section level3 hasAnchor" number="1.8.4">
+<h3><span class="header-section-number">1.8.4</span> Schleifen aufbauen<a href="macro.html#schleifen-aufbauen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Einfache Schleife mit <code>if</code>/<code>else</code>: ist Zahl gerade oder ungerade?</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb56-1"><a href="macro.html#cb56-1" aria-hidden="true" tabindex="-1"></a>loc n = 5</span>
 <span id="cb56-2"><a href="macro.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> <span class="fu">trunc</span>(<span class="ot">`n&#39;</span>/2) == <span class="ot">`n&#39;</span>/2 <span class="kw">display</span> <span class="st">&quot;ja&quot;</span></span>
@@ -798,8 +807,8 @@ Alter 30 bis 34
 <span id="cb56-21"><a href="macro.html#cb56-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p><a href="https://de.wikipedia.org/wiki/Division_mit_Rest#Modulo">mod() ist der Modulo-Operator in Stata - es wird der “Rest” berechnet</a></p>
 </div>
-<div id="nested-loop" class="section level3 hasAnchor" number="1.7.5">
-<h3><span class="header-section-number">1.7.5</span> nested loop<a href="macro.html#nested-loop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="nested-loop" class="section level3 hasAnchor" number="1.8.5">
+<h3><span class="header-section-number">1.8.5</span> nested loop<a href="macro.html#nested-loop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb57"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb57-1"><a href="macro.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">forvalues</span> n1 = 1/3 {</span>
 <span id="cb57-2"><a href="macro.html#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">forvalues</span> n2 = 1/3 {</span>
 <span id="cb57-3"><a href="macro.html#cb57-3" aria-hidden="true" tabindex="-1"></a>    dis <span class="st">&quot;n1 ist `n1&#39; und n2 ist `n2&#39; &quot;</span></span>
@@ -815,8 +824,8 @@ Alter 30 bis 34
 <span id="cb57-13"><a href="macro.html#cb57-13" aria-hidden="true" tabindex="-1"></a>n1 ist 3 und n2 ist 2 </span>
 <span id="cb57-14"><a href="macro.html#cb57-14" aria-hidden="true" tabindex="-1"></a>n1 ist 3 und n2 ist 3 </span></code></pre></div>
 </div>
-<div id="display-vs.-macro-list" class="section level3 hasAnchor" number="1.7.6">
-<h3><span class="header-section-number">1.7.6</span> <code>display</code> vs. <code>macro list</code><a href="macro.html#display-vs.-macro-list" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="display-vs.-macro-list" class="section level3 hasAnchor" number="1.8.6">
+<h3><span class="header-section-number">1.8.6</span> <code>display</code> vs. <code>macro list</code><a href="macro.html#display-vs.-macro-list" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>macro list</code> stoppt das DoFile wenn der macro nicht existiert, <code>display</code> zeigt nur ein leeres Feld an:</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb58-1"><a href="macro.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> labormarket LABOUR</span>
 <span id="cb58-2"><a href="macro.html#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -840,10 +849,10 @@ Alter 30 bis 34
 <!-- - Retrieving information returned by Stata -->
 </div>
 </div>
-<div id="übungen" class="section level2 hasAnchor" number="1.8">
-<h2><span class="header-section-number">1.8</span> Übungen<a href="macro.html#übungen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="ue0" class="section level3 hasAnchor" number="1.8.1">
-<h3><span class="header-section-number">1.8.1</span> Übung<a href="macro.html#ue0" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="übungen" class="section level2 hasAnchor" number="1.9">
+<h2><span class="header-section-number">1.9</span> Übungen<a href="macro.html#übungen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ue0" class="section level3 hasAnchor" number="1.9.1">
+<h3><span class="header-section-number">1.9.1</span> Übung<a href="macro.html#ue0" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Was ist das Ergebnis dieser Rechnung? Nehmen Sie sich einen Moment Zeit und rechnen Sie im Kopf - Überprüfen Sie dann ihr Ergebnis.</li>
 </ul>
@@ -861,8 +870,8 @@ Alter 30 bis 34
 <span id="cb63-5"><a href="macro.html#cb63-5" aria-hidden="true" tabindex="-1"></a>glo t4 = <span class="st">&quot;${t1}${t2}${t3}&quot;</span></span>
 <span id="cb63-6"><a href="macro.html#cb63-6" aria-hidden="true" tabindex="-1"></a>dis <span class="st">&quot;${t4}&quot;</span></span></code></pre></div>
 </div>
-<div id="ue1" class="section level3 hasAnchor" number="1.8.2">
-<h3><span class="header-section-number">1.8.2</span> Übung<a href="macro.html#ue1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="ue1" class="section level3 hasAnchor" number="1.9.2">
+<h3><span class="header-section-number">1.9.2</span> Übung<a href="macro.html#ue1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Pfad zusammenbauen für <code>use</code>: Erstellen Sie den Pfad für den <code>use</code>-Befehl schrittweise und unter Berücksichtigung Ihres Usernamens.
 <ul>
@@ -879,8 +888,8 @@ Alter 30 bis 34
 </ul></li>
 </ul>
 </div>
-<div id="ue2" class="section level3 hasAnchor" number="1.8.3">
-<h3><span class="header-section-number">1.8.3</span> FizzBuzz-Challenge<a href="macro.html#ue2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="ue2" class="section level3 hasAnchor" number="1.9.3">
+<h3><span class="header-section-number">1.9.3</span> FizzBuzz-Challenge<a href="macro.html#ue2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Fizz Buzz wird/wurde als ein Screening-Instrument für Programmierer*innen verwendet. Fizz Buzz ist ein Kinderlernspiel, bei dem die Kinder üblicherweise im Kreis sitzen und reihum laut von eins aufwärts zählen. Allerdings gibt es drei Regeln:</p>
 <ul>
 <li>Alle Zahlen, die durch drei teilbar sind, müssen durch das Wort “Fizz” ersetzt werden</li>
@@ -891,15 +900,15 @@ Alter 30 bis 34
 Was wäre der erste Schritt?
 Bauen Sie dann die Schleife und lassen Sie die Schleife für den Wertebereich 0-30 laufen.</p>
 </div>
-<div id="ue3" class="section level3 hasAnchor" number="1.8.4">
-<h3><span class="header-section-number">1.8.4</span> Übung<a href="macro.html#ue3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="ue3" class="section level3 hasAnchor" number="1.9.4">
+<h3><span class="header-section-number">1.9.4</span> Übung<a href="macro.html#ue3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Passen Sie die Schleife mit <a href="macro.html#ferest"><code>ferest()</code></a> an, sodass hier im 5. Durchlauf nicht mehr <code>Es kommen noch:</code> steht, sondern <code>Fertig</code>.</p>
 </div>
 </div>
-<div id="anhang" class="section level2 hasAnchor" number="1.9">
-<h2><span class="header-section-number">1.9</span> Anhang<a href="macro.html#anhang" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="dir" class="section level3 hasAnchor" number="1.9.1">
-<h3><span class="header-section-number">1.9.1</span> Windows Dateipfade mit macros<a href="macro.html#dir" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="anhang" class="section level2 hasAnchor" number="1.10">
+<h2><span class="header-section-number">1.10</span> Anhang<a href="macro.html#anhang" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="dir" class="section level3 hasAnchor" number="1.10.1">
+<h3><span class="header-section-number">1.10.1</span> Windows Dateipfade mit macros<a href="macro.html#dir" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><a href="https://www.stata.com/manuals/u18.pdf#u18.3.11">Aus der Stata-Doku zu macros</a>:</p>
 <p>Stata uses the  character to tell its parser not to expand macros.
 Windows uses the  character as the directory path separator.
@@ -907,8 +916,8 @@ Mostly, there is no problem using a  in a filename. However, if you are writing
 <span class="math inline">\(\Rightarrow\)</span> Instead, assemble the final result as <code>‘path’/‘fname’</code>.
 Stata understands <code>/</code> as a directory separator on all platforms.</p>
 </div>
-<div id="debugging-wo-ist-der-wurm-drin" class="section level3 hasAnchor" number="1.9.2">
-<h3><span class="header-section-number">1.9.2</span> Debugging: Wo ist der Wurm drin?<a href="macro.html#debugging-wo-ist-der-wurm-drin" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="debugging-wo-ist-der-wurm-drin" class="section level3 hasAnchor" number="1.10.2">
+<h3><span class="header-section-number">1.10.2</span> Debugging: Wo ist der Wurm drin?<a href="macro.html#debugging-wo-ist-der-wurm-drin" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Fehlersuch in langen <code>foreach</code>-Schleifen kann mühsam und nervig sein.
 in many cases you would like to go throuh the code step by step then, however, the value of the loop index (which is a <code>local</code>)
 In vielen Fällen möchte man den Code Schritt für Schritt durchgehen, dann aber den Wert des Schleifen-<code>locals</code> ist natürlich nach Abbruch der Schleife nicht mehr da.</p>
@@ -930,7 +939,7 @@ In vielen Fällen möchte man den Code Schritt für Schritt durchgehen, dann abe
 <span id="cb65-7"><a href="macro.html#cb65-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">avplots</span></span>
 <span id="cb65-8"><a href="macro.html#cb65-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">graph</span> <span class="kw">export</span> <span class="st">&quot;${graph}/avplots`y&#39;.png&quot;</span>, <span class="kw">replace</span></span>
 <span id="cb65-9"><a href="macro.html#cb65-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>Alternativ hilft häufig auch <code>set trace on</code> weiter. Hier werden immer die zuerst die macros und dann erst die eingesetzten Werte angezeigt:</p>
+<p>Alternativ hilft häufig auch <code>set trace on</code> weiter. Hier werden immer die zuerst die macros und dann die eingesetzten Werte angezeigt:</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb66-1"><a href="macro.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="fu">trace</span> <span class="kw">on</span></span>
 <span id="cb66-2"><a href="macro.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> v <span class="kw">of</span> numlist 19(5)35 {</span>
 <span id="cb66-3"><a href="macro.html#cb66-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">display</span> <span class="st">&quot;Alter &quot;</span> <span class="ot">`v&#39;</span> - 4 <span class="st">&quot; bis &quot;</span> <span class="ot">`v&#39;</span></span>
@@ -1051,7 +1060,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Progammieren mit Stata BIBB.pdf", "Progammieren mit Stata BIBB.epub"],
+"download": ["Progammieren mit Stata BIBB.pdf"],
 "search": {
 "engine": "fuse",
 "options": null
@@ -1069,7 +1078,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
