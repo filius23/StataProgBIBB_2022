@@ -20,7 +20,6 @@ book:
     - 06_lit.qmd
   language: de-DE
   always_allow_html: true
-  # downloads: [pdf]
   page-footer:
       Alle Kursinhalte {{< fa brands creative-commons >}} 2022 von [Andreas Filser](https://afilser.netlify.app/)<br>
       [CC Lizenz mit Namensnennung {{< fa brands creative-commons >}}

@@ -43,9 +43,3 @@ div.inter {
   border: solid 1px #000000;
 }
 
-
-.cell-output code {
-  white-space: pre-wrap;
-  border: .5px solid grey;
-  padding: 1em;
-}

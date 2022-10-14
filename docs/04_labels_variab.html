@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Progammieren mit Stata - 5&nbsp; Label- und Variablenfunktionen</title>
+<title>Programmieren mit Stata - 4&nbsp; Label- und Variablenfunktionen</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -99,6 +99,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -128,7 +130,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -141,7 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Progammieren mit Stata</a> 
+      <a href="./">Programmieren mit Stata</a> 
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -153,42 +155,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Herzlich Willkommen</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_macros.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Macros</span></a>
+  <a href="./01_macros.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Macros</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_loops_fromdata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></a>
+  <a href="./02_loops_fromdata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_reg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></a>
+  <a href="./03_reg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_labels_variab.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></a>
+  <a href="./04_labels_variab.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_Daten.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></a>
+  <a href="./05_Daten.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_weiteres.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></a>
+  <a href="./05_weiteres.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_lit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Literatur &amp; Links</span></a>
+  <a href="./06_lit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Literatur &amp; Links</span></a>
   </div>
 </li>
     </ul>
@@ -200,24 +202,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#stringfunktionen" id="toc-stringfunktionen" class="nav-link active" data-scroll-target="#stringfunktionen"> <span class="header-section-number">5.1</span> Stringfunktionen</a></li>
-  <li><a href="#arbeiten-mit-regular-expressions" id="toc-arbeiten-mit-regular-expressions" class="nav-link" data-scroll-target="#arbeiten-mit-regular-expressions"> <span class="header-section-number">5.2</span> Arbeiten mit “Regular Expressions”</a>
+  <li><a href="#stringfunktionen" id="toc-stringfunktionen" class="nav-link active" data-scroll-target="#stringfunktionen"> <span class="header-section-number">4.1</span> Stringfunktionen</a></li>
+  <li><a href="#arbeiten-mit-regular-expressions" id="toc-arbeiten-mit-regular-expressions" class="nav-link" data-scroll-target="#arbeiten-mit-regular-expressions"> <span class="header-section-number">4.2</span> Arbeiten mit “Regular Expressions”</a>
   <ul class="collapse">
-  <li><a href="#regex-grund-regeln" id="toc-regex-grund-regeln" class="nav-link" data-scroll-target="#regex-grund-regeln"> <span class="header-section-number">5.2.1</span> regex (Grund-)Regeln</a></li>
-  <li><a href="#beispiele" id="toc-beispiele" class="nav-link" data-scroll-target="#beispiele"> <span class="header-section-number">5.2.2</span> Beispiele</a></li>
-  <li><a href="#weiterführende-links" id="toc-weiterführende-links" class="nav-link" data-scroll-target="#weiterführende-links"> <span class="header-section-number">5.2.3</span> Weiterführende Links</a></li>
+  <li><a href="#regex-grund-regeln" id="toc-regex-grund-regeln" class="nav-link" data-scroll-target="#regex-grund-regeln"> <span class="header-section-number">4.2.1</span> regex (Grund-)Regeln</a></li>
+  <li><a href="#beispiele" id="toc-beispiele" class="nav-link" data-scroll-target="#beispiele"> <span class="header-section-number">4.2.2</span> Beispiele</a></li>
+  <li><a href="#weiterführende-links" id="toc-weiterführende-links" class="nav-link" data-scroll-target="#weiterführende-links"> <span class="header-section-number">4.2.3</span> Weiterführende Links</a></li>
   </ul></li>
-  <li><a href="#labfuns" id="toc-labfuns" class="nav-link" data-scroll-target="#labfuns"> <span class="header-section-number">5.3</span> Label bearbeiten</a></li>
-  <li><a href="#abgleiche" id="toc-abgleiche" class="nav-link" data-scroll-target="#abgleiche"> <span class="header-section-number">5.4</span> Abgleiche</a></li>
-  <li><a href="#valsearch" id="toc-valsearch" class="nav-link" data-scroll-target="#valsearch"> <span class="header-section-number">5.5</span> wo kommt überall -4 vor?</a></li>
-  <li><a href="#übungen" id="toc-übungen" class="nav-link" data-scroll-target="#übungen"> <span class="header-section-number">5.6</span> Übungen</a>
+  <li><a href="#labfuns" id="toc-labfuns" class="nav-link" data-scroll-target="#labfuns"> <span class="header-section-number">4.3</span> Label bearbeiten</a></li>
+  <li><a href="#abgleiche" id="toc-abgleiche" class="nav-link" data-scroll-target="#abgleiche"> <span class="header-section-number">4.4</span> Abgleiche</a></li>
+  <li><a href="#valsearch" id="toc-valsearch" class="nav-link" data-scroll-target="#valsearch"> <span class="header-section-number">4.5</span> wo kommt überall -4 vor?</a></li>
+  <li><a href="#übungen" id="toc-übungen" class="nav-link" data-scroll-target="#übungen"> <span class="header-section-number">4.6</span> Übungen</a>
   <ul class="collapse">
-  <li><a href="#strue" id="toc-strue" class="nav-link" data-scroll-target="#strue"> <span class="header-section-number">5.6.1</span> Übung</a></li>
-  <li><a href="#regexue" id="toc-regexue" class="nav-link" data-scroll-target="#regexue"> <span class="header-section-number">5.6.2</span> Übung</a></li>
-  <li><a href="#varlab" id="toc-varlab" class="nav-link" data-scroll-target="#varlab"> <span class="header-section-number">5.6.3</span> Übung</a></li>
-  <li><a href="#valuesearch" id="toc-valuesearch" class="nav-link" data-scroll-target="#valuesearch"> <span class="header-section-number">5.6.4</span> Übung</a></li>
+  <li><a href="#strue" id="toc-strue" class="nav-link" data-scroll-target="#strue"> <span class="header-section-number">4.6.1</span> Übung</a></li>
+  <li><a href="#regexue" id="toc-regexue" class="nav-link" data-scroll-target="#regexue"> <span class="header-section-number">4.6.2</span> Übung</a></li>
+  <li><a href="#varlab" id="toc-varlab" class="nav-link" data-scroll-target="#varlab"> <span class="header-section-number">4.6.3</span> Übung</a></li>
+  <li><a href="#valuesearch" id="toc-valuesearch" class="nav-link" data-scroll-target="#valuesearch"> <span class="header-section-number">4.6.4</span> Übung</a></li>
   </ul></li>
-  <li><a href="#anhang" id="toc-anhang" class="nav-link" data-scroll-target="#anhang"> <span class="header-section-number">5.7</span> Anhang</a></li>
+  <li><a href="#anhang" id="toc-anhang" class="nav-link" data-scroll-target="#anhang"> <span class="header-section-number">4.7</span> Anhang</a></li>
   </ul>
 </nav>
     </div>
@@ -226,7 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="labmacro" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></span></h1>
+<h1 class="title"><span id="labmacro" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></span></h1>
 </div>
 
 
@@ -257,8 +259,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">"  Ammerländer Heerstraße 114-118, 26129 Oldenburg GERMANY  "</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="stringfunktionen" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="stringfunktionen"><span class="header-section-number">5.1</span> Stringfunktionen</h2>
+<section id="stringfunktionen" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="stringfunktionen"><span class="header-section-number">4.1</span> Stringfunktionen</h2>
 <p><code>help string functions</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x1 = <span class="fu">substr</span>(add,5,10)   <span class="co">//  substring von add -&gt; Zeichen 5-10</span></span>
@@ -343,8 +345,8 @@ x1: contains nonnumeric characters; no generate</code></pre>
 </div>
 </div>
 </section>
-<section id="arbeiten-mit-regular-expressions" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="arbeiten-mit-regular-expressions"><span class="header-section-number">5.2</span> Arbeiten mit “Regular Expressions”</h2>
+<section id="arbeiten-mit-regular-expressions" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="arbeiten-mit-regular-expressions"><span class="header-section-number">4.2</span> Arbeiten mit “Regular Expressions”</h2>
 <p>“regular expressions” oder “regex” sind eine flexible Methode, strings (also Textinhalte) zu durchsuchen. Dabei suchen wir nach Mustern anstelle eines exakten matchings.</p>
 <p>In Stata können wir regex für Variablen, aber auch für macros und Labels verwenden. regex sind aber nicht immer die (einfachste) Lösung und oft werden die Befehle sehr unübersichtlich. Daher hier nur ein kurzer Überblick.</p>
 <p>Die drei Hauptfunktionen in Stata finden wir unter <code>help regex</code>:</p>
@@ -358,8 +360,8 @@ x1: contains nonnumeric characters; no generate</code></pre>
 <p><code>regexr(s1,re,s2)</code> searches for re within the string (s1) and replaces the matching portion with a new string (s2).</p>
 </blockquote>
 <p>Allerdings sind diese Funktionen auf ASCII-Zeichen ausgelegt - einfach gesagt: Umlaute, ß usw. bereiten Probleme. Daher gibt es eine Erweiterung mit <code>ustrregexm</code>, <code>ustrregexs</code>, <code>ustrregexrf</code> und <code>ustrregexra</code>. Auf die konzentrieren wir uns hier.</p>
-<section id="regex-grund-regeln" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="regex-grund-regeln"><span class="header-section-number">5.2.1</span> regex (Grund-)Regeln</h3>
+<section id="regex-grund-regeln" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="regex-grund-regeln"><span class="header-section-number">4.2.1</span> regex (Grund-)Regeln</h3>
 <p>regex basieren auf einer Reihe an Zeichen, mit Hilfe derer wir strings durchsuchen können:</p>
 <ul>
 <li><code>\d</code> matcht eine Zahl</li>
@@ -377,8 +379,8 @@ x1: contains nonnumeric characters; no generate</code></pre>
 <li><code>+</code> “matche 1 oder öfter” für den vorhergehenden Ausdruck</li>
 </ul>
 </section>
-<section id="beispiele" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="beispiele"><span class="header-section-number">5.2.2</span> Beispiele</h3>
+<section id="beispiele" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="beispiele"><span class="header-section-number">4.2.2</span> Beispiele</h3>
 <p>Inspiriert von der <a href="https://stats.idre.ucla.edu/stata/faq/how-can-i-extract-a-portion-of-a-string-variable-using-regular-expressions/">UCLA</a> einige Beispielstrings:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
@@ -428,16 +430,16 @@ x1: contains nonnumeric characters; no generate</code></pre>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> r6 = ustrregexs(0) <span class="kw">if</span> ustrregexm(r5, <span class="st">"(\d+)$"</span>) <span class="co">// Zahlenfolge am Ende -&gt; aus r5!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="weiterführende-links" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="weiterführende-links"><span class="header-section-number">5.2.3</span> Weiterführende Links</h3>
+<section id="weiterführende-links" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="weiterführende-links"><span class="header-section-number">4.2.3</span> Weiterführende Links</h3>
 <p><a href="https://github.com/asjadnaqvi/The-Stata-Guide/blob/master/Stata_regex_cheatsheet_v1.pdf">Hier</a> findet sich ein sehr gutes “Cheatsheet” zu den gebräuchlichsten regex. Das zugehörige <a href="https://medium.com/the-stata-guide/regular-expressions-regex-in-stata-6e5c200ef27c">Tutorial</a> ist ebenfalls sehr lesenswert. Die Übersicht der <a href="https://stats.idre.ucla.edu/stata/faq/how-can-i-extract-a-portion-of-a-string-variable-using-regular-expressions/">UCLA</a> bietet auch nochmal einige Hinweise - allerdings auf Basis der ASCII-basierten Befehle. <a href="http://www.stata.com/support/faqs/data/regex.html">Stata Hilfe</a> <a href="http://w.bruunisejs.dk/StataHacks/Datamanagement/regex/regular_expressions/">Hier</a> findet sich ein weiteres hilfreiches Tutorial</p>
 <hr>
 <p><strong><a href="#regexue">Übung</a></strong></p>
 <hr>
 </section>
 </section>
-<section id="labfuns" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="labfuns"><span class="header-section-number">5.3</span> Label bearbeiten</h2>
+<section id="labfuns" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="labfuns"><span class="header-section-number">4.3</span> Label bearbeiten</h2>
 <p>Um Informationen zu Variablen &amp; Labels abzurufen, stehen eine ganze Reihe an extended macro functions zur Verfügung:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>loc v m1202</span>
@@ -502,8 +504,8 @@ x1: contains nonnumeric characters; no generate</code></pre>
 <p><strong><a href="#varlab">Übung 2</a></strong></p>
 <hr>
 </section>
-<section id="abgleiche" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="abgleiche"><span class="header-section-number">5.4</span> Abgleiche</h2>
+<section id="abgleiche" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="abgleiche"><span class="header-section-number">4.4</span> Abgleiche</h2>
 <p>Existiert eine Variable?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">capture</span> <span class="kw">confirm</span>  <span class="kw">variable</span> lm02</span>
@@ -523,8 +525,8 @@ x1: contains nonnumeric characters; no generate</code></pre>
 </div>
 <p><code>help data_types</code></p>
 </section>
-<section id="valsearch" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="valsearch"><span class="header-section-number">5.5</span> wo kommt überall -4 vor?</h2>
+<section id="valsearch" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="valsearch"><span class="header-section-number">4.5</span> wo kommt überall -4 vor?</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">ds</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> varlist1 <span class="ot">`r(varlist)'</span></span>
@@ -544,18 +546,18 @@ x1: contains nonnumeric characters; no generate</code></pre>
 <p><strong><a href="#valuesearch">Übung</a></strong></p>
 <hr>
 </section>
-<section id="übungen" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="übungen"><span class="header-section-number">5.6</span> Übungen</h2>
-<section id="strue" class="level3" data-number="5.6.1">
-<h3 data-number="5.6.1" class="anchored" data-anchor-id="strue"><span class="header-section-number">5.6.1</span> Übung</h3>
+<section id="übungen" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="übungen"><span class="header-section-number">4.6</span> Übungen</h2>
+<section id="strue" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="strue"><span class="header-section-number">4.6.1</span> Übung</h3>
 <ul>
 <li>Verwenden Sie mit <code>input</code> die Adressdaten von <a href="#labmacro">oben</a></li>
 <li>Wie kommen Sie jeweils an das vorletzte Wort aus der Adressliste?</li>
 <li>Extrahieren Sie die zehn letzten Zeichen aus <code>add</code>, aber lassen die drei letzten Zeichen weg. (“Zeichen 10 bis 4 von hinten her gezählt”).</li>
 </ul>
 </section>
-<section id="regexue" class="level3" data-number="5.6.2">
-<h3 data-number="5.6.2" class="anchored" data-anchor-id="regexue"><span class="header-section-number">5.6.2</span> Übung</h3>
+<section id="regexue" class="level3" data-number="4.6.2">
+<h3 data-number="4.6.2" class="anchored" data-anchor-id="regexue"><span class="header-section-number">4.6.2</span> Übung</h3>
 <ul>
 <li>Laden Sie den <code>regex.dta</code>:<br>
 <code>use "https://github.com/filius23/StataProgBIBB/raw/main/docs/regex1.dta", clear</code> und teilen Sie die Informationen aus <code>address</code> in 4 Variablen auf: Hausnummer (erste Zahl), Straße, PLZ, Region
@@ -567,8 +569,8 @@ x1: contains nonnumeric characters; no generate</code></pre>
 </ul></li>
 </ul>
 </section>
-<section id="varlab" class="level3" data-number="5.6.3">
-<h3 data-number="5.6.3" class="anchored" data-anchor-id="varlab"><span class="header-section-number">5.6.3</span> Übung</h3>
+<section id="varlab" class="level3" data-number="4.6.3">
+<h3 data-number="4.6.3" class="anchored" data-anchor-id="varlab"><span class="header-section-number">4.6.3</span> Übung</h3>
 <ul>
 <li><p>Laden Sie der Erwerbstätigenbefragung</p></li>
 <li><p>Kürzen die die <code>variable labels</code> für alle Variablen mit “wissensintensiver Beruf” im Label (<code>d *wib*</code>)</p>
@@ -602,8 +604,8 @@ x1: contains nonnumeric characters; no generate</code></pre>
 <li>Wie könnten Sie automatisiert den Variable label für die Muttersprachenvariablen (<code>F1606_*</code>) kürzen, sodass statt “Muttersprache:” nur noch “MSpr” im label steht?</li>
 </ul>
 </section>
-<section id="valuesearch" class="level3" data-number="5.6.4">
-<h3 data-number="5.6.4" class="anchored" data-anchor-id="valuesearch"><span class="header-section-number">5.6.4</span> Übung</h3>
+<section id="valuesearch" class="level3" data-number="4.6.4">
+<h3 data-number="4.6.4" class="anchored" data-anchor-id="valuesearch"><span class="header-section-number">4.6.4</span> Übung</h3>
 <ul>
 <li>In welchen Variablen aus der Erwerbstätigenbefragung kommt der der Wert <code>-9</code> vor?</li>
 <li>Füttern Sie diese Information in <code>mvdecode</code>, um die Missings zu überschreiben.
@@ -614,8 +616,8 @@ x1: contains nonnumeric characters; no generate</code></pre>
 </ul>
 </section>
 </section>
-<section id="anhang" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="anhang"><span class="header-section-number">5.7</span> Anhang</h2>
+<section id="anhang" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="anhang"><span class="header-section-number">4.7</span> Anhang</h2>
 <p>Variablen mit bestimmten Eigenschaften identifizieren in ein <code>macro</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ds</span>, has(<span class="dv">type</span> <span class="kw">byte</span>)</span>
@@ -731,19 +733,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./03_reg.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./05_Daten.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-      <div class="nav-footer-center">Alle Kursinhalte 2022 von <a href="https://afilser.netlify.app/">Andreas Filser</a><br> <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC Lizenz mit Namensnennung </a><br> Erstellt mit &amp; <a href="https://www.ssc.wisc.edu/~hemken/Stataworkshops/Statamarkdown/stata-and-r-markdown.html">Statamarkdown</a>, Code <a href="https://github.com/filius23/StataBIBB_tables2022">hier einsehbar </a></div>
+      <div class="nav-footer-center">Alle Kursinhalte <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> 2022 von <a href="https://afilser.netlify.app/">Andreas Filser</a><br> <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC Lizenz mit Namensnennung <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-by" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-nc" aria-hidden="true"></i></a><br> Erstellt mit <i class="fa-brands fa-r-project" aria-hidden="true"></i> &amp; <a href="https://www.ssc.wisc.edu/~hemken/Stataworkshops/Statamarkdown/stata-and-r-markdown.html">Statamarkdown</a>, Code <a href="https://github.com/filius23/StataBIBB_tables2022">hier einsehbar <i class="fa-brands fa-github" aria-hidden="true"></i></a></div>
   </div>
 </footer>
 

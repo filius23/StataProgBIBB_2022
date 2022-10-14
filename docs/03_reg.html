@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Progammieren mit Stata - 4&nbsp; Regressionsergebnisse weiterverarbeiten</title>
+<title>Programmieren mit Stata - 3&nbsp; Regressionsergebnisse weiterverarbeiten</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -99,6 +99,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -128,7 +130,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -141,7 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Progammieren mit Stata</a> 
+      <a href="./">Programmieren mit Stata</a> 
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -153,42 +155,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Herzlich Willkommen</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_macros.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Macros</span></a>
+  <a href="./01_macros.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Macros</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_loops_fromdata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></a>
+  <a href="./02_loops_fromdata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_reg.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></a>
+  <a href="./03_reg.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_labels_variab.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></a>
+  <a href="./04_labels_variab.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_Daten.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></a>
+  <a href="./05_Daten.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_weiteres.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></a>
+  <a href="./05_weiteres.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_lit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Literatur &amp; Links</span></a>
+  <a href="./06_lit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Literatur &amp; Links</span></a>
   </div>
 </li>
     </ul>
@@ -200,28 +202,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#e-und-r-der-regressionsergebnisse" id="toc-e-und-r-der-regressionsergebnisse" class="nav-link active" data-scroll-target="#e-und-r-der-regressionsergebnisse"> <span class="header-section-number">4.1</span> <code>e()</code> und <code>r()</code> der Regressionsergebnisse</a>
+  <li><a href="#e-und-r-der-regressionsergebnisse" id="toc-e-und-r-der-regressionsergebnisse" class="nav-link active" data-scroll-target="#e-und-r-der-regressionsergebnisse"> <span class="header-section-number">3.1</span> <code>e()</code> und <code>r()</code> der Regressionsergebnisse</a>
   <ul class="collapse">
-  <li><a href="#koeffizienten-mit-_b-_se-aufrufen" id="toc-koeffizienten-mit-_b-_se-aufrufen" class="nav-link" data-scroll-target="#koeffizienten-mit-_b-_se-aufrufen"> <span class="header-section-number">4.1.1</span> Koeffizienten mit <code>_b</code> / <code>_se</code> aufrufen</a></li>
-  <li><a href="#komplette-regressionstabelle" id="toc-komplette-regressionstabelle" class="nav-link" data-scroll-target="#komplette-regressionstabelle"> <span class="header-section-number">4.1.2</span> Komplette Regressionstabelle</a></li>
+  <li><a href="#koeffizienten-mit-_b-_se-aufrufen" id="toc-koeffizienten-mit-_b-_se-aufrufen" class="nav-link" data-scroll-target="#koeffizienten-mit-_b-_se-aufrufen"> <span class="header-section-number">3.1.1</span> Koeffizienten mit <code>_b</code> / <code>_se</code> aufrufen</a></li>
+  <li><a href="#komplette-regressionstabelle" id="toc-komplette-regressionstabelle" class="nav-link" data-scroll-target="#komplette-regressionstabelle"> <span class="header-section-number">3.1.2</span> Komplette Regressionstabelle</a></li>
   </ul></li>
-  <li><a href="#regressionstabellen-als-matrix-speichern-und-anpassen" id="toc-regressionstabellen-als-matrix-speichern-und-anpassen" class="nav-link" data-scroll-target="#regressionstabellen-als-matrix-speichern-und-anpassen"> <span class="header-section-number">4.2</span> Regressionstabellen als <code>matrix</code> speichern und anpassen</a></li>
-  <li><a href="#kategoriale-uv" id="toc-kategoriale-uv" class="nav-link" data-scroll-target="#kategoriale-uv"> <span class="header-section-number">4.3</span> kategoriale UV</a></li>
-  <li><a href="#als-datensatz-ablegen" id="toc-als-datensatz-ablegen" class="nav-link" data-scroll-target="#als-datensatz-ablegen"> <span class="header-section-number">4.4</span> Als Datensatz ablegen:</a></li>
-  <li><a href="#weitere-infos-aus-e" id="toc-weitere-infos-aus-e" class="nav-link" data-scroll-target="#weitere-infos-aus-e"> <span class="header-section-number">4.5</span> weitere Infos aus <code>e()</code></a>
+  <li><a href="#regressionstabellen-als-matrix-speichern-und-anpassen" id="toc-regressionstabellen-als-matrix-speichern-und-anpassen" class="nav-link" data-scroll-target="#regressionstabellen-als-matrix-speichern-und-anpassen"> <span class="header-section-number">3.2</span> Regressionstabellen als <code>matrix</code> speichern und anpassen</a></li>
+  <li><a href="#kategoriale-uv" id="toc-kategoriale-uv" class="nav-link" data-scroll-target="#kategoriale-uv"> <span class="header-section-number">3.3</span> kategoriale UV</a></li>
+  <li><a href="#als-datensatz-ablegen" id="toc-als-datensatz-ablegen" class="nav-link" data-scroll-target="#als-datensatz-ablegen"> <span class="header-section-number">3.4</span> Als Datensatz ablegen:</a></li>
+  <li><a href="#weitere-infos-aus-e" id="toc-weitere-infos-aus-e" class="nav-link" data-scroll-target="#weitere-infos-aus-e"> <span class="header-section-number">3.5</span> weitere Infos aus <code>e()</code></a>
   <ul class="collapse">
-  <li><a href="#esample" id="toc-esample" class="nav-link" data-scroll-target="#esample"> <span class="header-section-number">4.5.1</span> <code>e(sample)</code></a></li>
+  <li><a href="#esample" id="toc-esample" class="nav-link" data-scroll-target="#esample"> <span class="header-section-number">3.5.1</span> <code>e(sample)</code></a></li>
   </ul></li>
-  <li><a href="#reg-schrittweise-aufbauen" id="toc-reg-schrittweise-aufbauen" class="nav-link" data-scroll-target="#reg-schrittweise-aufbauen"> <span class="header-section-number">4.6</span> <code>reg</code> schrittweise aufbauen</a></li>
-  <li><a href="#übungen" id="toc-übungen" class="nav-link" data-scroll-target="#übungen"> <span class="header-section-number">4.7</span> Übungen</a>
+  <li><a href="#reg-schrittweise-aufbauen" id="toc-reg-schrittweise-aufbauen" class="nav-link" data-scroll-target="#reg-schrittweise-aufbauen"> <span class="header-section-number">3.6</span> <code>reg</code> schrittweise aufbauen</a></li>
+  <li><a href="#übungen" id="toc-übungen" class="nav-link" data-scroll-target="#übungen"> <span class="header-section-number">3.7</span> Übungen</a>
   <ul class="collapse">
-  <li><a href="#reg1" id="toc-reg1" class="nav-link" data-scroll-target="#reg1"> <span class="header-section-number">4.7.1</span> Übung</a></li>
-  <li><a href="#reg2" id="toc-reg2" class="nav-link" data-scroll-target="#reg2"> <span class="header-section-number">4.7.2</span> Übung</a></li>
+  <li><a href="#reg1" id="toc-reg1" class="nav-link" data-scroll-target="#reg1"> <span class="header-section-number">3.7.1</span> Übung</a></li>
+  <li><a href="#reg2" id="toc-reg2" class="nav-link" data-scroll-target="#reg2"> <span class="header-section-number">3.7.2</span> Übung</a></li>
   </ul></li>
-  <li><a href="#anhang" id="toc-anhang" class="nav-link" data-scroll-target="#anhang"> <span class="header-section-number">4.8</span> Anhang</a>
+  <li><a href="#anhang" id="toc-anhang" class="nav-link" data-scroll-target="#anhang"> <span class="header-section-number">3.8</span> Anhang</a>
   <ul class="collapse">
-  <li><a href="#statsby" id="toc-statsby" class="nav-link" data-scroll-target="#statsby"> <span class="header-section-number">4.8.1</span> <code>statsby</code></a></li>
-  <li><a href="#reg-ergebnisse-für-modelle-sammeln-schleife" id="toc-reg-ergebnisse-für-modelle-sammeln-schleife" class="nav-link" data-scroll-target="#reg-ergebnisse-für-modelle-sammeln-schleife"> <span class="header-section-number">4.8.2</span> <code>reg</code>-Ergebnisse für Modelle sammeln: Schleife</a></li>
+  <li><a href="#statsby" id="toc-statsby" class="nav-link" data-scroll-target="#statsby"> <span class="header-section-number">3.8.1</span> <code>statsby</code></a></li>
+  <li><a href="#reg-ergebnisse-für-modelle-sammeln-schleife" id="toc-reg-ergebnisse-für-modelle-sammeln-schleife" class="nav-link" data-scroll-target="#reg-ergebnisse-für-modelle-sammeln-schleife"> <span class="header-section-number">3.8.2</span> <code>reg</code>-Ergebnisse für Modelle sammeln: Schleife</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -231,7 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="regres" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></span></h1>
+<h1 class="title"><span id="regres" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></span></h1>
 </div>
 
 
@@ -248,8 +250,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 
 </div>
-<section id="e-und-r-der-regressionsergebnisse" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="e-und-r-der-regressionsergebnisse"><span class="header-section-number">4.1</span> <code>e()</code> und <code>r()</code> der Regressionsergebnisse</h2>
+<section id="e-und-r-der-regressionsergebnisse" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="e-und-r-der-regressionsergebnisse"><span class="header-section-number">3.1</span> <code>e()</code> und <code>r()</code> der Regressionsergebnisse</h2>
 <p>Die Koeffizienten und Standardfehler des letzten Modells werden in <code>e()</code> gespeichert:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> F518_SUF F200</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -281,8 +283,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 y1   109.44727  -344.12212</code></pre>
 </div>
 </div>
-<section id="koeffizienten-mit-_b-_se-aufrufen" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="koeffizienten-mit-_b-_se-aufrufen"><span class="header-section-number">4.1.1</span> Koeffizienten mit <code>_b</code> / <code>_se</code> aufrufen</h3>
+<section id="koeffizienten-mit-_b-_se-aufrufen" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="koeffizienten-mit-_b-_se-aufrufen"><span class="header-section-number">3.1.1</span> Koeffizienten mit <code>_b</code> / <code>_se</code> aufrufen</h3>
 <p>Allerdings gibt es noch eine Abkürzung mit <code>_b[varname]</code> bzw. <code>_se[varname]</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dis <span class="st">"Der Koeffizient für F200 ist "</span> _b[F200]</span>
@@ -333,8 +335,8 @@ Expression   : Linear prediction, predict()
 </div>
 </div>
 </section>
-<section id="komplette-regressionstabelle" class="level3" data-number="4.1.2">
-<h3 data-number="4.1.2" class="anchored" data-anchor-id="komplette-regressionstabelle"><span class="header-section-number">4.1.2</span> Komplette Regressionstabelle</h3>
+<section id="komplette-regressionstabelle" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="komplette-regressionstabelle"><span class="header-section-number">3.1.2</span> Komplette Regressionstabelle</h3>
 <p>Die vollständige Regressionstabelle ist aber eine r-Class matrix:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> F518_SUF F200</span>
@@ -357,8 +359,8 @@ pvalue   6.36e-287   .00096924
 </div>
 </section>
 </section>
-<section id="regressionstabellen-als-matrix-speichern-und-anpassen" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="regressionstabellen-als-matrix-speichern-und-anpassen"><span class="header-section-number">4.2</span> Regressionstabellen als <code>matrix</code> speichern und anpassen</h2>
+<section id="regressionstabellen-als-matrix-speichern-und-anpassen" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="regressionstabellen-als-matrix-speichern-und-anpassen"><span class="header-section-number">3.2</span> Regressionstabellen als <code>matrix</code> speichern und anpassen</h2>
 <p>Mit <code>'</code> können wir die Regressionstabelle transponieren:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> F518_SUF F200</span>
@@ -393,8 +395,8 @@ F200      14657  1.9601259          0</code></pre>
 </div>
 </div>
 </section>
-<section id="kategoriale-uv" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="kategoriale-uv"><span class="header-section-number">4.3</span> kategoriale UV</h2>
+<section id="kategoriale-uv" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="kategoriale-uv"><span class="header-section-number">3.3</span> kategoriale UV</h2>
 <p>Der Koeffizientenname ist etwas komplizierterer Name bei kat. UVs:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> F518_SUF i.S1 F200</span>
@@ -433,8 +435,8 @@ Der Koeffizient für S1 = weiblich ist -628.91281</code></pre>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="dt">_cons</span>   464.42184   125.90363    3.688709   .00022621   217.63489    711.2088       14656   1.9601259           0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="als-datensatz-ablegen" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="als-datensatz-ablegen"><span class="header-section-number">4.4</span> Als Datensatz ablegen:</h2>
+<section id="als-datensatz-ablegen" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="als-datensatz-ablegen"><span class="header-section-number">3.4</span> Als Datensatz ablegen:</h2>
 <p>Auch hier können wir dann mit <code>xsvmat</code> die Matrix in einen Datensatz umformatieren:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>cap frame <span class="kw">drop</span> regres1</span>
@@ -451,8 +453,8 @@ Der Koeffizient für S1 = weiblich ist -628.91281</code></pre>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="dt">_cons</span>    464.4218   125.9036    3.688709   .0002262    217.6349    711.2088   14656   1.960126       0  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="weitere-infos-aus-e" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="weitere-infos-aus-e"><span class="header-section-number">4.5</span> weitere Infos aus <code>e()</code></h2>
+<section id="weitere-infos-aus-e" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="weitere-infos-aus-e"><span class="header-section-number">3.5</span> weitere Infos aus <code>e()</code></h2>
 <p>In <code>ereturn list</code> oben sehen wir, dass <code>e(cmdline)</code> den <code>reg</code>-Befehl enthält:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a> <span class="kw">reg</span> F518_SUF i.S1 F200</span>
@@ -479,8 +481,8 @@ Der Koeffizient für S1 = weiblich ist -628.91281</code></pre>
 <hr>
 <p><strong><a href="#reg1">Übung</a></strong></p>
 <hr>
-<section id="esample" class="level3" data-number="4.5.1">
-<h3 data-number="4.5.1" class="anchored" data-anchor-id="esample"><span class="header-section-number">4.5.1</span> <code>e(sample)</code></h3>
+<section id="esample" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="esample"><span class="header-section-number">3.5.1</span> <code>e(sample)</code></h3>
 <p><code>e(sample)</code> ist eine <code>e()</code>-Class Funktion, welche die in einem Modell berücksichtigten Fälle zu markieren:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">reg</span> F518_SUF i.S1 F200</span>
@@ -519,8 +521,8 @@ Der Koeffizient für S1 = weiblich ist -628.91281</code></pre>
 </div>
 </section>
 </section>
-<section id="reg-schrittweise-aufbauen" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="reg-schrittweise-aufbauen"><span class="header-section-number">4.6</span> <code>reg</code> schrittweise aufbauen</h2>
+<section id="reg-schrittweise-aufbauen" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="reg-schrittweise-aufbauen"><span class="header-section-number">3.6</span> <code>reg</code> schrittweise aufbauen</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>glo mod1 i.S1 az i.m1202 zpalter i.Mig</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">regress</span> F518_SUF <span class="ot">${mod1}</span></span>
@@ -608,10 +610,10 @@ Standard errors in parentheses
 <p><strong><a href="#reg2">Übung</a></strong></p>
 <hr>
 </section>
-<section id="übungen" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="übungen"><span class="header-section-number">4.7</span> Übungen</h2>
-<section id="reg1" class="level3" data-number="4.7.1">
-<h3 data-number="4.7.1" class="anchored" data-anchor-id="reg1"><span class="header-section-number">4.7.1</span> Übung</h3>
+<section id="übungen" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="übungen"><span class="header-section-number">3.7</span> Übungen</h2>
+<section id="reg1" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="reg1"><span class="header-section-number">3.7.1</span> Übung</h3>
 <p>Erstellen Sie folgendes Regressionsmodell:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> az i.mig01 zpalter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -624,25 +626,25 @@ Standard errors in parentheses
 <li>Erstellen Sie zusätzlich eine Spalte mit dem Regressionsbefehl.</li>
 </ul>
 </section>
-<section id="reg2" class="level3" data-number="4.7.2">
-<h3 data-number="4.7.2" class="anchored" data-anchor-id="reg2"><span class="header-section-number">4.7.2</span> Übung</h3>
+<section id="reg2" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="reg2"><span class="header-section-number">3.7.2</span> Übung</h3>
 <p>Bauen Sie folgendes Modell Schritt für Schritt auf und lassen Sie sich die Tabelle mit <code>esttab</code> ausgeben:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> az i.S1 zpalter c.zpalter#c.zpalter i.gkpol i.F1604 i.F1604##i.S1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="anhang" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="anhang"><span class="header-section-number">4.8</span> Anhang</h2>
-<section id="statsby" class="level3" data-number="4.8.1">
-<h3 data-number="4.8.1" class="anchored" data-anchor-id="statsby"><span class="header-section-number">4.8.1</span> <code>statsby</code></h3>
+<section id="anhang" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="anhang"><span class="header-section-number">3.8</span> Anhang</h2>
+<section id="statsby" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="statsby"><span class="header-section-number">3.8.1</span> <code>statsby</code></h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">statsby</span> _b _se, <span class="kw">by</span>(Bula) <span class="kw">noisily</span>: <span class="co">///</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">regress</span> F518_SUF c.F200##c.F200 i.m1202 i.S1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="reg-ergebnisse-für-modelle-sammeln-schleife" class="level3" data-number="4.8.2">
-<h3 data-number="4.8.2" class="anchored" data-anchor-id="reg-ergebnisse-für-modelle-sammeln-schleife"><span class="header-section-number">4.8.2</span> <code>reg</code>-Ergebnisse für Modelle sammeln: Schleife</h3>
+<section id="reg-ergebnisse-für-modelle-sammeln-schleife" class="level3" data-number="3.8.2">
+<h3 data-number="3.8.2" class="anchored" data-anchor-id="reg-ergebnisse-für-modelle-sammeln-schleife"><span class="header-section-number">3.8.2</span> <code>reg</code>-Ergebnisse für Modelle sammeln: Schleife</h3>
 <p>Wir können mit den <code>matrix</code>-Befehlen auch eine Schleife bauen, welche eine Reihe an Regressionsmodellen schätzt und bei jedem Durchlauf einen zusätzlichen Term hinzunimmt. Wir interessieren uns aber nur, dafür wie sich der Koeffizient für das Geschlecht (S1 == 2) entwickelt mit jedem neuen Modell. Mit den <code>matrix</code>-Befehlen können wir dieser herausfiltern.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> predictors i.S1 c.F200 c.F200#c.F200 i.m1202 zpalter c.zpalter#c.zpalter <span class="co">// UV-Liste</span></span>
@@ -876,19 +878,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./02_loops_fromdata.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./04_labels_variab.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-      <div class="nav-footer-center">Alle Kursinhalte 2022 von <a href="https://afilser.netlify.app/">Andreas Filser</a><br> <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC Lizenz mit Namensnennung </a><br> Erstellt mit &amp; <a href="https://www.ssc.wisc.edu/~hemken/Stataworkshops/Statamarkdown/stata-and-r-markdown.html">Statamarkdown</a>, Code <a href="https://github.com/filius23/StataBIBB_tables2022">hier einsehbar </a></div>
+      <div class="nav-footer-center">Alle Kursinhalte <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> 2022 von <a href="https://afilser.netlify.app/">Andreas Filser</a><br> <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC Lizenz mit Namensnennung <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-by" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-nc" aria-hidden="true"></i></a><br> Erstellt mit <i class="fa-brands fa-r-project" aria-hidden="true"></i> &amp; <a href="https://www.ssc.wisc.edu/~hemken/Stataworkshops/Statamarkdown/stata-and-r-markdown.html">Statamarkdown</a>, Code <a href="https://github.com/filius23/StataBIBB_tables2022">hier einsehbar <i class="fa-brands fa-github" aria-hidden="true"></i></a></div>
   </div>
 </footer>
 

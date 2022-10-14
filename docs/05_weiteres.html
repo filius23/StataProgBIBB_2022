@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Progammieren mit Stata - 7&nbsp; Weitere macro &amp; matrix Funktionen</title>
+<title>Programmieren mit Stata - 6&nbsp; Weitere macro &amp; matrix Funktionen</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -99,6 +99,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -128,7 +130,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -141,7 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Progammieren mit Stata</a> 
+      <a href="./">Programmieren mit Stata</a> 
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -153,42 +155,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Herzlich Willkommen</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_macros.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Macros</span></a>
+  <a href="./01_macros.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Macros</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_loops_fromdata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></a>
+  <a href="./02_loops_fromdata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_reg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></a>
+  <a href="./03_reg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_labels_variab.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></a>
+  <a href="./04_labels_variab.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_Daten.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></a>
+  <a href="./05_Daten.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_weiteres.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></a>
+  <a href="./05_weiteres.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_lit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Literatur &amp; Links</span></a>
+  <a href="./06_lit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Literatur &amp; Links</span></a>
   </div>
 </li>
     </ul>
@@ -200,13 +202,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#capture" id="toc-capture" class="nav-link active" data-scroll-target="#capture"> <span class="header-section-number">7.1</span> <code>capture</code></a></li>
-  <li><a href="#macro-extended-functions-for-parsing" id="toc-macro-extended-functions-for-parsing" class="nav-link" data-scroll-target="#macro-extended-functions-for-parsing"> <span class="header-section-number">7.2</span> Macro extended functions for parsing</a></li>
-  <li><a href="#weitere-matrix-befehle" id="toc-weitere-matrix-befehle" class="nav-link" data-scroll-target="#weitere-matrix-befehle"> <span class="header-section-number">7.3</span> weitere <code>matrix</code>-Befehle</a>
+  <li><a href="#capture" id="toc-capture" class="nav-link active" data-scroll-target="#capture"> <span class="header-section-number">6.1</span> <code>capture</code></a></li>
+  <li><a href="#macro-extended-functions-for-parsing" id="toc-macro-extended-functions-for-parsing" class="nav-link" data-scroll-target="#macro-extended-functions-for-parsing"> <span class="header-section-number">6.2</span> Macro extended functions for parsing</a></li>
+  <li><a href="#weitere-matrix-befehle" id="toc-weitere-matrix-befehle" class="nav-link" data-scroll-target="#weitere-matrix-befehle"> <span class="header-section-number">6.3</span> weitere <code>matrix</code>-Befehle</a>
   <ul class="collapse">
-  <li><a href="#teilmatrizen" id="toc-teilmatrizen" class="nav-link" data-scroll-target="#teilmatrizen"> <span class="header-section-number">7.3.1</span> Teilmatrizen</a></li>
-  <li><a href="#spaltenzeilen-auswählen" id="toc-spaltenzeilen-auswählen" class="nav-link" data-scroll-target="#spaltenzeilen-auswählen"> <span class="header-section-number">7.3.2</span> Spalten/Zeilen auswählen</a></li>
-  <li><a href="#crnumb" id="toc-crnumb" class="nav-link" data-scroll-target="#crnumb"> <span class="header-section-number">7.3.3</span> Namensbasierte Auswahl</a></li>
+  <li><a href="#teilmatrizen" id="toc-teilmatrizen" class="nav-link" data-scroll-target="#teilmatrizen"> <span class="header-section-number">6.3.1</span> Teilmatrizen</a></li>
+  <li><a href="#spaltenzeilen-auswählen" id="toc-spaltenzeilen-auswählen" class="nav-link" data-scroll-target="#spaltenzeilen-auswählen"> <span class="header-section-number">6.3.2</span> Spalten/Zeilen auswählen</a></li>
+  <li><a href="#crnumb" id="toc-crnumb" class="nav-link" data-scroll-target="#crnumb"> <span class="header-section-number">6.3.3</span> Namensbasierte Auswahl</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -216,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="misc" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></span></h1>
+<h1 class="title"><span id="misc" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></span></h1>
 </div>
 
 
@@ -233,15 +235,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 
 </div>
-<section id="capture" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="capture"><span class="header-section-number">7.1</span> <code>capture</code></h2>
+<section id="capture" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="capture"><span class="header-section-number">6.1</span> <code>capture</code></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cap <span class="kw">drop</span> S01 zpalter</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">d</span> S0? zp*</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="macro-extended-functions-for-parsing" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="macro-extended-functions-for-parsing"><span class="header-section-number">7.2</span> Macro extended functions for parsing</h2>
+<section id="macro-extended-functions-for-parsing" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="macro-extended-functions-for-parsing"><span class="header-section-number">6.2</span> Macro extended functions for parsing</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> wanted : <span class="kw">di</span> <span class="dt">_dup</span>(10) <span class="st">"oo "</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> wanted : <span class="kw">di</span> <span class="dt">_dup</span>(10) <span class="st">"oo "</span></span>
@@ -296,8 +298,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- ``` -->
 <!-- in addition to the usual, places a count of the number of substitutions in the specified global or in local macro mname2. -->
 </section>
-<section id="weitere-matrix-befehle" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="weitere-matrix-befehle"><span class="header-section-number">7.3</span> weitere <code>matrix</code>-Befehle</h2>
+<section id="weitere-matrix-befehle" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="weitere-matrix-befehle"><span class="header-section-number">6.3</span> weitere <code>matrix</code>-Befehle</h2>
 <p>Wir können auch Rechnungen einfügen:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> X1 = (1+1, 2*3/4 \ 5/2, 3)</span>
@@ -309,8 +311,8 @@ r1    2  1.5
 r2  2.5    3</code></pre>
 </div>
 </div>
-<section id="teilmatrizen" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="teilmatrizen"><span class="header-section-number">7.3.1</span> Teilmatrizen</h3>
+<section id="teilmatrizen" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="teilmatrizen"><span class="header-section-number">6.3.1</span> Teilmatrizen</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mat X1 = (1,2,3,4,5 \ 6,7,8,9,10 \ 0,-1,-2,-3,-5 \ -6,-7,-8,-9,-10)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">l</span> X1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -375,8 +377,8 @@ r4   -6   -7   -8   -9  -10</code></pre>
 </div>
 </div>
 </section>
-<section id="spaltenzeilen-auswählen" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="spaltenzeilen-auswählen"><span class="header-section-number">7.3.2</span> Spalten/Zeilen auswählen</h3>
+<section id="spaltenzeilen-auswählen" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="spaltenzeilen-auswählen"><span class="header-section-number">6.3.2</span> Spalten/Zeilen auswählen</h3>
 <p>B1 enthält Spalte 1 und 3 aus <code>X1</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mat B1 = X1[1...,1],X1[1...,3]</span>
@@ -425,8 +427,8 @@ r4   -6   -7   -8   -9  -10</code></pre>
 </div>
 <!-- * https://thedatamonkey.blogspot.com/2011/01/stata-matrices.html -->
 </section>
-<section id="crnumb" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="crnumb"><span class="header-section-number">7.3.3</span> Namensbasierte Auswahl</h3>
+<section id="crnumb" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="crnumb"><span class="header-section-number">6.3.3</span> Namensbasierte Auswahl</h3>
 <p>Hier helfen <code>rownumb</code> und <code>colnumb</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mat X1 = (1,2,3 \ 8,9,10 )</span>
@@ -560,19 +562,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./05_Daten.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./06_lit.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Literatur &amp; Links</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Literatur &amp; Links</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-      <div class="nav-footer-center">Alle Kursinhalte 2022 von <a href="https://afilser.netlify.app/">Andreas Filser</a><br> <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC Lizenz mit Namensnennung </a><br> Erstellt mit &amp; <a href="https://www.ssc.wisc.edu/~hemken/Stataworkshops/Statamarkdown/stata-and-r-markdown.html">Statamarkdown</a>, Code <a href="https://github.com/filius23/StataBIBB_tables2022">hier einsehbar </a></div>
+      <div class="nav-footer-center">Alle Kursinhalte <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> 2022 von <a href="https://afilser.netlify.app/">Andreas Filser</a><br> <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC Lizenz mit Namensnennung <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-by" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-nc" aria-hidden="true"></i></a><br> Erstellt mit <i class="fa-brands fa-r-project" aria-hidden="true"></i> &amp; <a href="https://www.ssc.wisc.edu/~hemken/Stataworkshops/Statamarkdown/stata-and-r-markdown.html">Statamarkdown</a>, Code <a href="https://github.com/filius23/StataBIBB_tables2022">hier einsehbar <i class="fa-brands fa-github" aria-hidden="true"></i></a></div>
   </div>
 </footer>
 

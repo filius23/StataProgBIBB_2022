@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Progammieren mit Stata - 6&nbsp; Dateien- und DoFile-Verwaltung</title>
+<title>Programmieren mit Stata - 5&nbsp; Dateien- und DoFile-Verwaltung</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -99,6 +99,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -128,7 +130,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -141,7 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Progammieren mit Stata</a> 
+      <a href="./">Programmieren mit Stata</a> 
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -153,42 +155,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Herzlich Willkommen</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_macros.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Macros</span></a>
+  <a href="./01_macros.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Macros</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_loops_fromdata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></a>
+  <a href="./02_loops_fromdata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_reg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></a>
+  <a href="./03_reg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_labels_variab.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></a>
+  <a href="./04_labels_variab.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_Daten.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></a>
+  <a href="./05_Daten.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_weiteres.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></a>
+  <a href="./05_weiteres.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_lit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Literatur &amp; Links</span></a>
+  <a href="./06_lit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Literatur &amp; Links</span></a>
   </div>
 </li>
     </ul>
@@ -200,24 +202,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#dir---alles-einlesen" id="toc-dir---alles-einlesen" class="nav-link active" data-scroll-target="#dir---alles-einlesen"> <span class="header-section-number">6.1</span> <code>dir</code> - alles einlesen</a>
+  <li><a href="#dir---alles-einlesen" id="toc-dir---alles-einlesen" class="nav-link active" data-scroll-target="#dir---alles-einlesen"> <span class="header-section-number">5.1</span> <code>dir</code> - alles einlesen</a>
   <ul class="collapse">
-  <li><a href="#copy" id="toc-copy" class="nav-link" data-scroll-target="#copy"> <span class="header-section-number">6.1.1</span> <code>copy</code></a></li>
-  <li><a href="#erase" id="toc-erase" class="nav-link" data-scroll-target="#erase"> <span class="header-section-number">6.1.2</span> <code>erase</code></a></li>
+  <li><a href="#copy" id="toc-copy" class="nav-link" data-scroll-target="#copy"> <span class="header-section-number">5.1.1</span> <code>copy</code></a></li>
+  <li><a href="#erase" id="toc-erase" class="nav-link" data-scroll-target="#erase"> <span class="header-section-number">5.1.2</span> <code>erase</code></a></li>
   </ul></li>
-  <li><a href="#verzeichnisse-dofiles-erstellen" id="toc-verzeichnisse-dofiles-erstellen" class="nav-link" data-scroll-target="#verzeichnisse-dofiles-erstellen"> <span class="header-section-number">6.2</span> Verzeichnisse &amp; DoFiles erstellen</a></li>
-  <li><a href="#master-dofile" id="toc-master-dofile" class="nav-link" data-scroll-target="#master-dofile"> <span class="header-section-number">6.3</span> Master DoFile</a>
+  <li><a href="#verzeichnisse-dofiles-erstellen" id="toc-verzeichnisse-dofiles-erstellen" class="nav-link" data-scroll-target="#verzeichnisse-dofiles-erstellen"> <span class="header-section-number">5.2</span> Verzeichnisse &amp; DoFiles erstellen</a></li>
+  <li><a href="#master-dofile" id="toc-master-dofile" class="nav-link" data-scroll-target="#master-dofile"> <span class="header-section-number">5.3</span> Master DoFile</a>
   <ul class="collapse">
-  <li><a href="#dofile-mit-argumenten-starten" id="toc-dofile-mit-argumenten-starten" class="nav-link" data-scroll-target="#dofile-mit-argumenten-starten"> <span class="header-section-number">6.3.1</span> DoFile mit Argumenten starten</a></li>
-  <li><a href="#in-neuer-session-starten" id="toc-in-neuer-session-starten" class="nav-link" data-scroll-target="#in-neuer-session-starten"> <span class="header-section-number">6.3.2</span> in neuer Session starten</a></li>
-  <li><a href="#mehrere-sessions-starten" id="toc-mehrere-sessions-starten" class="nav-link" data-scroll-target="#mehrere-sessions-starten"> <span class="header-section-number">6.3.3</span> mehrere Sessions starten</a></li>
+  <li><a href="#dofile-mit-argumenten-starten" id="toc-dofile-mit-argumenten-starten" class="nav-link" data-scroll-target="#dofile-mit-argumenten-starten"> <span class="header-section-number">5.3.1</span> DoFile mit Argumenten starten</a></li>
+  <li><a href="#in-neuer-session-starten" id="toc-in-neuer-session-starten" class="nav-link" data-scroll-target="#in-neuer-session-starten"> <span class="header-section-number">5.3.2</span> in neuer Session starten</a></li>
+  <li><a href="#mehrere-sessions-starten" id="toc-mehrere-sessions-starten" class="nav-link" data-scroll-target="#mehrere-sessions-starten"> <span class="header-section-number">5.3.3</span> mehrere Sessions starten</a></li>
   </ul></li>
-  <li><a href="#übungen" id="toc-übungen" class="nav-link" data-scroll-target="#übungen"> <span class="header-section-number">6.4</span> Übungen</a>
+  <li><a href="#übungen" id="toc-übungen" class="nav-link" data-scroll-target="#übungen"> <span class="header-section-number">5.4</span> Übungen</a>
   <ul class="collapse">
-  <li><a href="#dir_readin" id="toc-dir_readin" class="nav-link" data-scroll-target="#dir_readin"> <span class="header-section-number">6.4.1</span> Übung</a></li>
-  <li><a href="#masterdofile" id="toc-masterdofile" class="nav-link" data-scroll-target="#masterdofile"> <span class="header-section-number">6.4.2</span> Übung</a></li>
+  <li><a href="#dir_readin" id="toc-dir_readin" class="nav-link" data-scroll-target="#dir_readin"> <span class="header-section-number">5.4.1</span> Übung</a></li>
+  <li><a href="#masterdofile" id="toc-masterdofile" class="nav-link" data-scroll-target="#masterdofile"> <span class="header-section-number">5.4.2</span> Übung</a></li>
   </ul></li>
-  <li><a href="#anhang" id="toc-anhang" class="nav-link" data-scroll-target="#anhang"> <span class="header-section-number">6.5</span> Anhang</a></li>
+  <li><a href="#anhang" id="toc-anhang" class="nav-link" data-scroll-target="#anhang"> <span class="header-section-number">5.5</span> Anhang</a></li>
   </ul>
 </nav>
     </div>
@@ -226,7 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="data" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></span></h1>
+<h1 class="title"><span id="data" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></span></h1>
 </div>
 
 
@@ -243,8 +245,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 
 </div>
-<section id="dir---alles-einlesen" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="dir---alles-einlesen"><span class="header-section-number">6.1</span> <code>dir</code> - alles einlesen</h2>
+<section id="dir---alles-einlesen" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="dir---alles-einlesen"><span class="header-section-number">5.1</span> <code>dir</code> - alles einlesen</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>glo pfad <span class="st">"D:\oCloud\Home-Cloud\Lehre\BIBB\StataProgBIBB\projekt"</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -268,8 +270,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>, respectcase</code>: <code>global dtalist: dir "${pfad}" files "baua*.dta , respectcase"</code> würde “BAUA.dta” ignorieren.</p>
-<section id="copy" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="copy"><span class="header-section-number">6.1.1</span> <code>copy</code></h3>
+<section id="copy" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="copy"><span class="header-section-number">5.1.1</span> <code>copy</code></h3>
 <p>Mit <code>copy</code> können wir Dateien kopieren.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>loc usefile <span class="ot">`: word 1 of ${dtalist}'</span>                <span class="co">// erster Eintrag aus der Liste</span></span>
@@ -285,8 +287,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>mac <span class="ot">l</span> dtalist2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="erase" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="erase"><span class="header-section-number">6.1.2</span> <code>erase</code></h3>
+<section id="erase" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="erase"><span class="header-section-number">5.1.2</span> <code>erase</code></h3>
 <p>Mit <code>erase</code> können wir Dateien löschen.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>loc usefile <span class="ot">`: word 1 of ${dtalist}'</span>                <span class="co">// erster Eintrag aus der Liste</span></span>
@@ -304,8 +306,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 </section>
 </section>
-<section id="verzeichnisse-dofiles-erstellen" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="verzeichnisse-dofiles-erstellen"><span class="header-section-number">6.2</span> Verzeichnisse &amp; DoFiles erstellen</h2>
+<section id="verzeichnisse-dofiles-erstellen" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="verzeichnisse-dofiles-erstellen"><span class="header-section-number">5.2</span> Verzeichnisse &amp; DoFiles erstellen</h2>
 <p>Mit <code>mkdir</code> können wir Verzeichnisse erstellen:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> pfad <span class="st">"D:\oCloud\Home-Cloud\Lehre\BIBB\StataProgBIBB\projekt"</span></span>
@@ -329,10 +331,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>file <span class="kw">close</span> macros </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="master-dofile" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="master-dofile"><span class="header-section-number">6.3</span> Master DoFile</h2>
-<section id="dofile-mit-argumenten-starten" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="dofile-mit-argumenten-starten"><span class="header-section-number">6.3.1</span> DoFile mit Argumenten starten</h3>
+<section id="master-dofile" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="master-dofile"><span class="header-section-number">5.3</span> Master DoFile</h2>
+<section id="dofile-mit-argumenten-starten" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="dofile-mit-argumenten-starten"><span class="header-section-number">5.3.1</span> DoFile mit Argumenten starten</h3>
 <p>Ein DoFile kann auch direkt aus einem Master-DoFile gestartet werden. Werte, die wir danach angeben, können im DoFile mit der Angabe der Position abgerufen werden:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">do</span> <span class="st">"${prog}/051_DoFile.do"</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -357,8 +359,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> gkpol <span class="ot">`var'</span> <span class="kw">if</span> m1202 == <span class="ot">`ausb'</span> &amp; S1 == <span class="ot">`gend'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="in-neuer-session-starten" class="level3" data-number="6.3.2">
-<h3 data-number="6.3.2" class="anchored" data-anchor-id="in-neuer-session-starten"><span class="header-section-number">6.3.2</span> in neuer Session starten</h3>
+<section id="in-neuer-session-starten" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="in-neuer-session-starten"><span class="header-section-number">5.3.2</span> in neuer Session starten</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cd <span class="ot">${prog}</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>winexec <span class="ot">`c(sysdir_stata)'</span>StataSE-64.exe <span class="kw">do</span> <span class="st">"${prog}/052_DoFile1.do"</span> 4 2 mobil</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -366,8 +368,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Startet <code>052_DoFile1.do</code> in einer neuen Session.</p>
 <p><strong>Achtung</strong>: hier sind dann auch die globals, locals usw. weg. Um die globals zu übernehmen, muss dann ein <code>macrodofile</code> eingebunden werden.</p>
 </section>
-<section id="mehrere-sessions-starten" class="level3" data-number="6.3.3">
-<h3 data-number="6.3.3" class="anchored" data-anchor-id="mehrere-sessions-starten"><span class="header-section-number">6.3.3</span> mehrere Sessions starten</h3>
+<section id="mehrere-sessions-starten" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="mehrere-sessions-starten"><span class="header-section-number">5.3.3</span> mehrere Sessions starten</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">forvalues</span> <span class="fu">s</span> = 1/2{</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    cd <span class="ot">${prog}</span></span>
@@ -379,10 +381,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr>
 </section>
 </section>
-<section id="übungen" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="übungen"><span class="header-section-number">6.4</span> Übungen</h2>
-<section id="dir_readin" class="level3" data-number="6.4.1">
-<h3 data-number="6.4.1" class="anchored" data-anchor-id="dir_readin"><span class="header-section-number">6.4.1</span> Übung</h3>
+<section id="übungen" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="übungen"><span class="header-section-number">5.4</span> Übungen</h2>
+<section id="dir_readin" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="dir_readin"><span class="header-section-number">5.4.1</span> Übung</h3>
 <ul>
 <li>Im zip-Ordner <code>dir_übung.zip</code> finden sich auch <code>.csv</code>-Dateien. Lesen Sie diese nach der Reihe ein und speichern Sie die Daten als <code>.dta</code> - danach können alle Datensätze zusammengefügt werden.
 <ul>
@@ -394,15 +396,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Kopieren Sie eine der Dateien und löschen Sie sie anschließend wieder.</li>
 </ul>
 </section>
-<section id="masterdofile" class="level3" data-number="6.4.2">
-<h3 data-number="6.4.2" class="anchored" data-anchor-id="masterdofile"><span class="header-section-number">6.4.2</span> Übung</h3>
+<section id="masterdofile" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="masterdofile"><span class="header-section-number">5.4.2</span> Übung</h3>
 <ul>
 <li>Starten Sie getrennte Auswertungen für Männer und Frauen für das Merkmal <code>zpalter</code>, bspw. mit <code>summary</code> und stoßen Sie dieses mit <code>do ...</code> an.</li>
 </ul>
 </section>
 </section>
-<section id="anhang" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="anhang"><span class="header-section-number">6.5</span> Anhang</h2>
+<section id="anhang" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="anhang"><span class="header-section-number">5.5</span> Anhang</h2>
 <p><a href="https://sites.google.com/site/jenniferlvwinter/stata-code">weitere File-Loops</a></p>
 
 
@@ -510,19 +512,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./04_labels_variab.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./05_weiteres.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-      <div class="nav-footer-center">Alle Kursinhalte 2022 von <a href="https://afilser.netlify.app/">Andreas Filser</a><br> <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC Lizenz mit Namensnennung </a><br> Erstellt mit &amp; <a href="https://www.ssc.wisc.edu/~hemken/Stataworkshops/Statamarkdown/stata-and-r-markdown.html">Statamarkdown</a>, Code <a href="https://github.com/filius23/StataBIBB_tables2022">hier einsehbar </a></div>
+      <div class="nav-footer-center">Alle Kursinhalte <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> 2022 von <a href="https://afilser.netlify.app/">Andreas Filser</a><br> <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC Lizenz mit Namensnennung <i class="fa-brands fa-creative-commons" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-by" aria-hidden="true"></i> <i class="fa-brands fa-creative-commons-nc" aria-hidden="true"></i></a><br> Erstellt mit <i class="fa-brands fa-r-project" aria-hidden="true"></i> &amp; <a href="https://www.ssc.wisc.edu/~hemken/Stataworkshops/Statamarkdown/stata-and-r-markdown.html">Statamarkdown</a>, Code <a href="https://github.com/filius23/StataBIBB_tables2022">hier einsehbar <i class="fa-brands fa-github" aria-hidden="true"></i></a></div>
   </div>
 </footer>
 

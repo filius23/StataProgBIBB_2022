@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Programmieren mit Stata - 2&nbsp; Macros</title>
+<title>Programmieren mit Stata - 1&nbsp; Macros</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,7 +131,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Macros</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Macros</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -156,42 +156,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Herzlich Willkommen</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Herzlich Willkommen</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_macros.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Macros</span></a>
+  <a href="./01_macros.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Macros</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02_loops_fromdata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></a>
+  <a href="./02_loops_fromdata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_reg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></a>
+  <a href="./03_reg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_labels_variab.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></a>
+  <a href="./04_labels_variab.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_Daten.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></a>
+  <a href="./05_Daten.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05_weiteres.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></a>
+  <a href="./05_weiteres.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_lit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Literatur &amp; Links</span></a>
+  <a href="./06_lit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Literatur &amp; Links</span></a>
   </div>
 </li>
     </ul>
@@ -203,38 +203,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#macht-einen-unterschied" id="toc-macht-einen-unterschied" class="nav-link active" data-scroll-target="#macht-einen-unterschied"> <span class="header-section-number">2.1</span> <code>=</code> macht einen Unterschied</a></li>
-  <li><a href="#local-und-global-sind-getrennte-welten" id="toc-local-und-global-sind-getrennte-welten" class="nav-link" data-scroll-target="#local-und-global-sind-getrennte-welten"> <span class="header-section-number">2.2</span> <code>local</code> und <code>global</code> sind getrennte Welten</a></li>
-  <li><a href="#macros-mit-text" id="toc-macros-mit-text" class="nav-link" data-scroll-target="#macros-mit-text"> <span class="header-section-number">2.3</span> Macros mit Text</a></li>
-  <li><a href="#dateipfade" id="toc-dateipfade" class="nav-link" data-scroll-target="#dateipfade"> <span class="header-section-number">2.4</span> Dateipfade</a></li>
-  <li><a href="#cmac" id="toc-cmac" class="nav-link" data-scroll-target="#cmac"> <span class="header-section-number">2.5</span> Bereits definierte Macros</a>
+  <li><a href="#macht-einen-unterschied" id="toc-macht-einen-unterschied" class="nav-link active" data-scroll-target="#macht-einen-unterschied"> <span class="header-section-number">1.1</span> <code>=</code> macht einen Unterschied</a></li>
+  <li><a href="#local-und-global-sind-getrennte-welten" id="toc-local-und-global-sind-getrennte-welten" class="nav-link" data-scroll-target="#local-und-global-sind-getrennte-welten"> <span class="header-section-number">1.2</span> <code>local</code> und <code>global</code> sind getrennte Welten</a></li>
+  <li><a href="#macros-mit-text" id="toc-macros-mit-text" class="nav-link" data-scroll-target="#macros-mit-text"> <span class="header-section-number">1.3</span> Macros mit Text</a></li>
+  <li><a href="#dateipfade" id="toc-dateipfade" class="nav-link" data-scroll-target="#dateipfade"> <span class="header-section-number">1.4</span> Dateipfade</a></li>
+  <li><a href="#cmac" id="toc-cmac" class="nav-link" data-scroll-target="#cmac"> <span class="header-section-number">1.5</span> Bereits definierte Macros</a>
   <ul class="collapse">
-  <li><a href="#if1" id="toc-if1" class="nav-link" data-scroll-target="#if1"> <span class="header-section-number">2.5.1</span> <code>if</code></a></li>
-  <li><a href="#macros-als-variablennamen-und-befehle" id="toc-macros-als-variablennamen-und-befehle" class="nav-link" data-scroll-target="#macros-als-variablennamen-und-befehle"> <span class="header-section-number">2.5.2</span> Macros als Variablennamen und Befehle</a></li>
-  <li><a href="#allglo" id="toc-allglo" class="nav-link" data-scroll-target="#allglo"> <span class="header-section-number">2.5.3</span> <code>globals</code> durchsuchen</a></li>
+  <li><a href="#if1" id="toc-if1" class="nav-link" data-scroll-target="#if1"> <span class="header-section-number">1.5.1</span> <code>if</code></a></li>
+  <li><a href="#macros-als-variablennamen-und-befehle" id="toc-macros-als-variablennamen-und-befehle" class="nav-link" data-scroll-target="#macros-als-variablennamen-und-befehle"> <span class="header-section-number">1.5.2</span> Macros als Variablennamen und Befehle</a></li>
+  <li><a href="#allglo" id="toc-allglo" class="nav-link" data-scroll-target="#allglo"> <span class="header-section-number">1.5.3</span> <code>globals</code> durchsuchen</a></li>
   </ul></li>
-  <li><a href="#wenn-nicht-if-dann-else" id="toc-wenn-nicht-if-dann-else" class="nav-link" data-scroll-target="#wenn-nicht-if-dann-else"> <span class="header-section-number">2.6</span> Wenn nicht <code>if</code>, dann <code>else</code></a></li>
-  <li><a href="#unterbrechen-wenn-ein-fehler-vorliegt" id="toc-unterbrechen-wenn-ein-fehler-vorliegt" class="nav-link" data-scroll-target="#unterbrechen-wenn-ein-fehler-vorliegt"> <span class="header-section-number">2.7</span> Unterbrechen wenn ein Fehler vorliegt</a></li>
-  <li><a href="#schleifen-foreach-forvalues" id="toc-schleifen-foreach-forvalues" class="nav-link" data-scroll-target="#schleifen-foreach-forvalues"> <span class="header-section-number">2.8</span> Schleifen: <code>foreach</code> &amp; <code>forvalues</code></a>
+  <li><a href="#wenn-nicht-if-dann-else" id="toc-wenn-nicht-if-dann-else" class="nav-link" data-scroll-target="#wenn-nicht-if-dann-else"> <span class="header-section-number">1.6</span> Wenn nicht <code>if</code>, dann <code>else</code></a></li>
+  <li><a href="#unterbrechen-wenn-ein-fehler-vorliegt" id="toc-unterbrechen-wenn-ein-fehler-vorliegt" class="nav-link" data-scroll-target="#unterbrechen-wenn-ein-fehler-vorliegt"> <span class="header-section-number">1.7</span> Unterbrechen wenn ein Fehler vorliegt</a></li>
+  <li><a href="#schleifen-foreach-forvalues" id="toc-schleifen-foreach-forvalues" class="nav-link" data-scroll-target="#schleifen-foreach-forvalues"> <span class="header-section-number">1.8</span> Schleifen: <code>foreach</code> &amp; <code>forvalues</code></a>
   <ul class="collapse">
-  <li><a href="#ferest" id="toc-ferest" class="nav-link" data-scroll-target="#ferest"> <span class="header-section-number">2.8.1</span> <code>ferest()</code></a></li>
-  <li><a href="#weitere-schleifentypen" id="toc-weitere-schleifentypen" class="nav-link" data-scroll-target="#weitere-schleifentypen"> <span class="header-section-number">2.8.2</span> Weitere Schleifentypen</a></li>
-  <li><a href="#anwendung" id="toc-anwendung" class="nav-link" data-scroll-target="#anwendung"> <span class="header-section-number">2.8.3</span> Anwendung</a></li>
-  <li><a href="#schleifen-aufbauen" id="toc-schleifen-aufbauen" class="nav-link" data-scroll-target="#schleifen-aufbauen"> <span class="header-section-number">2.8.4</span> Schleifen aufbauen</a></li>
-  <li><a href="#nested-loop" id="toc-nested-loop" class="nav-link" data-scroll-target="#nested-loop"> <span class="header-section-number">2.8.5</span> nested loop</a></li>
-  <li><a href="#display-vs.-macro-list" id="toc-display-vs.-macro-list" class="nav-link" data-scroll-target="#display-vs.-macro-list"> <span class="header-section-number">2.8.6</span> <code>display</code> vs.&nbsp;<code>macro list</code></a></li>
+  <li><a href="#ferest" id="toc-ferest" class="nav-link" data-scroll-target="#ferest"> <span class="header-section-number">1.8.1</span> <code>ferest()</code></a></li>
+  <li><a href="#weitere-schleifentypen" id="toc-weitere-schleifentypen" class="nav-link" data-scroll-target="#weitere-schleifentypen"> <span class="header-section-number">1.8.2</span> Weitere Schleifentypen</a></li>
+  <li><a href="#anwendung" id="toc-anwendung" class="nav-link" data-scroll-target="#anwendung"> <span class="header-section-number">1.8.3</span> Anwendung</a></li>
+  <li><a href="#schleifen-aufbauen" id="toc-schleifen-aufbauen" class="nav-link" data-scroll-target="#schleifen-aufbauen"> <span class="header-section-number">1.8.4</span> Schleifen aufbauen</a></li>
+  <li><a href="#nested-loop" id="toc-nested-loop" class="nav-link" data-scroll-target="#nested-loop"> <span class="header-section-number">1.8.5</span> nested loop</a></li>
+  <li><a href="#display-vs.-macro-list" id="toc-display-vs.-macro-list" class="nav-link" data-scroll-target="#display-vs.-macro-list"> <span class="header-section-number">1.8.6</span> <code>display</code> vs.&nbsp;<code>macro list</code></a></li>
   </ul></li>
-  <li><a href="#übungen" id="toc-übungen" class="nav-link" data-scroll-target="#übungen"> <span class="header-section-number">2.9</span> Übungen</a>
+  <li><a href="#übungen" id="toc-übungen" class="nav-link" data-scroll-target="#übungen"> <span class="header-section-number">1.9</span> Übungen</a>
   <ul class="collapse">
-  <li><a href="#ue0" id="toc-ue0" class="nav-link" data-scroll-target="#ue0"> <span class="header-section-number">2.9.1</span> Übung</a></li>
-  <li><a href="#ue1" id="toc-ue1" class="nav-link" data-scroll-target="#ue1"> <span class="header-section-number">2.9.2</span> Übung</a></li>
-  <li><a href="#ue2" id="toc-ue2" class="nav-link" data-scroll-target="#ue2"> <span class="header-section-number">2.9.3</span> FizzBuzz-Challenge</a></li>
-  <li><a href="#ue3" id="toc-ue3" class="nav-link" data-scroll-target="#ue3"> <span class="header-section-number">2.9.4</span> Übung</a></li>
+  <li><a href="#ue0" id="toc-ue0" class="nav-link" data-scroll-target="#ue0"> <span class="header-section-number">1.9.1</span> Übung</a></li>
+  <li><a href="#ue1" id="toc-ue1" class="nav-link" data-scroll-target="#ue1"> <span class="header-section-number">1.9.2</span> Übung</a></li>
+  <li><a href="#ue2" id="toc-ue2" class="nav-link" data-scroll-target="#ue2"> <span class="header-section-number">1.9.3</span> FizzBuzz-Challenge</a></li>
+  <li><a href="#ue3" id="toc-ue3" class="nav-link" data-scroll-target="#ue3"> <span class="header-section-number">1.9.4</span> Übung</a></li>
   </ul></li>
-  <li><a href="#anhang" id="toc-anhang" class="nav-link" data-scroll-target="#anhang"> <span class="header-section-number">2.10</span> Anhang</a>
+  <li><a href="#anhang" id="toc-anhang" class="nav-link" data-scroll-target="#anhang"> <span class="header-section-number">1.10</span> Anhang</a>
   <ul class="collapse">
-  <li><a href="#dir" id="toc-dir" class="nav-link" data-scroll-target="#dir"> <span class="header-section-number">2.10.1</span> Windows Dateipfade mit macros</a></li>
-  <li><a href="#debugging-wo-ist-der-wurm-drin" id="toc-debugging-wo-ist-der-wurm-drin" class="nav-link" data-scroll-target="#debugging-wo-ist-der-wurm-drin"> <span class="header-section-number">2.10.2</span> Debugging: Wo ist der Wurm drin?</a></li>
+  <li><a href="#dir" id="toc-dir" class="nav-link" data-scroll-target="#dir"> <span class="header-section-number">1.10.1</span> Windows Dateipfade mit macros</a></li>
+  <li><a href="#debugging-wo-ist-der-wurm-drin" id="toc-debugging-wo-ist-der-wurm-drin" class="nav-link" data-scroll-target="#debugging-wo-ist-der-wurm-drin"> <span class="header-section-number">1.10.2</span> Debugging: Wo ist der Wurm drin?</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -244,7 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="macro" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Macros</span></span></h1>
+<h1 class="title"><span id="macro" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Macros</span></span></h1>
 </div>
 
 
@@ -307,8 +307,8 @@ end of do-file
 r(111);</code></pre>
 </div>
 </div>
-<section id="macht-einen-unterschied" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="macht-einen-unterschied"><span class="header-section-number">2.1</span> <code>=</code> macht einen Unterschied</h2>
+<section id="macht-einen-unterschied" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="macht-einen-unterschied"><span class="header-section-number">1.1</span> <code>=</code> macht einen Unterschied</h2>
 <p>In der Regel können wir auch einfach <code>glo glname Wert</code> bzw. <code>loc locname Wert</code> statt <code>glo glname = Wert</code> bzw. <code>loc locname = Wert</code> angeben. Allerdings ist hier etwas Vorsicht geboten, denn das <code>=</code> ist entscheidend ob die Rechnung abgelegt wird oder das Ergebnis (<em>Stichwort evaluation</em>): + Mit <code>=</code> : der Ausdruck wird “evaluated” + Ohne <code>=</code> : der Ausdruck wird “aliased”</p>
 <p>Im Ergebnis sehen wir hier beides Mal das gleiche:</p>
 <div class="cell">
@@ -352,8 +352,8 @@ _m2:            4</code></pre>
 </div>
 <p>Denn <span class="math inline">\(2+2*4\neq4*4\)</span></p>
 </section>
-<section id="local-und-global-sind-getrennte-welten" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="local-und-global-sind-getrennte-welten"><span class="header-section-number">2.2</span> <code>local</code> und <code>global</code> sind getrennte Welten</h2>
+<section id="local-und-global-sind-getrennte-welten" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="local-und-global-sind-getrennte-welten"><span class="header-section-number">1.2</span> <code>local</code> und <code>global</code> sind getrennte Welten</h2>
 <p>Geht, aber ist nicht zu empfehlen:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>glo <span class="kw">yx</span> = 1</span>
@@ -367,8 +367,8 @@ _yx:            2</code></pre>
 </div>
 </div>
 </section>
-<section id="macros-mit-text" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="macros-mit-text"><span class="header-section-number">2.3</span> Macros mit Text</h2>
+<section id="macros-mit-text" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="macros-mit-text"><span class="header-section-number">1.3</span> Macros mit Text</h2>
 <p>Wir können macros zu Texten zusammenbauen:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>glo t1 <span class="st">"Hallo"</span></span>
@@ -391,8 +391,8 @@ t4:             Hallo zusammen! :-)</code></pre>
 <p><strong><a href="#ue0">Übung</a></strong></p>
 <hr>
 </section>
-<section id="dateipfade" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="dateipfade"><span class="header-section-number">2.4</span> Dateipfade</h2>
+<section id="dateipfade" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="dateipfade"><span class="header-section-number">1.4</span> Dateipfade</h2>
 <p>Ein macro kann auch Text enthalten und wir können diesen bspw. für Dateipfade macros verwenden:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>glo pfad <span class="st">"D:\Projekt\daten\BIBB_BAuA"</span> <span class="co">// wo liegt der Datensatz?</span></span>
@@ -435,8 +435,8 @@ t4:             Hallo zusammen! :-)</code></pre>
 </div>
 <p><strong>Siehe <code>01_init_beispiel.do</code> für ein Beispiel für einige Befehle beim Erstellen eines Projektverzeichnisses.</strong></p>
 </section>
-<section id="cmac" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="cmac"><span class="header-section-number">2.5</span> Bereits definierte Macros</h2>
+<section id="cmac" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="cmac"><span class="header-section-number">1.5</span> Bereits definierte Macros</h2>
 <p>Mit <code>mac list</code> bekommen wir auch einige von Stata bereits vorgegebenen Macros angezeigt.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>mac <span class="ot">list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -501,8 +501,8 @@ t4:             Hallo zusammen! :-)</code></pre>
 <li><code>c(filename)</code> returns a string containing the filename last specified with a use or save, such as <code>"C:\Data\auto.dta"</code>.</li>
 <li><code>c(filedate)</code> returns a string containing the date and time the file in <code>c(filename)</code> was last saved, such as “7 Jul 2016 13:51”.</li>
 </ul>
-<section id="if1" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="if1"><span class="header-section-number">2.5.1</span> <code>if</code></h3>
+<section id="if1" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="if1"><span class="header-section-number">1.5.1</span> <code>if</code></h3>
 <p>Mit <code>if (</code>local<code>== "...")</code> können wir macros abgleichen, um Befehle nur unter bestimmten Bedingungen auszuführen:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> (<span class="st">"`c(username)'"</span> == <span class="st">"Filser"</span>)  <span class="kw">display</span> <span class="st">"Du bist Filser"</span></span>
@@ -541,8 +541,8 @@ t4:             Hallo zusammen! :-)</code></pre>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> <span class="fu">inlist</span>(<span class="ot">`x'</span>,18,20,22,28) <span class="kw">display</span> <span class="st">"inlist yes"</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="macros-als-variablennamen-und-befehle" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="macros-als-variablennamen-und-befehle"><span class="header-section-number">2.5.2</span> Macros als Variablennamen und Befehle</h3>
+<section id="macros-als-variablennamen-und-befehle" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="macros-als-variablennamen-und-befehle"><span class="header-section-number">1.5.2</span> Macros als Variablennamen und Befehle</h3>
 <p>Auch so etwas ist möglich:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> n 200</span>
@@ -599,8 +599,8 @@ r(111);</code></pre>
 </div>
 </div>
 </section>
-<section id="allglo" class="level3" data-number="2.5.3">
-<h3 data-number="2.5.3" class="anchored" data-anchor-id="allglo"><span class="header-section-number">2.5.3</span> <code>globals</code> durchsuchen</h3>
+<section id="allglo" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="allglo"><span class="header-section-number">1.5.3</span> <code>globals</code> durchsuchen</h3>
 <p>Mit Hilfe sog. Wildcards können wir Zeichen “offen lassen”:</p>
 <ul>
 <li><code>?</code> ersetzt ein Zeichen</li>
@@ -621,8 +621,8 @@ allglo:         x x2 x1</code></pre>
 <p>Hier haben wir auch schon die dritte Form der macro Definition kennengelernt, die sog. <code>extended macro function</code>, welche auf <code>:</code> folgt. Hier also <code>all globals</code>, im Laufe dieses Kurses werden wir noch zahlreiche dieser Funktionen kennenlernen.</p>
 </section>
 </section>
-<section id="wenn-nicht-if-dann-else" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="wenn-nicht-if-dann-else"><span class="header-section-number">2.6</span> Wenn nicht <code>if</code>, dann <code>else</code></h2>
+<section id="wenn-nicht-if-dann-else" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="wenn-nicht-if-dann-else"><span class="header-section-number">1.6</span> Wenn nicht <code>if</code>, dann <code>else</code></h2>
 <p>Mit <code>if</code> haben wir die Möglichkeiten aber noch nicht ausgeschöpft - aus <code>help if</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> <span class="ot">`n'</span>==1 {</span>
@@ -640,8 +640,8 @@ allglo:         x x2 x1</code></pre>
 <span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">"`word'"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="unterbrechen-wenn-ein-fehler-vorliegt" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="unterbrechen-wenn-ein-fehler-vorliegt"><span class="header-section-number">2.7</span> Unterbrechen wenn ein Fehler vorliegt</h2>
+<section id="unterbrechen-wenn-ein-fehler-vorliegt" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="unterbrechen-wenn-ein-fehler-vorliegt"><span class="header-section-number">1.7</span> Unterbrechen wenn ein Fehler vorliegt</h2>
 <p>Mit <code>exit</code> (<code>help exit_program</code>) können wir Stata zu einer Unterbrechung bringen:</p>
 <blockquote class="blockquote">
 <p><code>exit</code> causes Stata to terminate the current process and returns control to the calling process.</p>
@@ -668,8 +668,8 @@ end of do-file</code></pre>
 <p><strong><a href="#ue1">Übung</a></strong></p>
 <hr>
 </section>
-<section id="schleifen-foreach-forvalues" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="schleifen-foreach-forvalues"><span class="header-section-number">2.8</span> Schleifen: <code>foreach</code> &amp; <code>forvalues</code></h2>
+<section id="schleifen-foreach-forvalues" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="schleifen-foreach-forvalues"><span class="header-section-number">1.8</span> Schleifen: <code>foreach</code> &amp; <code>forvalues</code></h2>
 <p>Schleifen helfen uns das DRY (“Don’t repeat yourself”) Prinzip umzusetzen.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> S1 <span class="kw">if</span> zpalter &lt;= 19</span>
@@ -728,8 +728,8 @@ end of do-file</code></pre>
 -4</code></pre>
 </div>
 </div>
-<section id="ferest" class="level3" data-number="2.8.1">
-<h3 data-number="2.8.1" class="anchored" data-anchor-id="ferest"><span class="header-section-number">2.8.1</span> <code>ferest()</code></h3>
+<section id="ferest" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="ferest"><span class="header-section-number">1.8.1</span> <code>ferest()</code></h3>
 <p>Mit <code>ferest()</code> können wir uns die “noch übrigen Werte in der Liste anzeigen lassen:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> n <span class="kw">of</span> numlist 1(1)5 {</span>
@@ -750,8 +750,8 @@ Es kommen noch: </code></pre>
 </div>
 </div>
 </section>
-<section id="weitere-schleifentypen" class="level3" data-number="2.8.2">
-<h3 data-number="2.8.2" class="anchored" data-anchor-id="weitere-schleifentypen"><span class="header-section-number">2.8.2</span> Weitere Schleifentypen</h3>
+<section id="weitere-schleifentypen" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="weitere-schleifentypen"><span class="header-section-number">1.8.2</span> Weitere Schleifentypen</h3>
 <p>Es gibt außerdem <code>forvalues</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">forvalues</span> <span class="fu">lname</span>=<span class="kw">range</span> {</span>
@@ -783,8 +783,8 @@ Es kommen noch: </code></pre>
 <span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="anwendung" class="level3" data-number="2.8.3">
-<h3 data-number="2.8.3" class="anchored" data-anchor-id="anwendung"><span class="header-section-number">2.8.3</span> Anwendung</h3>
+<section id="anwendung" class="level3" data-number="1.8.3">
+<h3 data-number="1.8.3" class="anchored" data-anchor-id="anwendung"><span class="header-section-number">1.8.3</span> Anwendung</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> v <span class="kw">of</span> numlist 19(5)35 {</span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">display</span> <span class="st">"Alter bis `v'"</span></span>
@@ -872,8 +872,8 @@ Alter 30 bis 34
 </div>
 </div>
 </section>
-<section id="schleifen-aufbauen" class="level3" data-number="2.8.4">
-<h3 data-number="2.8.4" class="anchored" data-anchor-id="schleifen-aufbauen"><span class="header-section-number">2.8.4</span> Schleifen aufbauen</h3>
+<section id="schleifen-aufbauen" class="level3" data-number="1.8.4">
+<h3 data-number="1.8.4" class="anchored" data-anchor-id="schleifen-aufbauen"><span class="header-section-number">1.8.4</span> Schleifen aufbauen</h3>
 <p>Einfache Schleife mit <code>if</code>/<code>else</code>: ist Zahl gerade oder ungerade?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>loc n = 5</span>
@@ -900,8 +900,8 @@ Alter 30 bis 34
 </div>
 <p><a href="https://de.wikipedia.org/wiki/Division_mit_Rest#Modulo">mod() ist der Modulo-Operator in Stata - es wird der “Rest” berechnet</a></p>
 </section>
-<section id="nested-loop" class="level3" data-number="2.8.5">
-<h3 data-number="2.8.5" class="anchored" data-anchor-id="nested-loop"><span class="header-section-number">2.8.5</span> nested loop</h3>
+<section id="nested-loop" class="level3" data-number="1.8.5">
+<h3 data-number="1.8.5" class="anchored" data-anchor-id="nested-loop"><span class="header-section-number">1.8.5</span> nested loop</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="kw">forvalues</span> n1 = 1/3 {</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">forvalues</span> n2 = 1/3 {</span>
@@ -921,8 +921,8 @@ n1 ist 3 und n2 ist 3 </code></pre>
 </div>
 </div>
 </section>
-<section id="display-vs.-macro-list" class="level3" data-number="2.8.6">
-<h3 data-number="2.8.6" class="anchored" data-anchor-id="display-vs.-macro-list"><span class="header-section-number">2.8.6</span> <code>display</code> vs.&nbsp;<code>macro list</code></h3>
+<section id="display-vs.-macro-list" class="level3" data-number="1.8.6">
+<h3 data-number="1.8.6" class="anchored" data-anchor-id="display-vs.-macro-list"><span class="header-section-number">1.8.6</span> <code>display</code> vs.&nbsp;<code>macro list</code></h3>
 <p><code>macro list</code> stoppt das DoFile wenn der macro nicht existiert, <code>display</code> zeigt nur ein leeres Feld an:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> labormarket LABOUR</span>
@@ -954,10 +954,10 @@ n1 ist 3 und n2 ist 3 </code></pre>
 <!-- - Retrieving information returned by Stata -->
 </section>
 </section>
-<section id="übungen" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="übungen"><span class="header-section-number">2.9</span> Übungen</h2>
-<section id="ue0" class="level3" data-number="2.9.1">
-<h3 data-number="2.9.1" class="anchored" data-anchor-id="ue0"><span class="header-section-number">2.9.1</span> Übung</h3>
+<section id="übungen" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="übungen"><span class="header-section-number">1.9</span> Übungen</h2>
+<section id="ue0" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="ue0"><span class="header-section-number">1.9.1</span> Übung</h3>
 <ul>
 <li>Was ist das Ergebnis dieser Rechnung? Nehmen Sie sich einen Moment Zeit und rechnen Sie im Kopf - Überprüfen Sie dann ihr Ergebnis.</li>
 </ul>
@@ -979,8 +979,8 @@ n1 ist 3 und n2 ist 3 </code></pre>
 <span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>dis <span class="st">"${t4}"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="ue1" class="level3" data-number="2.9.2">
-<h3 data-number="2.9.2" class="anchored" data-anchor-id="ue1"><span class="header-section-number">2.9.2</span> Übung</h3>
+<section id="ue1" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="ue1"><span class="header-section-number">1.9.2</span> Übung</h3>
 <ul>
 <li>Pfad zusammenbauen für <code>use</code>: Erstellen Sie den Pfad für den <code>use</code>-Befehl schrittweise und unter Berücksichtigung Ihres Usernamens.
 <ul>
@@ -997,8 +997,8 @@ n1 ist 3 und n2 ist 3 </code></pre>
 </ul></li>
 </ul>
 </section>
-<section id="ue2" class="level3" data-number="2.9.3">
-<h3 data-number="2.9.3" class="anchored" data-anchor-id="ue2"><span class="header-section-number">2.9.3</span> FizzBuzz-Challenge</h3>
+<section id="ue2" class="level3" data-number="1.9.3">
+<h3 data-number="1.9.3" class="anchored" data-anchor-id="ue2"><span class="header-section-number">1.9.3</span> FizzBuzz-Challenge</h3>
 <p>Fizz Buzz wird/wurde als ein Screening-Instrument für Programmierer*innen verwendet. Fizz Buzz ist ein Kinderlernspiel, bei dem die Kinder üblicherweise im Kreis sitzen und reihum laut von eins aufwärts zählen. Allerdings gibt es drei Regeln:</p>
 <ul>
 <li>Alle Zahlen, die durch drei teilbar sind, müssen durch das Wort “Fizz” ersetzt werden</li>
@@ -1007,20 +1007,20 @@ n1 ist 3 und n2 ist 3 </code></pre>
 </ul>
 <p>Wie würden Sie mit <code>if</code> &amp; <code>else</code> eine Schleife bauen, welche diese Regeln umsetzt. Was wäre der erste Schritt? Bauen Sie dann die Schleife und lassen Sie die Schleife für den Wertebereich 0-30 laufen.</p>
 </section>
-<section id="ue3" class="level3" data-number="2.9.4">
-<h3 data-number="2.9.4" class="anchored" data-anchor-id="ue3"><span class="header-section-number">2.9.4</span> Übung</h3>
+<section id="ue3" class="level3" data-number="1.9.4">
+<h3 data-number="1.9.4" class="anchored" data-anchor-id="ue3"><span class="header-section-number">1.9.4</span> Übung</h3>
 <p>Passen Sie die Schleife mit <a href="#ferest"><code>ferest()</code></a> an, sodass hier im 5. Durchlauf nicht mehr <code>Es kommen noch:</code> steht, sondern <code>Fertig</code>.</p>
 </section>
 </section>
-<section id="anhang" class="level2" data-number="2.10">
-<h2 data-number="2.10" class="anchored" data-anchor-id="anhang"><span class="header-section-number">2.10</span> Anhang</h2>
-<section id="dir" class="level3" data-number="2.10.1">
-<h3 data-number="2.10.1" class="anchored" data-anchor-id="dir"><span class="header-section-number">2.10.1</span> Windows Dateipfade mit macros</h3>
+<section id="anhang" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="anhang"><span class="header-section-number">1.10</span> Anhang</h2>
+<section id="dir" class="level3" data-number="1.10.1">
+<h3 data-number="1.10.1" class="anchored" data-anchor-id="dir"><span class="header-section-number">1.10.1</span> Windows Dateipfade mit macros</h3>
 <p><a href="https://www.stata.com/manuals/u18.pdf#u18.3.11">Aus der Stata-Doku zu macros</a>:</p>
 <p>Stata uses the &nbsp;character to tell its parser not to expand macros. Windows uses the &nbsp;character as the directory path separator. Mostly, there is no problem using a &nbsp;in a filename. However, if you are writing a program that contains a Windows path in macro path and a filename in fname, do not assemble the final result as <code>‘path’\‘fname’</code> because Stata will interpret the &nbsp;as an instruction to not expand <code>‘fname’</code>. <span class="math inline">\(\Rightarrow\)</span> Instead, assemble the final result as <code>‘path’/‘fname’</code>. Stata understands <code>/</code> as a directory separator on all platforms.</p>
 </section>
-<section id="debugging-wo-ist-der-wurm-drin" class="level3" data-number="2.10.2">
-<h3 data-number="2.10.2" class="anchored" data-anchor-id="debugging-wo-ist-der-wurm-drin"><span class="header-section-number">2.10.2</span> Debugging: Wo ist der Wurm drin?</h3>
+<section id="debugging-wo-ist-der-wurm-drin" class="level3" data-number="1.10.2">
+<h3 data-number="1.10.2" class="anchored" data-anchor-id="debugging-wo-ist-der-wurm-drin"><span class="header-section-number">1.10.2</span> Debugging: Wo ist der Wurm drin?</h3>
 <p>Fehlersuch in langen <code>foreach</code>-Schleifen kann mühsam und nervig sein. in many cases you would like to go throuh the code step by step then, however, the value of the loop index (which is a <code>local</code>) In vielen Fällen möchte man den Code Schritt für Schritt durchgehen, dann aber den Wert des Schleifen-<code>locals</code> ist natürlich nach Abbruch der Schleife nicht mehr da.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="kw">forvalues</span> <span class="fu">y</span> = 1982/1985 {</span>
@@ -1226,12 +1226,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Herzlich Willkommen</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Herzlich Willkommen</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./02_loops_fromdata.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
