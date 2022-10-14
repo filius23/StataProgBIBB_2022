@@ -56,7 +56,10 @@ mac list _xl
 
 In der Regel können wir auch einfach `glo glname Wert` bzw. `loc locname Wert` statt `glo glname = Wert` bzw. `loc locname = Wert` angeben.
 Allerdings ist hier etwas Vorsicht geboten, denn das `=` ist entscheidend ob  die Rechnung abgelegt wird oder das Ergebnis (*Stichwort evaluation*):
+
+
 + Mit  `=` : der Ausdruck wird "evaluated"
+
 + Ohne `=` : der Ausdruck wird "aliased"
 
 

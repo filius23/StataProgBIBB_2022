@@ -309,7 +309,11 @@ r(111);</code></pre>
 </div>
 <section id="macht-einen-unterschied" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="macht-einen-unterschied"><span class="header-section-number">1.1</span> <code>=</code> macht einen Unterschied</h2>
-<p>In der Regel können wir auch einfach <code>glo glname Wert</code> bzw. <code>loc locname Wert</code> statt <code>glo glname = Wert</code> bzw. <code>loc locname = Wert</code> angeben. Allerdings ist hier etwas Vorsicht geboten, denn das <code>=</code> ist entscheidend ob die Rechnung abgelegt wird oder das Ergebnis (<em>Stichwort evaluation</em>): + Mit <code>=</code> : der Ausdruck wird “evaluated” + Ohne <code>=</code> : der Ausdruck wird “aliased”</p>
+<p>In der Regel können wir auch einfach <code>glo glname Wert</code> bzw. <code>loc locname Wert</code> statt <code>glo glname = Wert</code> bzw. <code>loc locname = Wert</code> angeben. Allerdings ist hier etwas Vorsicht geboten, denn das <code>=</code> ist entscheidend ob die Rechnung abgelegt wird oder das Ergebnis (<em>Stichwort evaluation</em>):</p>
+<ul>
+<li><p>Mit <code>=</code> : der Ausdruck wird “evaluated”</p></li>
+<li><p>Ohne <code>=</code> : der Ausdruck wird “aliased”</p></li>
+</ul>
 <p>Im Ergebnis sehen wir hier beides Mal das gleiche:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> m1 2+2</span>
