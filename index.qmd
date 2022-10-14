@@ -30,8 +30,21 @@ library(ggthemes)
 
 # Herzlich Willkommen {-}
 
+Dies ist das Begleitskript zum Kurs **Erzeugen von Deskriptions- und Regressionstabellen mit Stata** am BIBB 
+Dies ist das Begleitskript zum Kurs **Programmieren mit Postestimates, Macros und Schleifen in Stata** am BIBB von [Andreas Filser](https://afilser.netlify.app/).
 
-Hier entsteht das Begleitskript für die Weiterbildung **Programmieren mit Postestimates, Macros und Schleifen in Stata** am BIBB von Andreas Filser am 24.10.2022
+Melden Sie sich gerne bei Fragen oder Wünschen unter andreas.filser[at]uol.de
+
+::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
+
+{{< fa calendar-alt >}} &nbsp; Montag 24.10.2022
+
+{{< fa clock >}} &nbsp; 8:30 - 17:00 Uhr
+
+{{< fa location-dot >}} &nbsp; Webex
+
+:::
+
 
 ```{r index_illustration, echo = F,out.width = "80%",fig.height= 3, fig.align="center"}
 knitr::include_graphics("./pics/00_titel.png")

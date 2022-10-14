@@ -1,0 +1,28 @@
+project:
+  type: book
+  output-dir: docs
+  output-file: docs
+  # output-dir: pdf_doc
+  # output-file: pdf_doc
+  # 
+book:
+  title: "Progammieren mit Stata"
+  author: "[Andreas Filser](https://afilser.netlify.app/)"
+  date: last-modified
+  chapters:
+    - index.qmd
+    - 01_macros.qmd
+    - 02_loops_fromdata.qmd 
+    - 03_reg.qmd 
+    - 04_labels_variab.qmd 
+    - 05_Daten.qmd 
+    - 05_weiteres.qmd 
+    - 06_lit.qmd
+  language: de-DE
+  always_allow_html: true
+  # downloads: [pdf]
+  page-footer:
+      Alle Kursinhalte {{< fa brands creative-commons >}} 2022 von [Andreas Filser](https://afilser.netlify.app/)<br>
+      [CC Lizenz mit Namensnennung {{< fa brands creative-commons >}}
+      {{< fa brands creative-commons-by >}} {{< fa brands creative-commons-nc >}}](https://creativecommons.org/licenses/by-nc/4.0/)<br>
+      Erstellt mit {{< fa brands r-project >}} & [Statamarkdown](https://www.ssc.wisc.edu/~hemken/Stataworkshops/Statamarkdown/stata-and-r-markdown.html), Code [hier einsehbar {{< fa brands github >}}](https://github.com/filius23/StataBIBB_tables2022)
