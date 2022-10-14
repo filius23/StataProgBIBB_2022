@@ -1,16 +1,6 @@
---- 
-title: "Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata" 
-author: "Andreas Filser"
-date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-documentclass: book
-bibliography: [book.bib, packages.bib]
-biblio-style: apalike
-link-citations: yes
-description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
----
+# Herzlich Willkommen {-}
 
-```{r setup, echo = F, message=F, warning = F}
+```{r setup,include=F}
 # output: bookdown::pdf_document2
 if(Sys.getenv("USERNAME") == "filse" ) .libPaths("D:/R-library4")  # set library
 list.of.packages <- c("tidyr","dplyr","readr","haven","rmarkdown","bookdown","devtools","tidyverse","knitr") # Pakete eintragen
@@ -28,12 +18,12 @@ library(tidyverse)
 library(ggthemes)
 ```
 
-# Herzlich Willkommen {-}
 
-Dies ist das Begleitskript zum Kurs **Erzeugen von Deskriptions- und Regressionstabellen mit Stata** am BIBB 
+
 Dies ist das Begleitskript zum Kurs **Programmieren mit Postestimates, Macros und Schleifen in Stata** am BIBB von [Andreas Filser](https://afilser.netlify.app/).
 
 Melden Sie sich gerne bei Fragen oder Wünschen unter andreas.filser[at]uol.de
+
 
 ::: {.g-col-12 .g-col-sm-6 .g-col-md-4}
 

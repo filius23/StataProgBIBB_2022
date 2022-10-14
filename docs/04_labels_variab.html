@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Progammieren mit Stata - 5&nbsp; Label- und Variablenfunktionen</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./05_Daten.html" rel="next">
+<link href="./03_reg.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Progammieren mit Stata</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_macros.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Macros</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_loops_fromdata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_reg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_labels_variab.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_Daten.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_weiteres.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_lit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Literatur &amp; Links</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#stringfunktionen" id="toc-stringfunktionen" class="nav-link active" data-scroll-target="#stringfunktionen"> <span class="header-section-number">5.1</span> Stringfunktionen</a></li>
+  <li><a href="#arbeiten-mit-regular-expressions" id="toc-arbeiten-mit-regular-expressions" class="nav-link" data-scroll-target="#arbeiten-mit-regular-expressions"> <span class="header-section-number">5.2</span> Arbeiten mit “Regular Expressions”</a>
+  <ul class="collapse">
+  <li><a href="#regex-grund-regeln" id="toc-regex-grund-regeln" class="nav-link" data-scroll-target="#regex-grund-regeln"> <span class="header-section-number">5.2.1</span> regex (Grund-)Regeln</a></li>
+  <li><a href="#beispiele" id="toc-beispiele" class="nav-link" data-scroll-target="#beispiele"> <span class="header-section-number">5.2.2</span> Beispiele</a></li>
+  <li><a href="#weiterführende-links" id="toc-weiterführende-links" class="nav-link" data-scroll-target="#weiterführende-links"> <span class="header-section-number">5.2.3</span> Weiterführende Links</a></li>
+  </ul></li>
+  <li><a href="#labfuns" id="toc-labfuns" class="nav-link" data-scroll-target="#labfuns"> <span class="header-section-number">5.3</span> Label bearbeiten</a></li>
+  <li><a href="#abgleiche" id="toc-abgleiche" class="nav-link" data-scroll-target="#abgleiche"> <span class="header-section-number">5.4</span> Abgleiche</a></li>
+  <li><a href="#valsearch" id="toc-valsearch" class="nav-link" data-scroll-target="#valsearch"> <span class="header-section-number">5.5</span> wo kommt überall -4 vor?</a></li>
+  <li><a href="#übungen" id="toc-übungen" class="nav-link" data-scroll-target="#übungen"> <span class="header-section-number">5.6</span> Übungen</a>
+  <ul class="collapse">
+  <li><a href="#strue" id="toc-strue" class="nav-link" data-scroll-target="#strue"> <span class="header-section-number">5.6.1</span> Übung</a></li>
+  <li><a href="#regexue" id="toc-regexue" class="nav-link" data-scroll-target="#regexue"> <span class="header-section-number">5.6.2</span> Übung</a></li>
+  <li><a href="#varlab" id="toc-varlab" class="nav-link" data-scroll-target="#varlab"> <span class="header-section-number">5.6.3</span> Übung</a></li>
+  <li><a href="#valuesearch" id="toc-valuesearch" class="nav-link" data-scroll-target="#valuesearch"> <span class="header-section-number">5.6.4</span> Übung</a></li>
+  </ul></li>
+  <li><a href="#anhang" id="toc-anhang" class="nav-link" data-scroll-target="#anhang"> <span class="header-section-number">5.7</span> Anhang</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="labmacro" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<p>Inspiriert von der <a href="https://stats.idre.ucla.edu/stata/faq/how-can-i-extract-a-portion-of-a-string-variable-using-regular-expressions/">UCLA</a> einige Beispielstrings:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>input str60 add</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">"4905 Lakeway Drive, College Station, Texas 77845 USA"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">"673 Jasmine Street, Los Angeles, CA 90024"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">"2376 First street, San Diego, CA 90126"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">"6 West Central St, Tempe AZ 80068"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">"1234 Main St. Cambridge, MA 01238-1234"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">"Robert-Schuman-Platz 3, 53175 Bonn GERMANY"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">"Regensburger Straße 100, 90478 Nürnberg Germany"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">"  Ammerländer Heerstraße 114-118, 26129 Oldenburg GERMANY  "</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="stringfunktionen" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="stringfunktionen"><span class="header-section-number">5.1</span> Stringfunktionen</h2>
+<p><code>help string functions</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x1 = <span class="fu">substr</span>(add,5,10)   <span class="co">//  substring von add -&gt; Zeichen 5-10</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">x2</span> = <span class="fu">wordcount</span>(add)       <span class="co">// Worte zählen</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x3 = <span class="fu">word</span>(add,5)      <span class="co">// 5. Wort</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x4 = <span class="fu">upper</span>(add)         <span class="co">// alles groß</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x5 = <span class="fu">lower</span>(add)     <span class="co">// alles klein</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x6 = <span class="fu">proper</span>(add)    <span class="co">// jeweiles erster Buchstabe eines Wortes groß</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x7 = <span class="kw">trim</span>(add)      <span class="co">// Leerzeichen am Ende und Beginn raus</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> x8 = <span class="fu">strlen</span>(add)    <span class="co">// Anzahl der Zeichen in add</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Allerdings sind diese Funktionen auf ASCII-Zeichen ausgelegt - einfach gesagt: Umlaute, ß usw. bereiten Probleme. Daher gibt es eine Erweiterung mit <code>usubstr</code>, <code>ustrupper()</code>, <code>ustrlower()</code> usw. - mehr dazu jeweils in der Hilfe.</p>
+<p>Der Weg zur passenden <code>regex</code> string-Funktion ist leider oft von vielen Versuchen begleitet, am einfachsten testet man mit <code>display</code>. So zeigt sich hier bspw., dass <code>proper()</code> hier “ß” und “ü” als Wortende/-beginn (mis-)versteht:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="fu">proper</span>(<span class="st">"Regensburger Straße 100, 90478 nüRnberg germany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Regensburger StraßE 100, 90478 NüRnberg Germany</code></pre>
+</div>
+</div>
+<p>…in der Hilfe finden wir <code>ustrtitle</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> ustrtitle(<span class="st">"Regensburger Straße 100, 90478 nüRnberg germany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Regensburger Straße 100, 90478 Nürnberg Germany</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Hier wenig hilfreich, aber häufig eine gute Abkürzung: <code>split</code> Mit <code>parse()</code> können wir einen Trenner angeben.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">split</span> add, <span class="kw">parse</span>(<span class="st">" "</span>) <span class="kw">gen</span>(t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><strong><a href="#strue">Übung</a></strong></p>
+<hr>
+<p><strong>Tipp: <code>real()</code> ist deutlich schneller und unkomplizierter als <code>destring</code></strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>input str1 x1</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">"2"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">"3"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">"5"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="st">"23"</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="st">"21"</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="st">"2"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="st">"--"</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="st">"2"</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> num = <span class="fu">real</span>(x1)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="kw">destring</span>(x1), <span class="kw">gen</span>(num2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            x1
+  1. "2"
+  2. "3"
+  3. "5"
+  4. "23"
+  5. "21"
+  6. "2"
+  7. "--"
+  8. "2"
+  9. end
+
+(1 missing value generated)
+
+     +----------+
+     | x1   num |
+     |----------|
+  1. |  2     2 |
+  2. |  3     3 |
+  3. |  5     5 |
+  4. |  2     2 |
+  5. |  2     2 |
+     |----------|
+  6. |  2     2 |
+  7. |  -     . |
+  8. |  2     2 |
+     +----------+
+
+x1: contains nonnumeric characters; no generate</code></pre>
+</div>
+</div>
+</section>
+<section id="arbeiten-mit-regular-expressions" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="arbeiten-mit-regular-expressions"><span class="header-section-number">5.2</span> Arbeiten mit “Regular Expressions”</h2>
+<p>“regular expressions” oder “regex” sind eine flexible Methode, strings (also Textinhalte) zu durchsuchen. Dabei suchen wir nach Mustern anstelle eines exakten matchings.</p>
+<p>In Stata können wir regex für Variablen, aber auch für macros und Labels verwenden. regex sind aber nicht immer die (einfachste) Lösung und oft werden die Befehle sehr unübersichtlich. Daher hier nur ein kurzer Überblick.</p>
+<p>Die drei Hauptfunktionen in Stata finden wir unter <code>help regex</code>:</p>
+<blockquote class="blockquote">
+<p><code>regexm(s,re)</code> allows you to search for the string described in your regular expressions. It evaluates to 1 if the string matches the expression.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><code>regexs(n)</code> returns the nth substring within an expression matched by regexm (hence, <code>regexm</code> must always be run before regexs).</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><code>regexr(s1,re,s2)</code> searches for re within the string (s1) and replaces the matching portion with a new string (s2).</p>
+</blockquote>
+<p>Allerdings sind diese Funktionen auf ASCII-Zeichen ausgelegt - einfach gesagt: Umlaute, ß usw. bereiten Probleme. Daher gibt es eine Erweiterung mit <code>ustrregexm</code>, <code>ustrregexs</code>, <code>ustrregexrf</code> und <code>ustrregexra</code>. Auf die konzentrieren wir uns hier.</p>
+<section id="regex-grund-regeln" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="regex-grund-regeln"><span class="header-section-number">5.2.1</span> regex (Grund-)Regeln</h3>
+<p>regex basieren auf einer Reihe an Zeichen, mit Hilfe derer wir strings durchsuchen können:</p>
+<ul>
+<li><code>\d</code> matcht eine Zahl</li>
+<li><code>\w</code> matcht “alphanumeric characters” (Buchstaben &amp; Zahlen)</li>
+<li><code>\s</code> matcht ein Leerzeichen</li>
+<li><code>^</code> “matche Ausdruck am Anfang des strings”</li>
+<li><code>$</code> “matche Ausdruck am Ende des strings”</li>
+<li><code>-</code> lässt eine <em>range</em> zu: <code>a-z</code>, <code>0-9</code>, <code>5-8</code>, <code>F-M</code> etc.</li>
+<li><code>.</code> bedeutet “matche irgendein Zeichen”</li>
+<li><code>\</code> ist ein “escape character” für Zeichen, die ansonsten als regex-Operator verstanden würden</li>
+<li><code>|</code> oder-Operator</li>
+<li><code>[]</code> use in matching, such as <code>[a-zA-Z0-9]</code> for all alphanumeric characters</li>
+<li><code>()</code> darin angegebene Werte können wir mit <code>ustrregexs</code> extrahieren</li>
+<li><code>*</code> “matche 0 oder öfter” für den vorhergehenden Ausdruck</li>
+<li><code>+</code> “matche 1 oder öfter” für den vorhergehenden Ausdruck</li>
+</ul>
+</section>
+<section id="beispiele" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="beispiele"><span class="header-section-number">5.2.2</span> Beispiele</h3>
+<p>Inspiriert von der <a href="https://stats.idre.ucla.edu/stata/faq/how-can-i-extract-a-portion-of-a-string-variable-using-regular-expressions/">UCLA</a> einige Beispielstrings:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>input str60 add</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">"4905 Lakeway Drive, College Station, Texas 77845 USA"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="st">"673 Jasmine Street, Los Angeles, CA 90024"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="st">"2376 First street, San Diego, CA 90126"</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="st">"6 West Central St, Tempe AZ 80068"</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="st">"1234 Main St. Cambridge, MA 01238-1234"</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="st">"Robert-Schuman-Platz 3, 53175 Bonn GERMANY"</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="st">"Regensburger Straße 100, 90478 Nürnberg Germany"</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="st">"Ammerländer Heerstraße 114-118, 26129 Oldenburg GERMANY"</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">d</span> = ustrregexm(add, <span class="st">"GERMANY|Germany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Das <code>m</code> in <code>ustrregexm</code> steht für match. Mit <code>ustrregexm</code> können wir nach Zeichenketten suchen. Wenn sie gefunden wird, wird eine 1 zurückzugeben, andernfalls 0. Hier suchen wir nach “entweder GERMANY <em>oder</em> Germany”.</p>
+<p>Wir können aber auch den gefundenen Inhalt extrahieren. Bei Übereinstimmungen werden die matches gespeichert, darauf können wir mit <code>ustrregexs</code> zurückgreifen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> d2 = ustrregexs(0) <span class="kw">if</span> ustrregexm(add, <span class="st">"GERMANY|Germany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>s</code> steht für subexpressions (oder “tokens”). Token 0 enthält alle übereinstimmenden Muster. Wird eine Zeichenkette mehrfach gefunden, dann enthält Token 0 alle Übereinstimmungen, Token 1 die erste, Token 2 die zweite und so weiter.</p>
+<p><code>ustrregexrf</code> und <code>ustrregexra</code> helfen uns schließlich, Inhalte zu ersetzen. <code>rf</code> bzw. <code>ra</code> stehen dabei für “replace first” bzw. “replace all”. <code>ustrregexrf</code> ersetzt also nur den ersten match, <code>ustrregexra</code> hingegen alle.</p>
+<p>Basierend auf den Regeln von oben ergeben diese beiden Befehle unterschiedliche Ergebnisse:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> s1 = ustrregexra(add, <span class="st">"street"</span>,   <span class="st">"!"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> s2 = ustrregexra(add, <span class="st">"[street]"</span>, <span class="st">"!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In <code>s1</code> wurden alle matches “street” gelöscht und durch ! ersetzt. In <code>s2</code> wurden alle matches von “s”,“t”,“r”,“e” und “t” gelöscht und durch ! ersetzt.</p>
+<p>Weitere Beispiele für ersetzen mit regex-Regelausdrücken - siehe DoFile:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> z1 =  ustrregexra(add, <span class="st">"\w"</span>, <span class="st">""</span>) <span class="co">// alle alphanumeric ersetzen</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> z2 = ustrregexra(add, <span class="st">"\W"</span>, <span class="st">""</span>) <span class="co">// alle nicht-alphanumeric ersetzen</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> z3 =  ustrregexra(add, <span class="st">"\d"</span>, <span class="st">""</span>) <span class="co">// alle Zahlen ersetzen </span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> z4 = ustrregexra(add, <span class="st">"\D"</span>, <span class="st">""</span>) <span class="co">// alle nicht-Zahlen ersetzen </span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> z5 = ustrregexra(add, <span class="st">".+,"</span>, <span class="st">""</span>) <span class="co">// alles vor dem Komma ersetzen</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> z6 = ustrregexra(add, <span class="st">",.+"</span>, <span class="st">""</span>) <span class="co">// alles nach dem Komma ersetzen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nach Zahlen suchen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> r1 = ustrregexs(0) <span class="kw">if</span> ustrregexm(add, <span class="st">"\d"</span>)  <span class="co">// Zahl</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> r2 = ustrregexs(0) <span class="kw">if</span> ustrregexm(add, <span class="st">"\d+"</span>) <span class="co">// Zahlenfolge</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> r3 = ustrregexs(0) <span class="kw">if</span> ustrregexm(add, <span class="st">"(\d{5})"</span>) <span class="co">// 5-stellige Zahl</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> r4 = ustrregexs(0) <span class="kw">if</span> ustrregexm(add, <span class="st">"^(\d+)"</span>) <span class="co">// Zahlenfolge am Anfang</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> r5 = ustrregexs(0) <span class="kw">if</span> ustrregexm(add, <span class="st">"(\d+).*(\d+)"</span>) <span class="co">// Zahlenfolgen und alles was dazwischen kommt </span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> r6 = ustrregexs(0) <span class="kw">if</span> ustrregexm(r5, <span class="st">"(\d+)$"</span>) <span class="co">// Zahlenfolge am Ende -&gt; aus r5!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="weiterführende-links" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="weiterführende-links"><span class="header-section-number">5.2.3</span> Weiterführende Links</h3>
+<p><a href="https://github.com/asjadnaqvi/The-Stata-Guide/blob/master/Stata_regex_cheatsheet_v1.pdf">Hier</a> findet sich ein sehr gutes “Cheatsheet” zu den gebräuchlichsten regex. Das zugehörige <a href="https://medium.com/the-stata-guide/regular-expressions-regex-in-stata-6e5c200ef27c">Tutorial</a> ist ebenfalls sehr lesenswert. Die Übersicht der <a href="https://stats.idre.ucla.edu/stata/faq/how-can-i-extract-a-portion-of-a-string-variable-using-regular-expressions/">UCLA</a> bietet auch nochmal einige Hinweise - allerdings auf Basis der ASCII-basierten Befehle. <a href="http://www.stata.com/support/faqs/data/regex.html">Stata Hilfe</a> <a href="http://w.bruunisejs.dk/StataHacks/Datamanagement/regex/regular_expressions/">Hier</a> findet sich ein weiteres hilfreiches Tutorial</p>
+<hr>
+<p><strong><a href="#regexue">Übung</a></strong></p>
+<hr>
+</section>
+</section>
+<section id="labfuns" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="labfuns"><span class="header-section-number">5.3</span> Label bearbeiten</h2>
+<p>Um Informationen zu Variablen &amp; Labels abzurufen, stehen eine ganze Reihe an extended macro functions zur Verfügung:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>loc v m1202</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> vartype:     <span class="dv">type</span> <span class="ot">`v'</span>                   <span class="co">// Variablen "storage type" (byte etc)</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> varlab:      <span class="kw">variable</span> <span class="kw">label</span> <span class="ot">`v'</span> <span class="co">// variable label</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> vallabname:  <span class="ot">value</span> <span class="kw">label</span> <span class="ot">`v'</span>    <span class="co">// Name des value label</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> vallab1 :    <span class="kw">label</span> (<span class="ot">`v'</span>) 1            <span class="co">// Value label für Wert = 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Die so erstellten <code>local</code>s können wir dann in der bekannten Methode wieder darstellen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">"`vartype'"</span>     <span class="co">// display local "vartype"</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">"`varlab'"</span>      <span class="co">// display local "varlabel"</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">"`vallabname'"</span>  <span class="co">// display local "valuelabname"</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">"`vallab1'"</span>     <span class="co">// display local "valuelab1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wir können die Labels und Eigenschaften von `v’ auch in einem Schritt anzeigen lassen, die Syntax sieht aber etwas eigenwillig aus:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>loc v m1202</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">"`: type `v''"</span>                  <span class="co">// "storage type" (byte etc) der Variable</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">"`: variable label `v''"</span>  <span class="co">// variable label</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">"`: value label `v''"</span>         <span class="co">// Name des value label</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="st">"`: label (`v') 1'"</span>         <span class="co">// Value label für Wert = 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Damit können wir bspw. ein Variable Label kürzen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> longlabel: <span class="kw">var</span> <span class="kw">label</span> m1202        <span class="co">// variable label für variable m1202 suchen</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> shortlabel = <span class="fu">substr</span>(<span class="st">"`longlabel'"</span>,1,10) <span class="co">// verändern mit string Funktion </span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">var</span> m1202 <span class="st">"`shortlabel'"</span>         <span class="co">// anwenden</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Um an die Value Labels zu kommen, braucht es etwas mehr:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> lblname: <span class="ot">value</span> <span class="kw">label</span> m1202    <span class="co">// value labels für variable m1202 suchen</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>cap <span class="kw">label</span> <span class="kw">drop</span> <span class="ot">`lblname'</span>_n          <span class="co">//neuen namen droppen zur Sicherheit</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> copy <span class="ot">`lblname'</span> <span class="ot">`lblname'</span>_n    <span class="co">// value labelbook kopieren</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> lab1: <span class="kw">label</span> (m1202) 2 <span class="co">// value label für Wert = 2 aufrufen</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>loc lab2 = <span class="fu">upper</span>(<span class="st">"`lab1'"</span>)      <span class="co">// dieses value labels verändern</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> <span class="kw">define</span> <span class="ot">`lblname'</span>_n <span class="ot">`lvl'</span> <span class="st">"`lab2'"</span>, modify <span class="co">// in neues value labelbook einfügen</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="kw">labelbook</span> <span class="ot">`lblname'</span> <span class="ot">`lblname'</span>_n <span class="co">// vergleich alt vs neu</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Mit <code>label copy oldname newname</code>, <code>local lblname: value label var</code> und <code>local lab1: label (var) level</code> können wir auch value-Labels bearbeiten:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>loc v m1202 </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> lblname: <span class="ot">value</span> <span class="kw">label</span> <span class="ot">`v'</span>       <span class="co">// value label aufrufen</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>cap <span class="kw">label</span> <span class="kw">drop</span> <span class="ot">`lblname'</span>_n           <span class="co">// neuen Namen zur Sicherheit droppen</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">label</span> copy <span class="ot">`lblname'</span> <span class="ot">`lblname'</span>_n     <span class="co">// kopieren</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="kw">levelsof</span> <span class="ot">`v'</span>, loc(x)                 <span class="co">// Werte für die Variable aufrufen</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> lvl <span class="kw">of</span> <span class="kw">local</span> x {</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> lab1: <span class="kw">label</span> (<span class="ot">`v'</span>) <span class="ot">`lvl'</span>     <span class="co">// Value label Variable v bei Level lvl</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    loc lab2 = <span class="fu">substr</span>(<span class="st">"`lab1'"</span>,1,8)         <span class="co">// kürzen </span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">label</span> <span class="kw">define</span> <span class="ot">`lblname'</span>_n <span class="ot">`lvl'</span> <span class="st">"`lab2'"</span>, modify <span class="co">// im neuen value label ändern</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>lab val <span class="ot">`v'</span> <span class="ot">`lblname'</span>_n             <span class="co">// anwenden</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><strong><a href="#varlab">Übung 2</a></strong></p>
+<hr>
+</section>
+<section id="abgleiche" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="abgleiche"><span class="header-section-number">5.4</span> Abgleiche</h2>
+<p>Existiert eine Variable?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">capture</span> <span class="kw">confirm</span>  <span class="kw">variable</span> lm02</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> !<span class="dt">_rc</span> dis <span class="st">"ja"</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> <span class="dt">_rc</span>  dis <span class="st">"nein"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ist variable numerisch?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">capture</span> <span class="kw">confirm</span> <span class="kw">numeric</span> <span class="kw">variable</span> az</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> !<span class="dt">_rc</span> dis <span class="st">"ja"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">if</span> <span class="dt">_rc</span>  dis <span class="st">"nein"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>ja</code></pre>
+</div>
+</div>
+<p><code>help data_types</code></p>
+</section>
+<section id="valsearch" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="valsearch"><span class="header-section-number">5.5</span> wo kommt überall -4 vor?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">ds</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> varlist1 <span class="ot">`r(varlist)'</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>*<span class="kw">display</span> <span class="st">"`varlist1'"</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> v <span class="kw">of</span> varlist1 {</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">qui</span> <span class="fu">count</span> <span class="kw">if</span> <span class="ot">`v'</span> == -4</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> <span class="fu">r</span>(<span class="kw">N</span>) &gt; 0 <span class="kw">display</span> <span class="st">"`v'"</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>* oder direkt:</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> v <span class="kw">of</span> <span class="kw">varlist</span> * {</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">qui</span> <span class="fu">count</span> <span class="kw">if</span> <span class="ot">`v'</span> == -4</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> <span class="fu">r</span>(<span class="kw">N</span>) &gt; 0 <span class="kw">display</span> <span class="st">"`v'"</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><strong><a href="#valuesearch">Übung</a></strong></p>
+<hr>
+</section>
+<section id="übungen" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="übungen"><span class="header-section-number">5.6</span> Übungen</h2>
+<section id="strue" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="strue"><span class="header-section-number">5.6.1</span> Übung</h3>
+<ul>
+<li>Verwenden Sie mit <code>input</code> die Adressdaten von <a href="#labmacro">oben</a></li>
+<li>Wie kommen Sie jeweils an das vorletzte Wort aus der Adressliste?</li>
+<li>Extrahieren Sie die zehn letzten Zeichen aus <code>add</code>, aber lassen die drei letzten Zeichen weg. (“Zeichen 10 bis 4 von hinten her gezählt”).</li>
+</ul>
+</section>
+<section id="regexue" class="level3" data-number="5.6.2">
+<h3 data-number="5.6.2" class="anchored" data-anchor-id="regexue"><span class="header-section-number">5.6.2</span> Übung</h3>
+<ul>
+<li>Laden Sie den <code>regex.dta</code>:<br>
+<code>use "https://github.com/filius23/StataProgBIBB/raw/main/docs/regex1.dta", clear</code> und teilen Sie die Informationen aus <code>address</code> in 4 Variablen auf: Hausnummer (erste Zahl), Straße, PLZ, Region
+<ul>
+<li>Wandeln Sie alle Einträge in Großbuchstaben um</li>
+<li>Verwenden Sie <code>split</code> mit geeignetem <code>parse()</code>-Argument, um zwischen Hausnummer &amp; Straße und PLZ &amp; Region zu trennen.</li>
+<li>Wie können Sie jetzt die Zahlen vom Text trennen? (Tipp: Suchen Sie erst nach den Zahlen. Tipp2: Was wollen wir dann in den Textvariablen nicht mehr?)</li>
+<li>Löschen Sie ggf. Leerzeichen zu Beginn und am Ende der Variablen</li>
+</ul></li>
+</ul>
+</section>
+<section id="varlab" class="level3" data-number="5.6.3">
+<h3 data-number="5.6.3" class="anchored" data-anchor-id="varlab"><span class="header-section-number">5.6.3</span> Übung</h3>
+<ul>
+<li><p>Laden Sie der Erwerbstätigenbefragung</p></li>
+<li><p>Kürzen die die <code>variable labels</code> für alle Variablen mit “wissensintensiver Beruf” im Label (<code>d *wib*</code>)</p>
+<ul>
+<li>Ersetzen Sie “wissensintensiver Beruf” in den <code>variable labels</code> mit “wib”.</li>
+<li>Spielen Sie die Routine erst für eine Variable durch: welche Label-Befehle brauchen Sie?</li>
+<li>Denken Sie an <code>foreach ... of varlist</code> und die Möglichkeit, wildcards zu verwenden. Alternativ hilft evtl. auch <a href="#valsearch"><code>ds</code></a> mit Wildcards</li>
+</ul></li>
+</ul>
+<p>So können Sie überpürfen, ob das geklappt hat:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">d</span> *wib*</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Bearbeiten Sie das value label für <code>nuts2</code> - nutzen Sie dafür die <code>regex</code> und <code>string</code>-Funktionen von oben
+<ul>
+<li>Löschen Sie “Statistische” aus den den value labels und ersetzen Sie “Direktionsbezirk” durch “Bezirk”:</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> nuts2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Kehren Sie die Codierung vom <code>m1202</code> um: <code>gen m1202_n = 10 - m1202</code> und passen Sie die value labels entsprechend an die neue Codierung an.
+<ul>
+<li>Tipp: auch die value labels müssen dann jeweils <code>10 - x</code> genommen werden.</li>
+</ul></li>
+</ul>
+<p><strong>Für alle, die schon fertig sind:</strong></p>
+<ul>
+<li>Wie könnten Sie automatisiert den Variable label für die Muttersprachenvariablen (<code>F1606_*</code>) kürzen, sodass statt “Muttersprache:” nur noch “MSpr” im label steht?</li>
+</ul>
+</section>
+<section id="valuesearch" class="level3" data-number="5.6.4">
+<h3 data-number="5.6.4" class="anchored" data-anchor-id="valuesearch"><span class="header-section-number">5.6.4</span> Übung</h3>
+<ul>
+<li>In welchen Variablen aus der Erwerbstätigenbefragung kommt der der Wert <code>-9</code> vor?</li>
+<li>Füttern Sie diese Information in <code>mvdecode</code>, um die Missings zu überschreiben.
+<ul>
+<li>Sammeln Sie die Information, welche Variablen <code>-9</code> enthalten (Stichwort <a href="02_loops_fromdata.html#recur">rekursive macro-Definition</a>)</li>
+<li>Erstellen Sie einen <code>mvdecode</code>-Befehle, welcher die Information aufnimmt und in allen gefundenen Variablen <code>-9</code> durch <code>.</code> ersetzt.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="anhang" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="anhang"><span class="header-section-number">5.7</span> Anhang</h2>
+<p>Variablen mit bestimmten Eigenschaften identifizieren in ein <code>macro</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ds</span>, has(<span class="dv">type</span> <span class="kw">byte</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>loc bytevars <span class="ot">`r(varlist)'</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> v <span class="kw">of</span> <span class="kw">local</span> bytevars {</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">rename</span> <span class="ot">`v'</span> b_<span class="ot">`v'</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./03_reg.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05_Daten.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">Alle Kursinhalte 2022 von <a href="https://afilser.netlify.app/">Andreas Filser</a><br> <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC Lizenz mit Namensnennung </a><br> Erstellt mit &amp; <a href="https://www.ssc.wisc.edu/~hemken/Stataworkshops/Statamarkdown/stata-and-r-markdown.html">Statamarkdown</a>, Code <a href="https://github.com/filius23/StataBIBB_tables2022">hier einsehbar </a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

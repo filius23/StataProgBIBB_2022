@@ -6,7 +6,7 @@ project:
   # output-file: pdf_doc
   # 
 book:
-  title: "Progammieren mit Stata"
+  title: "Programmieren mit Stata"
   author: "[Andreas Filser](https://afilser.netlify.app/)"
   date: last-modified
   chapters:

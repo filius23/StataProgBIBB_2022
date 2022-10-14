@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Progammieren mit Stata - 4&nbsp; Regressionsergebnisse weiterverarbeiten</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./04_labels_variab.html" rel="next">
+<link href="./02_loops_fromdata.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Progammieren mit Stata</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Stata für Fortgeschrittene: Programmieren mit Postestimates, Macros und Schleifen in Stata</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_macros.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Macros</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_loops_fromdata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_reg.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_labels_variab.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_Daten.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dateien- und DoFile-Verwaltung</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_weiteres.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Weitere <code>macro</code> &amp; <code>matrix</code> Funktionen</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_lit.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Literatur &amp; Links</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#e-und-r-der-regressionsergebnisse" id="toc-e-und-r-der-regressionsergebnisse" class="nav-link active" data-scroll-target="#e-und-r-der-regressionsergebnisse"> <span class="header-section-number">4.1</span> <code>e()</code> und <code>r()</code> der Regressionsergebnisse</a>
+  <ul class="collapse">
+  <li><a href="#koeffizienten-mit-_b-_se-aufrufen" id="toc-koeffizienten-mit-_b-_se-aufrufen" class="nav-link" data-scroll-target="#koeffizienten-mit-_b-_se-aufrufen"> <span class="header-section-number">4.1.1</span> Koeffizienten mit <code>_b</code> / <code>_se</code> aufrufen</a></li>
+  <li><a href="#komplette-regressionstabelle" id="toc-komplette-regressionstabelle" class="nav-link" data-scroll-target="#komplette-regressionstabelle"> <span class="header-section-number">4.1.2</span> Komplette Regressionstabelle</a></li>
+  </ul></li>
+  <li><a href="#regressionstabellen-als-matrix-speichern-und-anpassen" id="toc-regressionstabellen-als-matrix-speichern-und-anpassen" class="nav-link" data-scroll-target="#regressionstabellen-als-matrix-speichern-und-anpassen"> <span class="header-section-number">4.2</span> Regressionstabellen als <code>matrix</code> speichern und anpassen</a></li>
+  <li><a href="#kategoriale-uv" id="toc-kategoriale-uv" class="nav-link" data-scroll-target="#kategoriale-uv"> <span class="header-section-number">4.3</span> kategoriale UV</a></li>
+  <li><a href="#als-datensatz-ablegen" id="toc-als-datensatz-ablegen" class="nav-link" data-scroll-target="#als-datensatz-ablegen"> <span class="header-section-number">4.4</span> Als Datensatz ablegen:</a></li>
+  <li><a href="#weitere-infos-aus-e" id="toc-weitere-infos-aus-e" class="nav-link" data-scroll-target="#weitere-infos-aus-e"> <span class="header-section-number">4.5</span> weitere Infos aus <code>e()</code></a>
+  <ul class="collapse">
+  <li><a href="#esample" id="toc-esample" class="nav-link" data-scroll-target="#esample"> <span class="header-section-number">4.5.1</span> <code>e(sample)</code></a></li>
+  </ul></li>
+  <li><a href="#reg-schrittweise-aufbauen" id="toc-reg-schrittweise-aufbauen" class="nav-link" data-scroll-target="#reg-schrittweise-aufbauen"> <span class="header-section-number">4.6</span> <code>reg</code> schrittweise aufbauen</a></li>
+  <li><a href="#übungen" id="toc-übungen" class="nav-link" data-scroll-target="#übungen"> <span class="header-section-number">4.7</span> Übungen</a>
+  <ul class="collapse">
+  <li><a href="#reg1" id="toc-reg1" class="nav-link" data-scroll-target="#reg1"> <span class="header-section-number">4.7.1</span> Übung</a></li>
+  <li><a href="#reg2" id="toc-reg2" class="nav-link" data-scroll-target="#reg2"> <span class="header-section-number">4.7.2</span> Übung</a></li>
+  </ul></li>
+  <li><a href="#anhang" id="toc-anhang" class="nav-link" data-scroll-target="#anhang"> <span class="header-section-number">4.8</span> Anhang</a>
+  <ul class="collapse">
+  <li><a href="#statsby" id="toc-statsby" class="nav-link" data-scroll-target="#statsby"> <span class="header-section-number">4.8.1</span> <code>statsby</code></a></li>
+  <li><a href="#reg-ergebnisse-für-modelle-sammeln-schleife" id="toc-reg-ergebnisse-für-modelle-sammeln-schleife" class="nav-link" data-scroll-target="#reg-ergebnisse-für-modelle-sammeln-schleife"> <span class="header-section-number">4.8.2</span> <code>reg</code>-Ergebnisse für Modelle sammeln: Schleife</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="regres" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regressionsergebnisse weiterverarbeiten</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<section id="e-und-r-der-regressionsergebnisse" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="e-und-r-der-regressionsergebnisse"><span class="header-section-number">4.1</span> <code>e()</code> und <code>r()</code> der Regressionsergebnisse</h2>
+<p>Die Koeffizienten und Standardfehler des letzten Modells werden in <code>e()</code> gespeichert:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> F518_SUF F200</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>      Source |       SS           df       MS      Number of obs   =    14,659
+-------------+----------------------------------   F(1, 14657)     =   1370.76
+       Model |  1.3122e+10         1  1.3122e+10   Prob &gt; F        =    0.0000
+    Residual |  1.4031e+11    14,657  9572601.57   R-squared       =    0.0855
+-------------+----------------------------------   Adj R-squared   =    0.0855
+       Total |  1.5343e+11    14,658  10467142.3   Root MSE        =      3094
+
+------------------------------------------------------------------------------
+    F518_SUF |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        F200 |   109.4473   2.956134    37.02   0.000     103.6529    115.2417
+       _cons |  -344.1221   104.2802    -3.30   0.001    -548.5245   -139.7197
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">l</span> <span class="fu">e</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>e(b)[1,2]
+          F200       _cons
+y1   109.44727  -344.12212</code></pre>
+</div>
+</div>
+<section id="koeffizienten-mit-_b-_se-aufrufen" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="koeffizienten-mit-_b-_se-aufrufen"><span class="header-section-number">4.1.1</span> Koeffizienten mit <code>_b</code> / <code>_se</code> aufrufen</h3>
+<p>Allerdings gibt es noch eine Abkürzung mit <code>_b[varname]</code> bzw. <code>_se[varname]</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dis <span class="st">"Der Koeffizient für F200 ist "</span> _b[F200]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dis <span class="st">"Der Standardfehler des Koeffizienten für F200 ist "</span> _se[F200]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Der Koeffizient für F200 ist 109.44727
+
+Der Standardfehler des Koeffizienten für F200 ist 2.9561335</code></pre>
+</div>
+</div>
+<p>Wir können so auch vorhergesagte Werte berechnen - entweder für spezifische Werte:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dis _b[<span class="dt">_cons</span>] + 20 *_b[F200]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>margins, <span class="fu">at</span>(F200 = 20)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>1844.8234
+
+
+Adjusted predictions                            Number of obs     =     14,659
+Model VCE    : OLS
+
+Expression   : Linear prediction, predict()
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |     Margin   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       _cons |   1844.823   49.14441    37.54   0.000     1748.494    1941.153
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<p>…oder für alle Beobachtungen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> pred_manual = _b[<span class="dt">_cons</span>] + F200 *_b[F200]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> pred_auto, <span class="kw">xb</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="fu">diff</span>=  pred_manual - pred_auto</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>su <span class="fu">diff</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+        diff |     17,376           0           0          0          0</code></pre>
+</div>
+</div>
+</section>
+<section id="komplette-regressionstabelle" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="komplette-regressionstabelle"><span class="header-section-number">4.1.2</span> Komplette Regressionstabelle</h3>
+<p>Die vollständige Regressionstabelle ist aber eine r-Class matrix:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> F518_SUF F200</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">matlist</span> <span class="fu">r</span>(<span class="kw">table</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>r(table)[9,2]
+              F200       _cons
+     b   109.44727  -344.12212
+    se   2.9561335   104.28024
+     t   37.023793  -3.2999743
+pvalue   6.36e-287   .00096924
+    ll   103.65288  -548.52452
+    ul   115.24167  -139.71973
+    df       14657       14657
+  crit   1.9601259   1.9601259
+ eform           0           0</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="regressionstabellen-als-matrix-speichern-und-anpassen" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="regressionstabellen-als-matrix-speichern-und-anpassen"><span class="header-section-number">4.2</span> Regressionstabellen als <code>matrix</code> speichern und anpassen</h2>
+<p>Mit <code>'</code> können wir die Regressionstabelle transponieren:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> F518_SUF F200</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mat C = <span class="fu">r</span>(<span class="kw">table</span>)'</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">l</span> C</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>C[2,9]
+                b          se           t      pvalue          ll          ul
+ F200   109.44727   2.9561335   37.023793   6.36e-287   103.65288   115.24167
+_cons  -344.12212   104.28024  -3.2999743   .00096924  -548.52452  -139.71973
+
+               df        crit       eform
+ F200       14657   1.9601259           0
+_cons       14657   1.9601259           0</code></pre>
+</div>
+</div>
+<p><a href="05_weiteres.html#crnumb">rownumb</a> hilft, einen Koeffizienten zu suchen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>mat C1 = C[<span class="fu">rownumb</span>(C,<span class="st">"F200"</span>),1...]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">l</span> C1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>C1[1,9]
+              b         se          t     pvalue         ll         ul
+F200  109.44727  2.9561335  37.023793  6.36e-287  103.65288  115.24167
+
+             df       crit      eform
+F200      14657  1.9601259          0</code></pre>
+</div>
+</div>
+</section>
+<section id="kategoriale-uv" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="kategoriale-uv"><span class="header-section-number">4.3</span> kategoriale UV</h2>
+<p>Der Koeffizientenname ist etwas komplizierterer Name bei kat. UVs:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> F518_SUF i.S1 F200</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ereturn</span> <span class="ot">list</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">l</span> <span class="fu">r</span>(<span class="kw">table</span>) </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>dis <span class="st">"Der Koeffizient für S1 = weiblich ist "</span> _b[2.S1]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>r(table)[9,4]
+                1b.          2.                        
+                S1          S1        F200       _cons
+     b           0  -628.91281    95.08006   464.42184
+    se           .   55.392637   3.2038116   125.90363
+     t           .  -11.353726    29.67717    3.688709
+pvalue           .   9.461e-30   5.23e-188   .00022621
+    ll           .  -737.48935   88.800186   217.63489
+    ul           .  -520.33627   101.35993    711.2088
+    df       14656       14656       14656       14656
+  crit   1.9601259   1.9601259   1.9601259   1.9601259
+ eform           0           0           0           0
+
+Der Koeffizient für S1 = weiblich ist -628.91281</code></pre>
+</div>
+</div>
+<p>Dies müssen wir auch bei der Suche nach einem Koeffizienten berücksichtigen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mat D = <span class="fu">r</span>(<span class="kw">table</span>)' <span class="co">// transponieren:</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">l</span> D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>                b          se           t      pvalue          ll          ul          df        crit       <span class="kw">eform</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>1b.S1           0           .           .           .           .           .       14656   1.9601259           0</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a> 2.S1  -628.91281   55.392637  -11.353726   9.461e-30  -737.48935  -520.33627       14656   1.9601259           0</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a> F200    95.08006   3.2038116    29.67717   5.23e-188   88.800186   101.35993       14656   1.9601259           0</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="dt">_cons</span>   464.42184   125.90363    3.688709   .00022621   217.63489    711.2088       14656   1.9601259           0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="als-datensatz-ablegen" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="als-datensatz-ablegen"><span class="header-section-number">4.4</span> Als Datensatz ablegen:</h2>
+<p>Auch hier können wir dann mit <code>xsvmat</code> die Matrix in einen Datensatz umformatieren:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>cap frame <span class="kw">drop</span> regres1</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>xsvmat D,  names(col) <span class="ot">rownames</span>(coef) frame(regres1)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>frame change regres1</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span>, <span class="kw">noobs</span> <span class="kw">clean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a> coef           b         se           t     pvalue          ll          ul      df       crit   <span class="kw">eform</span>  </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>1b.S1           0          .           .          .           .           .   14656   1.960126       0  </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a> 2.S1   -628.9128   55.39264   -11.35373   9.46e-30   -737.4893   -520.3362   14656   1.960126       0  </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a> F200    95.08006   3.203812    29.67717          0    88.80019    101.3599   14656   1.960126       0  </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="dt">_cons</span>    464.4218   125.9036    3.688709   .0002262    217.6349    711.2088   14656   1.960126       0  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="weitere-infos-aus-e" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="weitere-infos-aus-e"><span class="header-section-number">4.5</span> weitere Infos aus <code>e()</code></h2>
+<p>In <code>ereturn list</code> oben sehen wir, dass <code>e(cmdline)</code> den <code>reg</code>-Befehl enthält:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a> <span class="kw">reg</span> F518_SUF i.S1 F200</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>dis <span class="st">"`e(cmdline)'"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>regress F518_SUF i.S1 F200</code></pre>
+</div>
+</div>
+<p>Diese Information können wir mit in den Ergebnis-<code>frame</code> nehmen. <code>global</code>s bleiben nehmen in der Session erhalten, auch wenn wir zwischen <code>frame</code>s wechseln:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> mo = <span class="st">"`e(cmdline)'"</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span>, <span class="kw">noobs</span> <span class="kw">clean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a> coef           b         se           t     pvalue          ll          ul      df       crit   <span class="kw">eform</span>                           mo  </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>1b.S1           0          .           .          .           .           .   14656   1.960126       0   <span class="kw">regress</span> F518_SUF i.S1 F200  </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a> 2.S1   -628.9128   55.39264   -11.35373   9.46e-30   -737.4893   -520.3362   14656   1.960126       0   <span class="kw">regress</span> F518_SUF i.S1 F200  </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a> F200    95.08006   3.203812    29.67717          0    88.80019    101.3599   14656   1.960126       0   <span class="kw">regress</span> F518_SUF i.S1 F200  </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="dt">_cons</span>    464.4218   125.9036    3.688709   .0002262    217.6349    711.2088   14656   1.960126       0   <span class="kw">regress</span> F518_SUF i.S1 F200  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Diese Beschreibung ist natürlich alles andere als ideal. Im nächsten Kapitel werden wir einige Möglichkeiten kennenlernen, da etwas zu ändern.</p>
+<hr>
+<p><strong><a href="#reg1">Übung</a></strong></p>
+<hr>
+<section id="esample" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="esample"><span class="header-section-number">4.5.1</span> <code>e(sample)</code></h3>
+<p><code>e(sample)</code> ist eine <code>e()</code>-Class Funktion, welche die in einem Modell berücksichtigten Fälle zu markieren:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">reg</span> F518_SUF i.S1 F200</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> smpl = <span class="fu">e</span>(<span class="kw">sample</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> sampl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>       smpl |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |      5,353       26.75       26.75
+          1 |     14,659       73.25      100.00
+------------+-----------------------------------
+      Total |     20,012      100.00</code></pre>
+</div>
+</div>
+<p>So können wir bspw. sehen, wo die Missings liegen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>mdesc  F518_SUF S1 F200 <span class="kw">if</span> smpl == 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span>{</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">use</span> <span class="st">"./data/BIBBBAuA_2018_suf1.0_clean.dta"</span>, <span class="kw">replace</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">reg</span> F518_SUF i.S1 F200</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">gen</span> smpl = <span class="fu">e</span>(<span class="kw">sample</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>mdesc  F518_SUF S1 F200 <span class="kw">if</span> smpl == 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Variable    |     Missing          Total     Percent Missing
+----------------+-----------------------------------------------
+       F518_SUF |       3,377          5,353          63.09
+             S1 |           0          5,353           0.00
+           F200 |       2,636          5,353          49.24
+----------------+-----------------------------------------------</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="reg-schrittweise-aufbauen" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="reg-schrittweise-aufbauen"><span class="header-section-number">4.6</span> <code>reg</code> schrittweise aufbauen</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>glo mod1 i.S1 az i.m1202 zpalter i.Mig</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">regress</span> F518_SUF <span class="ot">${mod1}</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> smpl2 = <span class="fu">e</span>(<span class="kw">sample</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> len2: <span class="fu">word</span> <span class="fu">count</span> <span class="ot">${mod1}</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="kw">forvalues</span> i = 1(1)<span class="ot">`len2'</span> {</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    loc <span class="fu">word</span>: <span class="fu">word</span> <span class="ot">`i'</span> <span class="kw">of</span> <span class="ot">${mod1}</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    dis <span class="st">"Modell Nr"</span> <span class="ot">`i'</span> <span class="st">": mit `word'"</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    loc x <span class="ot">`x'</span> <span class="ot">`word'</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">qui</span> <span class="kw">reg</span> F518_SUF <span class="ot">`x'</span> <span class="kw">if</span> smpl2 == 1</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">est</span> <span class="kw">store</span> m<span class="ot">`i'</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="kw">est</span> <span class="ot">dir</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>esttab <span class="fu">m</span>*, b se  <span class="co">// ssc install esttab</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Modell Nr1: mit i.S1
+Modell Nr2: mit az
+Modell Nr3: mit i.m1202
+Modell Nr4: mit zpalter
+Modell Nr5: mit i.Mig
+
+
+----------------------------------------------------------------
+        name | command      depvar       npar  title 
+-------------+--------------------------------------------------
+          m1 | regress      F518_SUF        3  Linear regression
+          m2 | regress      F518_SUF        4  Linear regression
+          m3 | regress      F518_SUF        8  Linear regression
+          m4 | regress      F518_SUF        9  Linear regression
+          m5 | regress      F518_SUF       12  Linear regression
+----------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------
+                      (1)             (2)             (3)             (4)             (5)   
+                 F518_SUF        F518_SUF        F518_SUF        F518_SUF        F518_SUF   
+--------------------------------------------------------------------------------------------
+1.S1                    0               0               0               0               0   
+                      (.)             (.)             (.)             (.)             (.)   
+
+2.S1              -1434.1***       -683.3***       -725.7***       -755.7***       -756.4***
+                  (53.94)         (55.19)         (53.65)         (53.50)         (53.51)   
+
+az                                  91.74***        83.46***        84.05***        83.99***
+                                  (2.376)         (2.323)         (2.315)         (2.316)   
+
+1.m1202                                                 0               0               0   
+                                                      (.)             (.)             (.)   
+
+2.m1202                                             384.1***        261.9*          250.9*  
+                                                  (114.5)         (114.6)         (115.2)   
+
+3.m1202                                             898.1***        737.2***        724.5***
+                                                  (137.7)         (137.9)         (138.5)   
+
+4.m1202                                            2074.7***       1933.3***       1924.7***
+                                                  (116.0)         (116.2)         (116.7)   
+
+zpalter                                                             25.41***        25.27***
+                                                                  (2.200)         (2.210)   
+
+0.Mig                                                                                   0   
+                                                                                      (.)   
+
+1.Mig                                                                               10.65   
+                                                                                  (93.55)   
+
+2.Mig                                                                              -175.8   
+                                                                                  (146.9)   
+
+_cons              4236.3***        359.5***       -376.7**       -1447.4***      -1423.9***
+                  (37.72)         (106.7)         (141.0)         (168.3)         (171.2)   
+--------------------------------------------------------------------------------------------
+N                   16518           16518           16518           16518           16518   
+--------------------------------------------------------------------------------------------
+Standard errors in parentheses
+* p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001</code></pre>
+</div>
+</div>
+<hr>
+<p><strong><a href="#reg2">Übung</a></strong></p>
+<hr>
+</section>
+<section id="übungen" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="übungen"><span class="header-section-number">4.7</span> Übungen</h2>
+<section id="reg1" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="reg1"><span class="header-section-number">4.7.1</span> Übung</h3>
+<p>Erstellen Sie folgendes Regressionsmodell:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> az i.mig01 zpalter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>(In <code>mig01</code> steht dann 0 für keinen Migrationshintergrund und 1 für Migrationshintergrund - siehe auch <code>01_init.do</code>)</p>
+<ul>
+<li>Erstellen Sie jeweils einen <code>display</code>-Befehl, der den Koeffizienten und Standardfehler für <code>mig01</code> und <code>zpalter</code> mit einer Aussagekräftigen Nachricht ausgibt</li>
+<li>Wie würde das als Schleife über die Koeffizienten aussehen?</li>
+<li>Extrahieren Sie die Regressionstabelle als <code>matrix</code> und legen sie diese als <code>frame</code> ab.</li>
+<li>Erstellen Sie zusätzlich eine Spalte mit dem Regressionsbefehl.</li>
+</ul>
+</section>
+<section id="reg2" class="level3" data-number="4.7.2">
+<h3 data-number="4.7.2" class="anchored" data-anchor-id="reg2"><span class="header-section-number">4.7.2</span> Übung</h3>
+<p>Bauen Sie folgendes Modell Schritt für Schritt auf und lassen Sie sich die Tabelle mit <code>esttab</code> ausgeben:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> az i.S1 zpalter c.zpalter#c.zpalter i.gkpol i.F1604 i.F1604##i.S1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="anhang" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="anhang"><span class="header-section-number">4.8</span> Anhang</h2>
+<section id="statsby" class="level3" data-number="4.8.1">
+<h3 data-number="4.8.1" class="anchored" data-anchor-id="statsby"><span class="header-section-number">4.8.1</span> <code>statsby</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">statsby</span> _b _se, <span class="kw">by</span>(Bula) <span class="kw">noisily</span>: <span class="co">///</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">regress</span> F518_SUF c.F200##c.F200 i.m1202 i.S1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reg-ergebnisse-für-modelle-sammeln-schleife" class="level3" data-number="4.8.2">
+<h3 data-number="4.8.2" class="anchored" data-anchor-id="reg-ergebnisse-für-modelle-sammeln-schleife"><span class="header-section-number">4.8.2</span> <code>reg</code>-Ergebnisse für Modelle sammeln: Schleife</h3>
+<p>Wir können mit den <code>matrix</code>-Befehlen auch eine Schleife bauen, welche eine Reihe an Regressionsmodellen schätzt und bei jedem Durchlauf einen zusätzlichen Term hinzunimmt. Wir interessieren uns aber nur, dafür wie sich der Koeffizient für das Geschlecht (S1 == 2) entwickelt mit jedem neuen Modell. Mit den <code>matrix</code>-Befehlen können wir dieser herausfiltern.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> predictors i.S1 c.F200 c.F200#c.F200 i.m1202 zpalter c.zpalter#c.zpalter <span class="co">// UV-Liste</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="fu">r</span> = 1 <span class="co">// Zähler </span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>loc uv      <span class="co">// uv rücksetzen (zur sicherheit)</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> v <span class="kw">of</span> <span class="kw">local</span> predictors {</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">local</span> uv <span class="ot">`uv'</span> <span class="ot">`v'</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">qui</span> <span class="kw">regress</span> F518_SUF <span class="ot">`uv'</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    mat D = <span class="fu">r</span>(<span class="kw">table</span>)'                       <span class="co">// reg-tabelle transponieren &amp; speichern </span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    mat D2 = D[<span class="fu">rownumb</span>(D,<span class="st">"2.S1"</span>),1...]      <span class="co">// Koeffizient für S1=2 behalten</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> (<span class="ot">`r'</span> == 1) mat R = D2                <span class="co">// im ersten Durchlauf R erstellen</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> (<span class="ot">`r'</span> != 1) mat R = R\D2              <span class="co">// danach: D2 an R anfügen</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>    loc ++<span class="fu">r</span> <span class="co">// Zähler + 1</span></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">l</span> R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>R[6,9]</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>               b          se           t      pvalue          ll          ul          df        crit       <span class="kw">eform</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>2.S1  -1431.8093   53.630001  -26.697917   8.52e-154  -1536.9298  -1326.6888       16633   1.9601066           0</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>2.S1  -628.91281   55.392637  -11.353726   9.461e-30  -737.48935  -520.33627       14656   1.9601259           0</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>2.S1   -661.6656   55.679749  -11.883416   2.034e-32  -770.80492  -552.52628       14655   1.9601259           0</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>2.S1  -664.94219   53.793012  -12.361126   6.336e-35  -770.38328  -559.50111       14633   1.9601261           0</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>2.S1  -700.71303   54.028438  -12.969337   2.975e-38  -806.61563  -594.81043       14552    1.960127           0</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>2.S1  -717.33567   54.061055  -13.268991   5.977e-40  -823.30221  -611.36914       14551    1.960127           0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wie wissen wir jetzt, für was kontrolliert wurde?</p>
+<p>Wir nutzen den Zähler, um ein <code>global</code> mit der Zählernummer zu erstellen und eine Zeile in die <code>matrix</code> einzufügen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> predictors i.S1 c.F200 c.F200#c.F200 i.m1202 zpalter c.zpalter#c.zpalter</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> <span class="fu">r</span> = 1 <span class="co">// Zähler </span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>loc uv      <span class="co">// uv rücksetzen (zur sicherheit)</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> v <span class="kw">of</span> <span class="kw">local</span> predictors {</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> uv <span class="ot">`uv'</span> <span class="ot">`v'</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">qui</span> <span class="kw">regress</span> F518_SUF <span class="ot">`uv'</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    mat D = <span class="fu">r</span>(<span class="kw">table</span>)'                       <span class="co">// reg-tabelle transponieren &amp; speichern </span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    mat D2 = D[<span class="fu">rownumb</span>(D,<span class="st">"2.S1"</span>),1...]      <span class="co">// Koeffizient für S1=2 behalten</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>    mat M = <span class="ot">`r'</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    mat colname M = <span class="fu">mod</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> (<span class="ot">`r'</span> == 1) mat R = D2 , M            <span class="co">// ,r -&gt; zähler an Koeffizientzeile anfügen</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">if</span> (<span class="ot">`r'</span> != 1) mat R = R\(D2 , M)</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>    glo cmd<span class="ot">`r'</span> = <span class="st">"`e(cmdline)'"</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>    loc ++<span class="fu">r</span> <span class="co">// Zähler + 1</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">l</span> R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>R[6,10]</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>               b          se           t      pvalue          ll          ul          df        crit       <span class="kw">eform</span>         <span class="fu">mod</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>2.S1  -1431.8093   53.630001  -26.697917   8.52e-154  -1536.9298  -1326.6888       16633   1.9601066           0           1</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>2.S1  -628.91281   55.392637  -11.353726   9.461e-30  -737.48935  -520.33627       14656   1.9601259           0           2</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>2.S1   -661.6656   55.679749  -11.883416   2.034e-32  -770.80492  -552.52628       14655   1.9601259           0           3</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>2.S1  -664.94219   53.793012  -12.361126   6.336e-35  -770.38328  -559.50111       14633   1.9601261           0           4</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>2.S1  -700.71303   54.028438  -12.969337   2.975e-38  -806.61563  -594.81043       14552    1.960127           0           5</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>2.S1  -717.33567   54.061055  -13.268991   5.977e-40  -823.30221  -611.36914       14551    1.960127           0           6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Diese <code>matrix</code> R schicken wir jetzt in einen <code>frame</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>cap frame <span class="kw">drop</span> rmods</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>xsvmat R,  names(col) <span class="ot">rownames</span>(coef) frame(rmods)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>frame change rmods</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span>, <span class="kw">noobs</span> <span class="kw">clean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>coef           b         se           t     pvalue          ll          ul      df       crit   <span class="kw">eform</span>   <span class="fu">mod</span>  </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>2.S1   -1431.809      53.63   -26.69792          0    -1536.93   -1326.689   16633   1.960107       0     1  </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>2.S1   -628.9128   55.39264   -11.35373   9.46e-30   -737.4893   -520.3362   14656   1.960126       0     2  </span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>2.S1   -661.6656   55.67975   -11.88342   2.03e-32   -770.8049   -552.5263   14655   1.960126       0     3  </span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>2.S1   -664.9422   53.79301   -12.36113   6.34e-35   -770.3833   -559.5011   14633   1.960126       0     4  </span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>2.S1    -700.713   54.02844   -12.96934   2.97e-38   -806.6156   -594.8104   14552   1.960127       0     5  </span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>2.S1   -717.3357   54.06105   -13.26899          0   -823.3022   -611.3691   14551   1.960127       0     6  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Jetzt wissen zwar schon mal, aus welchem Modell der Koeffizient jeweils kommt (basierend auf <code>mod</code>). Eigentlich würden das aber gerne labeln. Dazu können wir jetzt auf die <code>globals</code> zurückgreifen - mit <a href="01_macros.html#allglo"><code>all globals</code></a> können wir nach ihnen suchen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> allglo:  <span class="ot">all</span> globals <span class="st">"cmd*"</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>mac <span class="ot">l</span> allglo</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>allglo:         cmd6 cmd5 cmd4 cmd3 cmd2 cmd1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>mac <span class="ot">l</span> cmd1</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>cmd1:           <span class="kw">regress</span> F518_SUF i.S1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Jetzt können wir mit einer Schleife die Spalte <code>mod</code> labeln. Mit <code>label define ....</code> können Wertelabels erstellt werden - mit der Option <code>,modify</code> können wir das auch schrittweise verändern. Außerdem können wir einen kleinen Trick nutzen, um innerhalb der Schleife auf das <code>global</code> mit einer bestimmten Zahl zuzugreifen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">levelsof</span> <span class="fu">mod</span>, loc(mnrs)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">foreach</span> <span class="fu">m</span> <span class="kw">of</span> <span class="kw">local</span> mnrs {</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    lab def mod_lab <span class="ot">`m'</span> <span class="st">"${cmd`m'}"</span>, modify <span class="co">// value label verändern </span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>lab val <span class="fu">mod</span> mod_lab</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="ot">list</span>, <span class="kw">noobs</span> <span class="kw">clean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>    coef           b         se           t     pvalue          ll          ul      df       crit   <span class="kw">eform</span>                                                                              <span class="fu">mod</span>  </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    2.S1   -1431.809      53.63   -26.69792          0    -1536.93   -1326.689   16633   1.960107       0                                                            <span class="kw">regress</span> F518_SUF i.S1  </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    2.S1   -628.9128   55.39264   -11.35373   9.46e-30   -737.4893   -520.3362   14656   1.960126       0                                                     <span class="kw">regress</span> F518_SUF i.S1 c.F200  </span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    2.S1   -661.6656   55.67975   -11.88342   2.03e-32   -770.8049   -552.5263   14655   1.960126       0                                       <span class="kw">regress</span> F518_SUF i.S1 c.F200 c.F200#c.F200  </span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    2.S1   -664.9422   53.79301   -12.36113   6.34e-35   -770.3833   -559.5011   14633   1.960126       0                               <span class="kw">regress</span> F518_SUF i.S1 c.F200 c.F200#c.F200 i.m1202  </span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    2.S1    -700.713   54.02844   -12.96934   2.97e-38   -806.6156   -594.8104   14552   1.960127       0                       <span class="kw">regress</span> F518_SUF i.S1 c.F200 c.F200#c.F200 i.m1202 zpalter  </span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    2.S1   -717.3357   54.06105   -13.26899          0   -823.3022   -611.3691   14551   1.960127       0   <span class="kw">regress</span> F518_SUF i.S1 c.F200 c.F200#c.F200 i.m1202 zpalter c.zpalter#c.zpalter  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Daraus können wir beispielsweise einen Koeffizientenplot erstellen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">twoway</span> <span class="co">///</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    (rcap ll ul <span class="fu">mod</span>,horizontal lcolor(<span class="st">"57 65 101"</span>) ) <span class="co">/// Konfidenzintervalle</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">scatter</span> <span class="fu">mod</span> b,  mcolor(<span class="st">"177 147 74"</span>) )  , <span class="co">/// Punktschätzer</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    graphregion(fcolor(<span class="bn">white</span>)) <span class="co">/// Hintergundfarbe (außerhalb des eigentlichen Plots)</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ylabel</span>(, valuelabel angle(0) <span class="bn">labsize</span>(tiny)) <span class="co">///</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>    <span class="bn">legend</span>(<span class="kw">off</span>) <span class="co">///</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>    <span class="bn">xtitle</span>(<span class="st">"Einkommen (W) vs. Einkommen (M)"</span>) <span class="co">/// Achsentitel</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="bn">ytitle</span>(<span class="st">""</span>) <span class="co">/// </span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    <span class="bn">title</span>(<span class="st">"Titel"</span>)  <span class="co">///</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>    <span class="bn">subtitle</span>(<span class="st">"Untertitel"</span>) <span class="co">///</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>    <span class="bn">caption</span>(<span class="st">"{it:Quelle: Erwerbstätigenbefragung 2018}"</span>, <span class="kw">size</span>(8pt) <span class="bn">position</span>(5) <span class="bn">ring</span>(5) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-error">
+<pre><code>Error in knitr::include_graphics("./graph/Regplot.png"): Cannot find the file(s): "./graph/Regplot.png"</code></pre>
+</div>
+</div>
+<p>Diese labels sind natürlich alles andere als ideal. Im nächsten Kapitel werden wir einige Möglichkeiten kennenlernen, da etwas zu ändern.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./02_loops_fromdata.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Schleifen aus Macros</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04_labels_variab.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Label- und Variablenfunktionen</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">Alle Kursinhalte 2022 von <a href="https://afilser.netlify.app/">Andreas Filser</a><br> <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC Lizenz mit Namensnennung </a><br> Erstellt mit &amp; <a href="https://www.ssc.wisc.edu/~hemken/Stataworkshops/Statamarkdown/stata-and-r-markdown.html">Statamarkdown</a>, Code <a href="https://github.com/filius23/StataBIBB_tables2022">hier einsehbar </a></div>
+  </div>
+</footer>
+
+
+
+</body></html>
