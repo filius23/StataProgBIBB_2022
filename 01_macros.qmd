@@ -753,6 +753,18 @@ foreach v of numlist 19(5)35 {
 }
 ```
 
+
+### Einstellung für `ssc install` an BIBB-Arbeitsrechnern
+
+
+HTTP proxy host: `kessenich.ivbb.bund.de`
+Port:  `80`
+
+```{r sccinst, echo = F,out.width = "90%",fig.height= 4.5, fig.align="center"}
+knitr::include_graphics("./pics/02_install.png")
+```
+
+
 <!-- ### `local x` entspricht `global _x` -->
 
 <!-- Theoretisch kann man auch mit `global _x` einen `local x` erzeugen: -->
