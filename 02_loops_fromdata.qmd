@@ -87,13 +87,13 @@ forvalues i = 1(1)`len2' {
 
 ## Informationen aus Schleifen behalten
 
-### Gespeichterte Ergebnisse
+### Gespeicherte Ergebnisse
 
 Um auf Ergebnisse zuzugreifen, können wir etwas hinter die Kulissen der Stata-Befehle sehen: 
 
 ```{r tib1, echo=F}
 tibble::tribble(~"Befehl",~"zeigt alle",
-"c-class", "system parameters & settings finden wir als `c()` - siehe [``c(username)'`](#cmac)",
+"c-class", "system parameters & settings finden wir als `c()`",
 "r-class", "die meisten deskriptiven Befehle speichern die Ergebnisse in in `r()`",
 "e-class", "...außer estimation commands, wie bspw. `reg` - hier wird in `e()` gespeichert (Postestimates)",
 "s-class", "parsing commands store results in `s()` used by programmers",
@@ -301,7 +301,7 @@ tibble::tribble(~"Operator",~"Symbol",
                 "column join"            ,",",
                 "row join"               ,"\\\\ \ ", 
                 "transpose"              ,"'",
-                "negation"               ,"\\- "
+                "negation"               ,"-"
                 ) %>% 
   kable() %>% 
   kable_styling(bootstrap_options = "condensed", full_width = F,font_size = 12) %>% 

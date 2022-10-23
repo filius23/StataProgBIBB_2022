@@ -190,7 +190,7 @@ forvalues s = 1/2{
 
 + Starten Sie getrennte Auswertungen für Männer und Frauen für das Merkmal `zpalter`, bspw. mit `summary` und stoßen Sie dieses mit `do ... ` an.
 
-## Anhang
+<!-- ## Anhang -->
 
-[weitere File-Loops](https://sites.google.com/site/jenniferlvwinter/stata-code)
+<!-- [weitere File-Loops](https://sites.google.com/site/jenniferlvwinter/stata-code) -->
 

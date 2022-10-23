@@ -75,8 +75,9 @@ split add, parse(" ") gen(t)
 
 ***
 
+:::{.callout-caution collapse="true"}
 
-**Tipp: `real()` ist deutlich schneller und unkomplizierter als `destring`**
+# Tipp: `real()` ist deutlich schneller und unkomplizierter als `destring`
 
 ```{stata real, error = T}
 clear all
@@ -96,6 +97,7 @@ list
 destring(x1), gen(num2)
 ```
 
+:::
 
 ## Arbeiten mit "Regular Expressions"
 
