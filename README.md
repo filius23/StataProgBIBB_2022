@@ -18,7 +18,7 @@ Bei Fragen, Anmerkungen oder Interesse freue ich mich über Nachrichten: andreas
 
 ------------------------------------------------------------------------
 
-One-day seminar on programming in Stata (in German) using
+One-day seminar on programming in Stata (in German) on
 
 -   Macros: creating and using `global` & `local`
 -   Postestimates: calling and using `e()` und `r()`
