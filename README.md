@@ -2,8 +2,6 @@
 
 ------------------------------------------------------------------------
 
-![](pics/00_titel.png) 
-<!-- {fig-align="center" width="482"} ---> 
 
 Eintätiger Kurs am BIBB zum Programmieren in Stata mit
 
@@ -30,3 +28,8 @@ One-day seminar on programming in Stata (in German) using
 -   Automated data import and file organization via Stata
 
 Contact me if you're interested to learn more: andreas.filser\[at\]uol.de
+
+------------------------------------------------------------------------
+
+![](pics/00_titel.png) 
+<!-- {fig-align="center" width="482"} ---> 
