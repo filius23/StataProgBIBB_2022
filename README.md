@@ -2,7 +2,8 @@
 
 ------------------------------------------------------------------------
 
-![](pics/00_titel.png){fig-align="center" width="482"}
+![](pics/00_titel.png) 
+# {fig-align="center" width="482"}
 
 Eintätiger Kurs am BIBB zum Programmieren in Stata mit
 
